@@ -93,13 +93,13 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "雞排",
           "方便料理，加熱即可享用",
-          "https://drive.google.com/file/d/1x47Jdve6hAgkr4FMO1q-Ybu0lF5lNtpN/view?usp=drive_link",
+          "https://drive.google.com/file/d/1x47Jdve6hAgkr4FMO1q-Ybu0lF5lNtpN/view?usp=sharing",
           "https://forms.gle/sE16zUJx3Tb359qq7"
         ),
         productCard(
           "櫻桃",
           "夏季限定 香甜多汁",
-          "https://drive.google.com/file/d/1xjr2AUGkAB65yphmFWJcgthKQE5aGpvN/view?usp=drive_link",
+          "https://drive.google.com/file/d/1xjr2AUGkAB65yphmFWJcgthKQE5aGpvN/view?usp=sharing",
           "https://www.google.com"
         )
       ]
