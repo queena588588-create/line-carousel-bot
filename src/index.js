@@ -126,35 +126,31 @@ function productCard(title, desc, imageUrl, linkUrl) {
       type: "image",
       url: imageUrl,
       size: "full",
-      aspectRatio: "1:1",
+      aspectRatio: "16:9",
       aspectMode: "cover"
     },
     body: {
-      type: "box",
-      layout: "vertical",
-      contents: [
-        {
-          type: "text",
-          text: title,
-          weight: "bold",
-          size: "xl"
-        },
-        {
-          type: "text",
-          text: desc,
-          size: "sm",
-          color: "#666666",
-          wrap: true
-        }
-      ]
-    },
+  type: "box",
+  layout: "vertical",
+  paddingAll: "6px",
+  contents: [
+    {
+      type: "text",
+      text: title,
+      weight: "bold",
+      size: "md",
+      align: "center"
+    }
+  ]
+},
     footer: {
       type: "box",
       layout: "vertical",
       contents: [
         {
-          type: "button",
-          style: "primary",
+         type: "button",
+height: "sm",
+style: "primary",
           action: {
             type: "uri",
             label: "查看商品",
