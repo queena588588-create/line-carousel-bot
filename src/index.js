@@ -125,7 +125,7 @@ await fetch("https://api.line.me/v2/bot/message/reply", {
   });
 }
 
-function productCard(title, desc, imageUrl, linkUrl, buttonText = "查看商品") {
+function productCard(title, desc, imageUrl, linkUrl, buttonText = "近期賣出,去逛逛") {
   return {
     type: "bubble",
     hero: {
