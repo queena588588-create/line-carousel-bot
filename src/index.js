@@ -81,7 +81,7 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "青春極致防曬乳",
           "SPF50+ 保濕防曬不黏膩",
-          "https://img.shop.com/Image/240000/246200/246290/skualt/40634.jpg?plain&size=800x800",
+          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY0YTgwYzIwODE5MWFlNjQzOWMyZmU3MjYyMjE6ZmlsZV8wMDAwMDAwMGMzNmM3MjA5YTQyNjcxN2IzZDFkMWE0YiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjNkYmQ0OTMzMDFmZjE4ODRkMDNmZGMxZGI3ZDM4M2ZiNzVmZWJhMjdjZWRjOWJhNTJhNTYwODQ5MDkzNDE0MmIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
           "https://www.google.com"
         ),
         productCard(
@@ -93,13 +93,13 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "雞排",
           "方便料理，加熱即可享用",
-          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVD2rFIvb7BAeAHHlq78WblRJd46McFh6yoYbfPMHOOFLakLnFWro4mYzQyiwFmscNgS96l_S__sbHjK1fQcdhjci5OquU-gHr8qVL0IKYcI0r-e70q46pkyQT6jyIfUPkjP3pw6ybsdaCCz67SI1yX4yezA4uobmvBTzX8ThtqDGLXehrTUz801vC77BeVDjzhFXBLoIQ-v3NAutqaw=w640?key=u_uUH3XXDKCcD5r7XRHbeQ",
+          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1MjExMzY0ODE5MWIzNzY3M2MzZDJiZjQ0OTQ6ZmlsZV8wMDAwMDAwMGUwZjQ3MjA5OWEzMDc5NmYxMDNiYTYyNyIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjExNzNjNTdkMWFmM2E5MGYwN2Y2MTM5ZWRmOTAyZTYxNmVjZmE0YTM2N2RkZDk2YTkxOTJkYzJhZDdhNzYzZjYiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
           "https://forms.gle/sE16zUJx3Tb359qq7"
         ),
         productCard(
           "櫻桃",
           "夏季限定 香甜多汁",
-          "https://scontent-sin6-1.cdninstagram.com/v/t51.82787-15/698284150_18321842935285160_7658730390316029_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_cat=111&ig_cache_key=Mzg5ODA4MjQxMDY3MTkyNTA5OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IlNUT1JZLnhwaWRzLjEyOTAuc2RyLnJlZ3VsYXJfcGhvdG8uQzMifQ%3D%3D&_nc_ohc=S0RmiCDwHC8Q7kNvwFTcF1n&_nc_oc=AdqDclghRXk770IKhmKcfRmUmyrB2eU3rQnmFmn0u-NqIrwOKMWibFlWkpGfIzy8ENdehW_8V_5zu57tbDa1EJSo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sin6-1.cdninstagram.com&_nc_gid=ku_KdGfOX3nm7hyF15DWhg&_nc_ss=7a22e&oh=00_Af-b6UfGZGkgDXU4YQxJp8p6Z9eKuUko9KLe_jDh6uMIOw&oe=6A308107",
+          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1YzdhY2Q0ODE5MThkMGViZDNmZjljYjQzZDI6ZmlsZV8wMDAwMDAwMDc4ZjA3MjA5YTc2OTE3MTViOWZmM2ZlZiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjY0OGI0MDViY2ZmYzQ2ZjE2YzIzMTMwZDcwY2YxNzQ0OTg4NjM5NjQzZTY2YTg2YzYxM2M0NDJlMzNkOGI0ODIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
           "https://www.google.com"
         ),
  productCard(
