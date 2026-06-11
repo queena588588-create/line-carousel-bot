@@ -66,7 +66,7 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "櫻桃",
           "夏季限定 香甜多汁",
-          "https://picsum.photos/600/600?5",
+          "https://scontent-sin2-3.cdninstagram.com/v/t51.82787-15/722995335_18325777477285160_3070691715997546624_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_cat=107&ig_cache_key=MzkxNzEyNDI2NTQ0MzE4NTI4NQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IlNUT1JZLnhwaWRzLjEyOTAuc2RyLnJlZ3VsYXJfcGhvdG8uQzMifQ%3D%3D&_nc_ohc=l4fp3LgcK2UQ7kNvwHnQJD-&_nc_oc=AdrN0dAG1vAFHf20ogWOneMyh3-rCoU64-mdpKVTDYyjC7uF740E-KPaaKonJ6C1Rug2Picpb2wa3uK4ctq-x6vy&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sin2-3.cdninstagram.com&_nc_gid=ku_KdGfOX3nm7hyF15DWhg&_nc_ss=7a22e&oh=00_Af90Z_7ZerZI1Nzs2AAoX0U8k-RjX38HTuXs6FEDlqh0OA&oe=6A305F33",
           "https://www.google.com"
         )
       ]
