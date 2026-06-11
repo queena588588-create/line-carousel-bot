@@ -75,7 +75,7 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "防曬", weight: "bold", size: "xl" },
+              { type: "text", text: "超好用防曬", weight: "bold", size: "xl" },
               { type: "text", text: "不油不悶", size: "sm", color: "#666666", wrap: true }
             ]
           },
