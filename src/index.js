@@ -107,11 +107,12 @@ async function replyCarousel(replyToken, token) {
   "好物分享｜團購資訊｜日常生活",
   "https://picsum.photos/600/600?99",
   "https://www.instagram.com/queena.520/"
-)
+ )
 ]
 }
-
-  await fetch("https://api.line.me/v2/bot/message/reply", {
+ }
+};
+await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
