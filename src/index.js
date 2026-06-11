@@ -87,23 +87,28 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "冰冰衣",
           "降溫＋防曬＋對抗光老化",
-          "https://shoplineimg.com/562a466de37ec6fdbb000012/6a0c330a018eb10693cf22bc/800x.webp?source_format=jpg",
+          "https://shoplineimg.com/562a466de37ec6fdbb000012/6a0c33d6063de2aebd5b9668/800x.webp?source_format=jpg",
           "https://forms.gle/FGgQcesTW8YHfdZN9"
         ),
         productCard(
           "雞排",
           "方便料理，加熱即可享用",
-          "https://drive.google.com/file/d/1x47Jdve6hAgkr4FMO1q-Ybu0lF5lNtpN/view",
+          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVD2rFIvb7BAeAHHlq78WblRJd46McFh6yoYbfPMHOOFLakLnFWro4mYzQyiwFmscNgS96l_S__sbHjK1fQcdhjci5OquU-gHr8qVL0IKYcI0r-e70q46pkyQT6jyIfUPkjP3pw6ybsdaCCz67SI1yX4yezA4uobmvBTzX8ThtqDGLXehrTUz801vC77BeVDjzhFXBLoIQ-v3NAutqaw=w640?key=u_uUH3XXDKCcD5r7XRHbeQ",
           "https://forms.gle/sE16zUJx3Tb359qq7"
         ),
         productCard(
           "櫻桃",
           "夏季限定 香甜多汁",
-          "https://drive.google.com/file/d/1xjr2AUGkAB65yphmFWJcgthKQE5aGpvN/view",
+          "https://scontent-sin6-1.cdninstagram.com/v/t51.82787-15/698284150_18321842935285160_7658730390316029_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_cat=111&ig_cache_key=Mzg5ODA4MjQxMDY3MTkyNTA5OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IlNUT1JZLnhwaWRzLjEyOTAuc2RyLnJlZ3VsYXJfcGhvdG8uQzMifQ%3D%3D&_nc_ohc=S0RmiCDwHC8Q7kNvwFTcF1n&_nc_oc=AdqDclghRXk770IKhmKcfRmUmyrB2eU3rQnmFmn0u-NqIrwOKMWibFlWkpGfIzy8ENdehW_8V_5zu57tbDa1EJSo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sin6-1.cdninstagram.com&_nc_gid=ku_KdGfOX3nm7hyF15DWhg&_nc_ss=7a22e&oh=00_Af-b6UfGZGkgDXU4YQxJp8p6Z9eKuUko9KLe_jDh6uMIOw&oe=6A308107",
           "https://www.google.com"
-        )
-      ]
-    }
+        ),
+ productCard(
+  "追蹤 Queena IG",
+  "好物分享｜團購資訊｜日常生活",
+  "https://scontent-tpe1-1.cdninstagram.com/v/t51.82787-19/702232226_18322040617285160_1976186730964142593_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42NTUuYzIifQ&_nc_ht=scontent-tpe1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gEI7xBAak7nmse6LgK-PktBprNip4fNlcnBLnV4uUl7g4jE06YOi0r9GbTUeXyFpS5ofwpFZVj8ddU2S_-ZYBFm&_nc_ohc=gFfeVnf4vR8Q7kNvwG05nCH&_nc_gid=WXVS8l8jtQGVletM2Q-1GQ&edm=APoiHPcBAAAA&ccb=7-5&oh=00_Af84wLgHFjxsFAfBF_Bag-71ZnEz9iWqWuZ4Ee0BOyFSiA&oe=6A30C0C6&_nc_sid=22de04",
+  "https://www.instagram.com/queena.520/"
+)
+]        
   };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
