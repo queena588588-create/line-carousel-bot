@@ -75,8 +75,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "超好用防曬", weight: "bold", size: "xl" },
-              { type: "text", text: "不油不悶", size: "sm", color: "#666666", wrap: true }
+              { type: "text", text: "青春極致防曬乳", weight: "bold", size: "xl" },
+{ type: "text", text: "SPF50+ 保濕防曬不黏膩", size: "sm", color: "#666666", wrap: true }
             ]
           },
           footer: {
