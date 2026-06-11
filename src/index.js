@@ -55,7 +55,7 @@ async function replyCarousel(replyToken, token) {
           "冰冰衣",
           "降溫＋防曬＋對抗光老化",
           "https://docs.google.com/document/d/1PVGeAHEVSJoORUcnR_xApg4TRCgBwXqADG6px6kJpyk/edit?usp=sharing",
-          "https://forms.gle/R51dYg6ciqi5LDCs7"
+          "https://docs.google.com/document/d/1PVGeAHEVSJoORUcnR_xApg4TRCgBwXqADG6px6kJpyk/edit?usp=sharing"
         ),
         productCard(
           "雞排",
