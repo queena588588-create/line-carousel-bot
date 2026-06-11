@@ -33,6 +33,7 @@ async function replyCarousel(replyToken, token) {
           type: "bubble",
           hero: {
             type: "image",
+            url: "https://picsum.photos/600/600?1",
             url: "https://img.shop.com/Image/240000/246200/246296/skualt/6164914.jpg?plain&size=800x800",
             size: "full",
             aspectRatio: "1:1",
@@ -42,6 +43,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
+              { type: "text", text: "平泰秀", weight: "bold", size: "xl" },
+              { type: "text", text: "日常保養推薦", size: "sm", color: "#666666", wrap: true }
               { type: "text", text: "仙女霜", weight: "bold", size: "xl" },
               { type: "text", text: "日常保養推薦 All in one", size: "sm", color: "#666666", wrap: true }
             ]
@@ -56,40 +59,8 @@ async function replyCarousel(replyToken, token) {
                 action: {
                   type: "message",
                   label: "我要了解",
+                  text: "我要了解平泰秀"
                   text: "我要了解仙女霜"
-
-              }
-            ]
-          }
-        },
-        {
-          type: "bubble",
-          hero: {
-            type: "image",
-            url: "https://img.shop.com/Image/240000/246200/246290/products/895882809.jpg?plain&size=1600x1600",
-            size: "full",
-            aspectRatio: "1:1",
-            aspectMode: "cover"
-          },
-          body: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              { type: "text", text: "青春極致防曬乳", weight: "bold", size: "xl" },
-{ type: "text", text: "SPF50+ 保濕防曬不黏膩", size: "sm", color: "#666666", wrap: true }
-            ]
-          },
-          footer: {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "button",
-                style: "primary",
-                action: {
-                  type: "message",
-                  label: "我要了解",
-                  text: "我要了解好用防曬"
                 }
               }
             ]
@@ -99,7 +70,7 @@ async function replyCarousel(replyToken, token) {
           type: "bubble",
           hero: {
             type: "image",
-            url: "https://shoplineimg.com/562a466de37ec6fdbb000012/6a0c33dd5ae7cd27b1c70a02/800x.webp?source_format=jpg",
+            url: "https://picsum.photos/600/600?2",
             size: "full",
             aspectRatio: "1:1",
             aspectMode: "cover"
@@ -108,8 +79,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "冰冰衣", weight: "bold", size: "xl" },
-              { type: "text", text: "對抗光老化 爆曬不黑款 ", size: "sm", color: "#666666", wrap: true }
+              { type: "text", text: "常青活顏飲", weight: "bold", size: "xl" },
+              { type: "text", text: "日常飲品推薦", size: "sm", color: "#666666", wrap: true }
             ]
           },
           footer: {
@@ -122,7 +93,40 @@ async function replyCarousel(replyToken, token) {
                 action: {
                   type: "message",
                   label: "我要了解",
-                  text: "我要了解冰冰衣"
+                  text: "我要了解常青活顏飲"
+                }
+              }
+            ]
+          }
+        },
+        {
+          type: "bubble",
+          hero: {
+            type: "image",
+            url: "https://picsum.photos/600/600?3",
+            size: "full",
+            aspectRatio: "1:1",
+            aspectMode: "cover"
+          },
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              { type: "text", text: "6D 枕頭", weight: "bold", size: "xl" },
+              { type: "text", text: "睡眠好物推薦", size: "sm", color: "#666666", wrap: true }
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "button",
+                style: "primary",
+                action: {
+                  type: "message",
+                  label: "我要了解",
+                  text: "我要了解6D枕頭"
                 }
               }
             ]
