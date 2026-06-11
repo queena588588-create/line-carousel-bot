@@ -57,7 +57,18 @@ async function replyCarousel(replyToken, token) {
                   type: "message",
                   label: "我要了解",
                   text: "我要了解仙女霜"
-                }
+                if (event.message.text === "我要了解平泰秀") {
+  // 回覆平泰秀介紹
+}
+
+✨ 仙女霜
+
+✔ 保濕 緊緻 改善暗沉
+✔ 淡化細紋
+✔ 肌膚修護
+✔ 日常保養推薦
+✔ 美白 淡斑 抗皺 除疤
+ ✔ 一條搞定肌膚問題
               }
             ]
           }
@@ -66,7 +77,7 @@ async function replyCarousel(replyToken, token) {
           type: "bubble",
           hero: {
             type: "image",
-            url: "https://picsum.photos/600/600?2",
+            url: "https://img.shop.com/Image/240000/246200/246290/products/895882809.jpg?plain&size=1600x1600",
             size: "full",
             aspectRatio: "1:1",
             aspectMode: "cover"
@@ -75,8 +86,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "常青活顏飲", weight: "bold", size: "xl" },
-              { type: "text", text: "日常飲品推薦", size: "sm", color: "#666666", wrap: true }
+              { type: "text", text: "防曬", weight: "bold", size: "xl" },
+              { type: "text", text: "不油不悶", size: "sm", color: "#666666", wrap: true }
             ]
           },
           footer: {
@@ -89,7 +100,7 @@ async function replyCarousel(replyToken, token) {
                 action: {
                   type: "message",
                   label: "我要了解",
-                  text: "我要了解常青活顏飲"
+                  text: "我要了解好用防曬"
                 }
               }
             ]
