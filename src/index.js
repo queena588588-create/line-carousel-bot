@@ -61,7 +61,7 @@ async function replyCarousel(replyToken, token) {
           "雞排",
           "方便料理，加熱即可享用",
           "https://scontent-sin2-1.cdninstagram.com/v/t51.82787-15/702677192_18322302067285160_5035159655161140196_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_cat=100&ig_cache_key=MzkwMDM2MDM0NDc1NzczOTM1Ng%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IlNUT1JZLnhwaWRzLjEyOTAuc2RyLnJlZ3VsYXJfcGhvdG8uQzMifQ%3D%3D&_nc_ohc=tLQsrUDbZnoQ7kNvwH6br74&_nc_oc=AdpnzWo3H7J2CsZMBVpA0n0dUC-dx7KF66YxigpYdXNrk_WoCEIPa8aiRXsFsLzgfaFA1i4rwr6LJ03dQQiFqeGp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sin2-1.cdninstagram.com&_nc_gid=nlRaAGJhxwgfsXFTcSrMdg&_nc_ss=7a22e&oh=00_Af8BweOUn80mo6JcTWe6-tsvBysUHyD7kjTQHYF_2_i9xg&oe=6A3057BF",
-          "https://www.google.com"
+          "https://forms.gle/sE16zUJx3Tb359qq7"
         ),
         productCard(
           "櫻桃",
