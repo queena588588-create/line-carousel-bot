@@ -131,8 +131,8 @@ function productCard(title, desc, imageUrl, linkUrl, buttonText = "查看商品"
     hero: {
       type: "image",
       url: imageUrl,
-      size: "xxl",
-      aspectRatio: "20:11"
+size: "full",
+      aspectRatio: "20:11",
 aspectMode: "cover"
     },
   body: {
