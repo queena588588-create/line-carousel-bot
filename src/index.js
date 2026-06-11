@@ -54,7 +54,7 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "冰冰衣",
           "降溫＋防曬＋對抗光老化",
-          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVAAwaaiY7qvNA8Y4kWtMylSH1IO7Ynn9PSVp--Rgm7NirW7iK3TKSbt5RHWXBjtMTuP1dHPBweaKXez3c7tzJEup_neUyq1PMqqZ7p4EBBrVNwvMOJJmK6AmRhA2tBB5WBqAiKCgQsirIx_BcUdTNTyckP5DzCirxHG1k95Jq5kcFk-YxGHCdgkN1YcEGYNechgc-EaSzV18ZNfyyr8=w640?key=5XGsa3dXCmjPy5PBVdJVnw",
+          "https://docs.google.com/document/d/1PVGeAHEVSJoORUcnR_xApg4TRCgBwXqADG6px6kJpyk/edit?usp=sharing",
           "https://forms.gle/R51dYg6ciqi5LDCs7"
         ),
         productCard(
