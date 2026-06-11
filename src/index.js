@@ -19,13 +19,47 @@ export default {
     }
 
     for (const event of body.events) {
-      if (
-        event.type === "message" &&
-        event.message.type === "text" &&
-        event.message.text === "商品"
-      ) {
-        await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
-      }
+
+  if (event.type === "memberJoined") {
+    await replyText(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      `🛒 歡迎加入塞爆購物車 🛒
+
+About me～
+
+👉 雙寶職業媽咪也能輕鬆斜槓
+✨ 電商合作經營開放中
+
+💰 生活消費賺回饋
+📱 對網路行銷有興趣
+📚 想培養第二專長
+✈️ 出國邊玩邊賺錢
+
+以上任一有興趣歡迎私訊 🙋‍♀️
+
+🔕 訊息有點多可關閉提醒
+
+📝 記事本搜尋🔍關鍵字
+
+🛒 買東西｜找商品｜訂單問題
+➕ Queena好友
+
+📷 IG搜尋：queena.520日常
+💬 官方Line：@108yssta
+
+輸入「商品」即可查看本週推薦商品 ❤️`
+    );
+  }
+
+  if (
+    event.type === "message" &&
+    event.message.type === "text" &&
+    event.message.text === "商品"
+  ) {
+    await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  }
+}
     }
 
     return new Response("OK");
@@ -131,4 +165,23 @@ function productCard(title, desc, imageUrl, linkUrl) {
       ]
     }
   };
+}
+
+async function replyText(replyToken, token, text) {
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        {
+          type: "text",
+          text: text
+        }
+      ]
+    })
+  });
 }
