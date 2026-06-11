@@ -33,7 +33,7 @@ async function replyCarousel(replyToken, token) {
           type: "bubble",
           hero: {
             type: "image",
-            url: "https://picsum.photos/600/600?1",
+            url: "https://img.shop.com/Image/240000/246200/246296/skualt/6164914.jpg?plain&size=800x800",
             size: "full",
             aspectRatio: "1:1",
             aspectMode: "cover"
@@ -42,8 +42,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "平泰秀", weight: "bold", size: "xl" },
-              { type: "text", text: "日常保養推薦", size: "sm", color: "#666666", wrap: true }
+              { type: "text", text: "仙女霜", weight: "bold", size: "xl" },
+              { type: "text", text: "日常保養推薦 All in one", size: "sm", color: "#666666", wrap: true }
             ]
           },
           footer: {
@@ -56,7 +56,7 @@ async function replyCarousel(replyToken, token) {
                 action: {
                   type: "message",
                   label: "我要了解",
-                  text: "我要了解平泰秀"
+                  text: "我要了解仙女霜"
                 }
               }
             ]
