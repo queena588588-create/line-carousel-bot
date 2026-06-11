@@ -99,7 +99,7 @@ async function replyCarousel(replyToken, token) {
           type: "bubble",
           hero: {
             type: "image",
-            url: "https://picsum.photos/600/600?3",
+            url: "https://shoplineimg.com/562a466de37ec6fdbb000012/6a0c33dd5ae7cd27b1c70a02/800x.webp?source_format=jpg",
             size: "full",
             aspectRatio: "1:1",
             aspectMode: "cover"
@@ -108,8 +108,8 @@ async function replyCarousel(replyToken, token) {
             type: "box",
             layout: "vertical",
             contents: [
-              { type: "text", text: "6D 枕頭", weight: "bold", size: "xl" },
-              { type: "text", text: "睡眠好物推薦", size: "sm", color: "#666666", wrap: true }
+              { type: "text", text: "冰冰衣", weight: "bold", size: "xl" },
+              { type: "text", text: "對抗光老化 爆曬不黑款 ", size: "sm", color: "#666666", wrap: true }
             ]
           },
           footer: {
@@ -122,7 +122,7 @@ async function replyCarousel(replyToken, token) {
                 action: {
                   type: "message",
                   label: "我要了解",
-                  text: "我要了解6D枕頭"
+                  text: "我要了解冰冰衣"
                 }
               }
             ]
