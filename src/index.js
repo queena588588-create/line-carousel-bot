@@ -106,8 +106,9 @@ async function replyCarousel(replyToken, token) {
   "追蹤 Queena IG",
   "好物分享｜團購資訊｜日常生活",
   "https://picsum.photos/600/600?99",
-  "https://www.instagram.com/queena.520/"
- )
+  "https://www.instagram.com/queena.520/",
+  "追蹤"
+)
 ]
 }
 };
@@ -124,7 +125,7 @@ await fetch("https://api.line.me/v2/bot/message/reply", {
   });
 }
 
-function productCard(title, desc, imageUrl, linkUrl) {
+function productCard(title, desc, imageUrl, linkUrl, buttonText = "查看商品") {
   return {
     type: "bubble",
     hero: {
@@ -158,7 +159,7 @@ height: "sm",
 style: "primary",
           action: {
             type: "uri",
-            label: "查看商品",
+           label: buttonText,
             uri: linkUrl
           }
         }
