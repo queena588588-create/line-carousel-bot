@@ -57,17 +57,7 @@ async function replyCarousel(replyToken, token) {
                   type: "message",
                   label: "我要了解",
                   text: "我要了解仙女霜"
-if (event.message.text === "我要了解仙女霜") {
-  // 回覆平泰秀介紹
-}
-✨ 仙女霜
 
-✔ 保濕 緊緻 改善暗沉
-✔ 淡化細紋
-✔ 肌膚修護
-✔ 日常保養推薦
-✔ 美白 淡斑 抗皺 除疤
-✔ 一條搞定肌膚問題
               }
             ]
           }
