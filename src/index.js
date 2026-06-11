@@ -105,7 +105,7 @@ async function replyCarousel(replyToken, token) {
  productCard(
   "追蹤 Queena IG",
   "好物分享｜團購資訊｜日常生活",
-  "https://picsum.photos/600/600?99",
+  "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY5YWE5NTk4ODE5MWEzNWIxZjhiOWI1MjU5Mzk6ZmlsZV8wMDAwMDAwMDI2ZGM3MjA5OWQ4M2U1NzVjMmIxM2FjMCIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImNkYjJiZjc4ZTYyMmI2ZTJiOTdkYzM5NGE4NzQzYjViMDI3YjU1ZGRkMzgzOGE1MDYyMWI4NDQ4MWU5N2IyNDUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
   "https://www.instagram.com/queena.520/",
   "追蹤"
 )
