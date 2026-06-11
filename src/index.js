@@ -60,7 +60,6 @@ About me～
     await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
   }
 }
-    }
 
     return new Response("OK");
   }
