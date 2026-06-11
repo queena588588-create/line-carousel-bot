@@ -110,7 +110,6 @@ async function replyCarousel(replyToken, token) {
  )
 ]
 }
- }
 };
 await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
