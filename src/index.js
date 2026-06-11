@@ -58,7 +58,7 @@ async function replyCarousel(replyToken, token) {
                   label: "我要了解",
                   text: "我要了解仙女霜"
                 if (event.message.text === "我要了解仙女霜") {
-  // 回覆平泰秀介紹
+  // 回覆仙女霜介紹
 }
 ✨ 仙女霜
 
