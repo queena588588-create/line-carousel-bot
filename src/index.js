@@ -5,7 +5,7 @@ return new Response("OK");
 }
 
 ```
-const CHANNEL_ACCESS_TOKEN = "71ojqWmnCBOYIBy4LPI9NIzzTirEezV/44SilTysrV5iUIJtQvgcLt91wnJ74W6xVUTromiUDFUTChaU0qKZNsS88B";
+const CHANNEL_ACCESS_TOKEN = "71ojqWmnCBOYIBy4LPI9NIzzTirEezV/44SilTysrV5iUIJtQvgcLt91wnJ74W6xVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6PQSLNC1gWnqoFEOjH1RnJygV8yqZtQ32EXITztTYARQdB04t89/1O/w1cDnyilFU=";
 
 const body = await request.json();
 
