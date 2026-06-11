@@ -55,7 +55,7 @@ About me～
   if (
     event.type === "message" &&
     event.message.type === "text" &&
-    event.message.text === "商品"
+    event.message.text === "購物車"
   ) {
     await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
   }
