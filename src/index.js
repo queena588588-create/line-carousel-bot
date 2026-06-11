@@ -87,7 +87,7 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "冰冰衣",
           "降溫＋防曬＋對抗光老化",
-          "https://shoplineimg.com/562a466de37ec6fdbb000012/6a0c33d6063de2aebd5b9668/800x.webp?source_format=jpg",
+          "https://chatgpt.com/s/m_6a2af36cd9a08191bca7f7e012ba358b",
           "https://forms.gle/FGgQcesTW8YHfdZN9"
         ),
         productCard(
