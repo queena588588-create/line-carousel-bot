@@ -54,8 +54,8 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "冰冰衣",
           "降溫＋防曬＋對抗光老化",
-          "https://scontent-sin11-1.cdninstagram.com/v/t51.82787-15/715810748_18324860200285160_5230300288459493294_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_cat=105&ig_cache_key=MzkxMjQ3MjkzNzE0NDEyODA5MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IlNUT1JZLnhwaWRzLjEyOTAuc2RyLnJlZ3VsYXJfcGhvdG8uQzMifQ%3D%3D&_nc_ohc=OkgCq1jSp8gQ7kNvwH2ZNek&_nc_oc=Adqx3kIvXeWDR9imGfhrdHJG4yi3kRDMk6UBAza1uWc-pR91hez_9AvLvYY18idYBPj7bbITmVFhdcipEM-4ngtp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sin11-1.cdninstagram.com&_nc_gid=xtPTJo8Rc_5vPu4wz0r8aA&_nc_ss=7a22e&oh=00_Af_4tQbmkmawW80MEFcfBujtDajOceH27IxCHwHhlIVYEg&oe=6A305594",
-          "https://www.google.com"
+          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVAAwaaiY7qvNA8Y4kWtMylSH1IO7Ynn9PSVp--Rgm7NirW7iK3TKSbt5RHWXBjtMTuP1dHPBweaKXez3c7tzJEup_neUyq1PMqqZ7p4EBBrVNwvMOJJmK6AmRhA2tBB5WBqAiKCgQsirIx_BcUdTNTyckP5DzCirxHG1k95Jq5kcFk-YxGHCdgkN1YcEGYNechgc-EaSzV18ZNfyyr8=w640?key=5XGsa3dXCmjPy5PBVdJVnw",
+          "https://forms.gle/R51dYg6ciqi5LDCs7"
         ),
         productCard(
           "雞排",
