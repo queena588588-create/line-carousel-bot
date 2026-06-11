@@ -60,7 +60,6 @@ async function replyCarousel(replyToken, token) {
                 if (event.message.text === "我要了解平泰秀") {
   // 回覆平泰秀介紹
 }
-
 ✨ 仙女霜
 
 ✔ 保濕 緊緻 改善暗沉
