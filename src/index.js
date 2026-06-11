@@ -105,11 +105,11 @@ async function replyCarousel(replyToken, token) {
  productCard(
   "追蹤 Queena IG",
   "好物分享｜團購資訊｜日常生活",
-  "https://scontent-tpe1-1.cdninstagram.com/v/t51.82787-19/702232226_18322040617285160_1976186730964142593_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42NTUuYzIifQ&_nc_ht=scontent-tpe1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gEI7xBAak7nmse6LgK-PktBprNip4fNlcnBLnV4uUl7g4jE06YOi0r9GbTUeXyFpS5ofwpFZVj8ddU2S_-ZYBFm&_nc_ohc=gFfeVnf4vR8Q7kNvwG05nCH&_nc_gid=WXVS8l8jtQGVletM2Q-1GQ&edm=APoiHPcBAAAA&ccb=7-5&oh=00_Af84wLgHFjxsFAfBF_Bag-71ZnEz9iWqWuZ4Ee0BOyFSiA&oe=6A30C0C6&_nc_sid=22de04",
+  "https://picsum.photos/600/600?99",
   "https://www.instagram.com/queena.520/"
 )
-]        
-  };
+]
+}
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
