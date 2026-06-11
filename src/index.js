@@ -132,14 +132,14 @@ function productCard(title, desc, imageUrl, linkUrl, buttonText = "查看商品"
       type: "image",
       url: imageUrl,
       size: "full",
-      aspectRatio: "20:11",
+      aspectRatio: "16:9",
       aspectMode: "cover"
     },
   body: {
 type: "box",
 layout: "vertical",
 spacing: "sm",
-paddingAll: "10px",
+paddingAll: "6px",
 contents: [
 {
 type: "text",
