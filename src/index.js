@@ -45,10 +45,6 @@ export default {
 
 💬 官方Line：@108yssta
 
-
-點這裡私訊 Queena👇
-https://line.me/ti/p/~0921730505
-
 輸入「購物車」即可查看近期推薦商品 ❤️`
     );
   }
@@ -58,6 +54,16 @@ https://line.me/ti/p/~0921730505
     event.message.type === "text" &&
     event.message.text === "購物車"
   ) {
+    if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "私訊"
+) {
+  await replyPrivateButton(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+}
     await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
   }
 }
@@ -65,7 +71,54 @@ https://line.me/ti/p/~0921730505
     return new Response("OK");
   }
 };
+async function replyPrivateButton(replyToken, token) {
+  const message = {
+    type: "flex",
+    altText: "私訊 Queena",
+    contents: {
+      type: "bubble",
+      body: {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "text",
+            text: "需要協助嗎？",
+            weight: "bold",
+            size: "lg"
+          }
+        ]
+      },
+      footer: {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "button",
+            style: "primary",
+            action: {
+              type: "uri",
+              label: "💬 私訊 Queena",
+              uri: "https://line.me/ti/p/~0921730505"
+            }
+          }
+        ]
+      }
+    }
+  };
 
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [message]
+    })
+  });
+}
 async function replyCarousel(replyToken, token) {
   const message = {
     type: "flex",
