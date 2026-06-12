@@ -70,7 +70,38 @@ if (text === "抗通膨專區") {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-
+if (text === "超大傘" || text === "雨傘") {
+  await replyProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "https://drive.google.com/file/d/1GNnYlHoJ3gyvNwKNLU-LHU1yGV3LIoj1/view",
+    "☂️ 超大傘面\晴雨兩用｜黑膠防曬 買一送一 $850"
+  );
+}
+if (text === "洗衣球" || text === "洗衣") {
+  await replyProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "https://img.shop.com/Image/290000/298800/298800/products/1986890534.jpg?plain&size=418x418",
+    "三效合一洗衣膠球 200顆 $777"
+  );
+} 
+if (text === "冰淇淋被" || text === "被子") {
+  await replyProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "https://drive.google.com/file/d/1JnjzkJY4kMg9iZG7ALYiWMgpMGlw-yHU/view",
+    "冰淇淋被 買一送一 $999"
+  );
+} 
+  if (text === "行動電源" || text === "洗衣") {
+  await replyProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "https://drive.google.com/file/d/1dAzzMdH0YkmfGaLUjomj2bLoLX1d-Uvx/view",
+    "馬卡龍行動電源 買一送一 $599"
+  );
+}     
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
@@ -329,62 +360,6 @@ async function replyProduct(replyToken, token, imageUrl, text) {
     })
   });
 }
-async function replyPillow(replyToken, token) {
-  const message = {
-    type: "image",
-    originalContentUrl: "枕頭圖片網址",
-    previewImageUrl: "枕頭圖片網址"
-  };
-
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [
-        message,
-        {
-          type: "text",
-          text: "☁️ 6D涼感記憶枕\n買一送一\n舒適支撐肩頸"
-        }
-      ]
-    })
-  });
-}
-async function replySteak(replyToken, token) {
-  const message = {
-    type: "image",
-    originalContentUrl: "牛排圖片網址",
-    previewImageUrl: "牛排圖片網址"
-  };
-
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [
-        message,
-        {
-          type: "text",
-          text: "🥩 加拿大 PRIME 雪花凝脂牛排"
-        }
-      ]
-    })
-  });
-
-async function replyCherry(replyToken, token) {
-  const message = {
-    type: "image",
-    originalContentUrl: "櫻桃圖片網址",
-    previewImageUrl: "櫻桃圖片網址"
-  };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
