@@ -75,8 +75,8 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "仙女霜",
           "日常保養推薦 All in one",
-          "https://img.shop.com/Image/240000/246200/246296/skualt/6164914.jpg?plain&size=800x800",
-          "https://www.google.com"
+          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVDPAuMn4A2oWQWkmUQ0oz2gFfpJTVVrZ0n_rWT4rUIJt-3BzKdepUMdlw5DxS5zybX1JefOqeEBIToSZw6BHYtZ1hnEksMD9k3UrGbcetQnO3YHSYwNSmEO0iFCjKYBwo-E0jm8B68Bv1JzFWnBM55OWJQx64CWjYDE8JkezpTH9j4rqaMkOvCBwy-wGjRLyxo9toXCwzkmR9gVpVdN=w1024?key=MPUY86i8CDh0wU0JOyGFfA",
+          "https://forms.gle/qQpqMWLf9YAfNCW37"
         ),
         productCard(
           "青春極致防曬乳",
