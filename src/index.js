@@ -81,8 +81,8 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "青春極致防曬乳",
           "SPF50+ 保濕防曬不黏膩",
-          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY0YTgwYzIwODE5MWFlNjQzOWMyZmU3MjYyMjE6ZmlsZV8wMDAwMDAwMGMzNmM3MjA5YTQyNjcxN2IzZDFkMWE0YiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjNkYmQ0OTMzMDFmZjE4ODRkMDNmZGMxZGI3ZDM4M2ZiNzVmZWJhMjdjZWRjOWJhNTJhNTYwODQ5MDkzNDE0MmIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-          "https://www.google.com"
+          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVDfZOKlefTWzPb_KlcTJ901nrbLBnfinIk1KV4_ztHjFd4g5quwzTYv_EdUsCD_VQkTscBpGUWjgfPjJHmitqFnLk_9pEspGdqyoqI6zYiF4dMxf20NMi9YwYLfHuRpDdPrhnxNia8p6Z6HHvqNuiwgVju8-SNmVMvUzmwNrys1kAitMLYLnMsq8DTLvOk7Jhn4LbHwUhzv1ZCRXw_U=w214?key=f2LYPwSrb6A4LdgRRxN6Tw",
+          "https://forms.gle/tob2zb6KYonW5ph98"
         ),
         productCard(
           "冰冰衣",
