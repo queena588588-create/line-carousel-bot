@@ -107,8 +107,8 @@ if (text === "牛排") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://drive.google.com/file/d/1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ/view",
-    "🥩加拿大 PRIME 雪花凝脂牛排｜4片/320g/包 4包組
-               💰優惠價 $1490-
+    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
+               
   );
 }
 
