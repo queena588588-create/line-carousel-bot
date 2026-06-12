@@ -70,40 +70,17 @@ if (text === "抗通膨專區") {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-if (text === "超大傘" || text === "傘" || text === "雨傘") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "☂️ 超大傘\n\n晴雨兩用｜十骨大傘面｜黑膠防曬");
 }
-
-if (text === "洗衣膠球" || text === "洗衣") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🧺 洗衣膠球\n\n史上最低價 $777\n共200顆");
-}
-
-if (text === "冰淇淋被" || text === "被子") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🛏️ 冰淇淋被\n\n買一送一 $999\n雙面冰絲觸感");
-}
-
-if (text === "行動電源" || text === "充電器") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🔋 行動電源\n\n買一送一 $599\n支援雙裝置充電");
-}
-
-if (text === "枕頭") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "☁️ 枕頭\n\n6D蝶型涼感記憶枕\n買一送一");
-}
-
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://你的牛排圖片網址.jpg",
-    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g"
+    "https://drive.google.com/uc?export=view&id=1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ",
+    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包\n4包組"
   );
 }
 
-}
 
-if (text === "櫻桃") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🍒 櫻桃\n\n美國西北櫻桃\n新鮮直送");
-}
 return new Response("OK");
     }
   }
@@ -316,6 +293,105 @@ async function replyProduct(replyToken, token, imageUrl, text) {
         {
           type: "text",
           text: text
+        }
+      ]
+    })
+  });
+}
+async function replyPillow(replyToken, token) {
+  const message = {
+    type: "image",
+    originalContentUrl: "枕頭圖片網址",
+    previewImageUrl: "枕頭圖片網址"
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        message,
+        {
+          type: "text",
+          text: "☁️ 6D涼感記憶枕\n買一送一\n舒適支撐肩頸"
+        }
+      ]
+    })
+  });
+}
+async function replySteak(replyToken, token) {
+  const message = {
+    type: "image",
+    originalContentUrl: "牛排圖片網址",
+    previewImageUrl: "牛排圖片網址"
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        message,
+        {
+          type: "text",
+          text: "🥩 加拿大 PRIME 雪花凝脂牛排"
+        }
+      ]
+    })
+  });
+async function replySteak(replyToken, token) {
+  const message = {
+    type: "image",
+    originalContentUrl: "牛排圖片網址",
+    previewImageUrl: "牛排圖片網址"
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        message,
+        {
+          type: "text",
+          text: "🥩 加拿大 PRIME 雪花凝脂牛排"
+        }
+      ]
+    })
+  });
+}
+async function replyCherry(replyToken, token) {
+  const message = {
+    type: "image",
+    originalContentUrl: "櫻桃圖片網址",
+    previewImageUrl: "櫻桃圖片網址"
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        message,
+        {
+          type: "text",
+          text: "🍒 美國西北櫻桃\n夏季限定"
         }
       ]
     })
