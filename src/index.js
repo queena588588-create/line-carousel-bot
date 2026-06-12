@@ -124,10 +124,10 @@ return new Response("OK");
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
-    headers: {
-     "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
+   headers: {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer " + token
+},
     body: JSON.stringify({
       replyToken,
       messages: [{
