@@ -97,7 +97,6 @@ if (text === "牛排") {
 if (text === "櫻桃") {
   await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🍒 櫻桃\n\n美國西北櫻桃\n新鮮直送");
 }
-) {
   async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
