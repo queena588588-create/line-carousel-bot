@@ -48,19 +48,17 @@ export default {
     );
   }
 
-  if (
-    event.type === "message" &&
-    event.message.type === "text" &&
-    event.message.text === "購物車"
-  ) {
-
+ if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "購物車"
+) {
   await replyCarousel(
-  event.replyToken,
-  CHANNEL_ACCESS_TOKEN
-);
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
 }
-  
-  
+
 if (
   event.type === "message" &&
   event.message.type === "text" &&
@@ -70,9 +68,6 @@ if (
     event.replyToken,
     CHANNEL_ACCESS_TOKEN
   );
-}
-}
-     
 }
 
 if (
@@ -86,9 +81,7 @@ if (
   );
 }
 
-}
-
-    return new Response("OK");
+return new Response("OK");
   }
 };
    
@@ -96,16 +89,9 @@ async function replyInflationZone(replyToken, token) {
 
 const message = {
   type: "text",
-  text: `💰 抗通膨專區
-
-☂️ 超大傘
-🧺 洗衣膠球
-🛏️ 冰淇淋被
-🔋 行動電源
-
-輸入商品名稱即可查看詳細資訊`
-
-  };
+text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入商品名稱即可查看詳細資訊"
+};
+  
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
