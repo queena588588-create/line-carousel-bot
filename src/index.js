@@ -70,6 +70,60 @@ if (
   event.message.text === "抗通膨專區"
 ) {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "超大傘"
+) {
+  await replyUmbrella(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "洗衣膠球"
+) {
+  await replyLaundry(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "冰淇淋被"
+) {
+  await replyBlanket(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "行動電源"
+) {
+  await replyPowerBank(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "枕頭"
+) {
+  await replyPillow(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "牛排"
+) {
+  await replySteak(event.replyToken, CHANNEL_ACCESS_TOKEN);
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "櫻桃"
+) {
+  await replyCherry(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
 }
