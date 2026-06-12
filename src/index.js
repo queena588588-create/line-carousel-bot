@@ -72,10 +72,54 @@ if (
   );
 }
 }
+     );
+}
+
+if (
+  event.type === "message" &&
+  event.message.type === "text" &&
+  event.message.text === "抗通膨專區"
+) {
+  await replyInflationZone(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+}
+
+}
+
     return new Response("OK");
   }
 };
    
+async function replyInflationZone(replyToken, token) {
+
+const message = {
+  type: "text",
+  text: `💰 抗通膨專區
+
+☂️ 超大傘
+🧺 洗衣膠球
+🛏️ 冰淇淋被
+🔋 行動電源
+
+輸入商品名稱即可查看詳細資訊`
+
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [message]
+    })
+  });
+
+}
 async function replyPrivateButton(replyToken, token) {
   const message = {
     type: "flex",
