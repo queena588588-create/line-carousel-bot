@@ -61,7 +61,7 @@ export default {
 );
 }
   
-  
+}  
 if (
   event.type === "message" &&
   event.message.type === "text" &&
