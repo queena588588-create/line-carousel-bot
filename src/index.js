@@ -91,7 +91,14 @@ if (text === "枕頭") {
 }
 
 if (text === "牛排") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🥩 牛排\n\n加拿大 PRIME 雪花凝脂牛排");
+  await replyProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "https://你的牛排圖片網址.jpg",
+    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g"
+  );
+}
+  );
 }
 
 if (text === "櫻桃") {
