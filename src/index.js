@@ -38,11 +38,10 @@ export default {
 
 🔕 訊息有點多可關閉提醒
 
-📝 記事本搜尋🔍關鍵字
 
-🛒 找商品｜訂單問題
-   ➕ Queena好友
 
+🔍 商品問題｜訂單問題
+輸入「私訊」即可點選一對一私訊聊聊 ❤️
 💬 官方Line：@108yssta
 
 輸入「購物車」即可查看近期推薦商品 ❤️`
@@ -104,7 +103,7 @@ async function replyPrivateButton(replyToken, token) {
             style: "primary",
             action: {
               type: "uri",
-              label: "💬 私訊 Queena",
+              label: "👆 私訊 Queena",
               uri: "https://line.me/ti/p/~0921730505"
             }
           }
