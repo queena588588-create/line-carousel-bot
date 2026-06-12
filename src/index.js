@@ -68,7 +68,7 @@ About me～
 async function replyCarousel(replyToken, token) {
   const message = {
     type: "flex",
-    altText: "Queena 購物清單",
+    altText: "Queena 的避坑指南⚡",
     contents: {
       type: "carousel",
       contents: [
