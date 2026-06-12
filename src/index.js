@@ -117,7 +117,7 @@ async function replyPrivateButton(replyToken, token) {
 }
 
 
-}
+
 
 async function replyCarousel(replyToken, token) {
   const message = {
