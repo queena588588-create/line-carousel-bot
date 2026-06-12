@@ -291,3 +291,26 @@ async function replyText(replyToken, token, text) {
     })
   });
 }
+async function replyProduct(replyToken, token, imageUrl, text) {
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [
+        {
+          type: "image",
+          originalContentUrl: imageUrl,
+          previewImageUrl: imageUrl
+        },
+        {
+          type: "text",
+          text: text
+        }
+      ]
+    })
+  });
+}
