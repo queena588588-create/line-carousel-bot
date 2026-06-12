@@ -66,13 +66,12 @@ if (
   event.type === "message" &&
   event.message.type === "text" &&
   event.message.text === "私訊"
-){
-
+) {
   await replyPrivateButton(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN
   );
-
+}
 }
     return new Response("OK");
   }
