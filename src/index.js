@@ -143,7 +143,7 @@ async function replyInflationZone(replyToken, token) {
 async function replyPrivateButton(replyToken, token) {
   const message = {
     type: "text",
-    
+    text: "💬 私訊 Queena \nhttps://line.me/ti/p/~0921730505"
   };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
