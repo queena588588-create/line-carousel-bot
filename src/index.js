@@ -119,41 +119,10 @@ const message = {
     })
   });
 
-}
 async function replyPrivateButton(replyToken, token) {
   const message = {
-    type: "flex",
-    altText: "私訊 Queena",
-    contents: {
-      type: "bubble",
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: "⌛處理中",
-            weight: "bold",
-            size: "lg"
-          }
-        ]
-      },
-      footer: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "button",
-            style: "primary",
-            action: {
-              type: "uri",
-              label: "👆 私訊 Queena",
-              uri: "https://line.me/ti/p/~0921730505"
-            }
-          }
-        ]
-      }
-    }
+    type: "text",
+    text: "💬 私訊 Queena👇\nhttps://line.me/ti/p/~0921730505"
   };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
@@ -166,6 +135,8 @@ async function replyPrivateButton(replyToken, token) {
       replyToken,
       messages: [message]
     })
+  });
+}
   });
 }
 async function replyCarousel(replyToken, token) {
