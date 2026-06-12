@@ -41,10 +41,10 @@ export default {
 
 
 🚚 商品問題｜訂單問題
-輸入「私訊」可一對一私訊聊聊 ❤️
+輸入「私訊」一對一私訊聊聊 ❤️
 
 🎯超值・抗漲區
-輸入「凍漲傳送門」
+輸入「抗通膨專區」
 
 🛒 輸入「購物車」查看近期推薦商品 ❤️`
     );
@@ -68,7 +68,7 @@ if (
 
 const text = event.message.text;
 
-if (text === "▸ 凍漲傳送門") {
+if (text === "抗通膨專區") {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
