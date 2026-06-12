@@ -89,7 +89,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "需要協助嗎？",
+            text: "⌛處理中",
             weight: "bold",
             size: "lg"
           }
