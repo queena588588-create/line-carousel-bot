@@ -26,7 +26,7 @@ export default {
       CHANNEL_ACCESS_TOKEN,
       `🛒 歡迎加入塞爆購物車 🛒
 
-     🎀 About me 🩰
+       🎀 About me 🩰
 👠 雙寶職業媽也能輕鬆斜槓
 ✨ 電商合作｜經營開放中
 
