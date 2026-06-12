@@ -45,6 +45,10 @@ export default {
 
 💬 官方Line：@108yssta
 
+
+點這裡私訊 Queena👇
+https://line.me/ti/p/~0921730505
+
 輸入「購物車」即可查看近期推薦商品 ❤️`
     );
   }
