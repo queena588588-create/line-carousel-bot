@@ -70,7 +70,7 @@ if (text === "抗通膨專區") {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-}
+
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
@@ -377,31 +377,7 @@ async function replySteak(replyToken, token) {
       ]
     })
   });
-async function replySteak(replyToken, token) {
-  const message = {
-    type: "image",
-    originalContentUrl: "牛排圖片網址",
-    previewImageUrl: "牛排圖片網址"
-  };
 
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [
-        message,
-        {
-          type: "text",
-          text: "🥩 加拿大 PRIME 雪花凝脂牛排"
-        }
-      ]
-    })
-  });
-}
 async function replyCherry(replyToken, token) {
   const message = {
     type: "image",
