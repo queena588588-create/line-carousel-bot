@@ -75,7 +75,7 @@ async function replyCarousel(replyToken, token) {
         productCard(
           "仙女霜",
           "日常保養推薦 All in one",
-          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVDPAuMn4A2oWQWkmUQ0oz2gFfpJTVVrZ0n_rWT4rUIJt-3BzKdepUMdlw5DxS5zybX1JefOqeEBIToSZw6BHYtZ1hnEksMD9k3UrGbcetQnO3YHSYwNSmEO0iFCjKYBwo-E0jm8B68Bv1JzFWnBM55OWJQx64CWjYDE8JkezpTH9j4rqaMkOvCBwy-wGjRLyxo9toXCwzkmR9gVpVdN=w1024?key=MPUY86i8CDh0wU0JOyGFfA",
+          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVBrKuvlr-PQtwilr8ARq2sdSIx_JVNmPeTSsk4tnpFyNxvh-YKoMIvqJxxDxxhUJ6__N4dSddx_TS4uvUzaL2QlqIyIQMgltUv9lr5MaJVTpAvWeodGJvCPK68WGkdYs9YWzPHD5UibRiXdUAwmM7JYYwbne-SefIcWO9GZ33ZLuTirs91Zd--qP3JMyDtjVbmGWGCsFY8EKnsgv_M_=w241?key=MPUY86i8CDh0wU0JOyGFfA",
           "https://forms.gle/qQpqMWLf9YAfNCW37"
         ),
         productCard(
