@@ -97,7 +97,13 @@ if (text === "牛排") {
 if (text === "櫻桃") {
   await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🍒 櫻桃\n\n美國西北櫻桃\n新鮮直送");
 }
-  async function replySimple(replyToken, token, text) {
+ 
+
+return new Response("OK");
+}
+};
+
+async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -113,20 +119,14 @@ if (text === "櫻桃") {
     })
   });
 }
-  await replyCherry(event.replyToken, CHANNEL_ACCESS_TOKEN);
-}
-
-}
-
-return new Response("OK");
-}
-};
 
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
     text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入商品名稱即可查看詳細資訊"
   };
+
+  
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -140,11 +140,10 @@ async function replyInflationZone(replyToken, token) {
     })
   });
 }
-text: "⏳ 私訊 Queena 👇\nhttps://line.me/ti/p/~0921730505"
 async function replyPrivateButton(replyToken, token) {
   const message = {
     type: "text",
-    text: "💬 私訊 Queena👇\nhttps://line.me/ti/p/~0921730505"
+    
   };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
