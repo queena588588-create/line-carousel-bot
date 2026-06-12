@@ -55,13 +55,13 @@ export default {
     event.message.text === "購物車"
   ) {
 
-  await replyPrivateButton(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
+  await replyCarousel(
+  event.replyToken,
+  CHANNEL_ACCESS_TOKEN
+);
 }
-    await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
-  }
+  
+  
 if (
   event.type === "message" &&
   event.message.type === "text" &&
