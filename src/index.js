@@ -135,7 +135,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "需要協助嗎？",
+            text: "⚡︎ 線上快速解答 偷偷點一下，沒人會發現的 🤫",
             weight: "bold",
             size: "lg"
           }
@@ -150,7 +150,7 @@ async function replyPrivateButton(replyToken, token) {
             style: "primary",
             action: {
               type: "uri",
-              label: "💬 私訊 Queena",
+              label: "💻 私訊 Queena",
               uri: "https://line.me/ti/p/~0921730505"
             }
           }
