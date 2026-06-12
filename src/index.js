@@ -135,7 +135,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "⚡︎ 偷偷點一下，沒人會發現的 🤫",
+            text: "⚡︎ 偷偷點一下，沒人會發現😅",
             weight: "bold",
             size: "lg"
           }
