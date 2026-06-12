@@ -64,65 +64,56 @@ if (
   await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "抗通膨專區"
-) {
+const text = event.message.text;
+
+if (text === "抗通膨專區") {
   await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
-}if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "超大傘"
-) {
-  await replyUmbrella(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "洗衣膠球"
-) {
-  await replyLaundry(event.replyToken, CHANNEL_ACCESS_TOKEN);
+if (text === "超大傘" || text === "傘" || text === "雨傘") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "☂️ 超大傘\n\n晴雨兩用｜十骨大傘面｜黑膠防曬");
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "冰淇淋被"
-) {
-  await replyBlanket(event.replyToken, CHANNEL_ACCESS_TOKEN);
+if (text === "洗衣膠球" || text === "洗衣") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🧺 洗衣膠球\n\n史上最低價 $777\n共200顆");
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "行動電源"
-) {
-  await replyPowerBank(event.replyToken, CHANNEL_ACCESS_TOKEN);
+if (text === "冰淇淋被" || text === "被子") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🛏️ 冰淇淋被\n\n買一送一 $999\n雙面冰絲觸感");
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "枕頭"
-) {
-  await replyPillow(event.replyToken, CHANNEL_ACCESS_TOKEN);
+if (text === "行動電源" || text === "充電器") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🔋 行動電源\n\n買一送一 $599\n支援雙裝置充電");
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "牛排"
-) {
-  await replySteak(event.replyToken, CHANNEL_ACCESS_TOKEN);
+if (text === "枕頭") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "☁️ 枕頭\n\n6D蝶型涼感記憶枕\n買一送一");
 }
 
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "櫻桃"
+if (text === "牛排") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🥩 牛排\n\n加拿大 PRIME 雪花凝脂牛排");
+}
+
+if (text === "櫻桃") {
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "🍒 櫻桃\n\n美國西北櫻桃\n新鮮直送");
+}
 ) {
+  async function replySimple(replyToken, token, text) {
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "text",
+        text: text
+      }]
+    })
+  });
+}
   await replyCherry(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
