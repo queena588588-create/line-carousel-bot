@@ -83,7 +83,7 @@ if (
 
 return new Response("OK");
   }
-};
+}
    
 async function replyInflationZone(replyToken, token) {
 
