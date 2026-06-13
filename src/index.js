@@ -72,12 +72,12 @@ if (text === "抗通膨專區") {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-if (text === "超大傘" || text === "雨傘") {
+if (text === "抗風晴雨傘" || text === "雨傘") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://www.terabox.app/chinese/sharing/link",
-    "☂️ 超大傘面\晴雨兩用｜黑膠防曬 買一送一 $850"
+    "☂️ 超大傘面\晴雨兩用 ⚡ 黑膠防曬 買一送一 $850"
   );
 }
 if (text === "洗衣球" || text === "洗衣") {
@@ -85,7 +85,7 @@ if (text === "洗衣球" || text === "洗衣") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://reurl.cc/2anME9",
-    "三效合一洗衣膠球 200顆 $777"
+    "三效合一洗衣膠球 ☘️→ 200顆  $777"
   );
 } 
 if (text === "冰淇淋被" || text === "被子") {
@@ -93,7 +93,7 @@ if (text === "冰淇淋被" || text === "被子") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://1024terabox.com/s/11cu7gA-MIvPJRelGzSvtKg",
-    "冰淇淋被 買一送一 $999"
+    "冰淇淋被 🌸→ 買一送一  $999"
   );
 } 
   if (text === "行動電源" || text === "洗衣") {
@@ -101,7 +101,7 @@ if (text === "冰淇淋被" || text === "被子") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://drive.google.com/file/d/1dAzzMdH0YkmfGaLUjomj2bLoLX1d-Uvx/view",
-    "馬卡龍行動電源 買一送一 $599"
+    "馬卡龍行動電源 🔋 買一送一  $599"
   );
 }     
 if (text === "牛排") {
