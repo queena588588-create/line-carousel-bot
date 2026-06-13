@@ -65,7 +65,7 @@ if (
 ) {
   await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
-
+if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text;
 
 if (text === "抗通膨專區") {
@@ -110,16 +110,14 @@ if (text === "牛排") {
     CHANNEL_ACCESS_TOKEN,
     "https://drive.google.com/file/d/1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ/view",
     "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
-
   );
 }
-
-
+}
 return new Response("OK");
     }
   }
+};
 
-    
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
