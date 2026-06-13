@@ -76,7 +76,7 @@ if (text === "超大傘" || text === "雨傘") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/file/d/1GNnYlHoJ3gyvNwKNLU-LHU1yGV3LIoj1/view",
+    "https://www.terabox.app/chinese/sharing/link",
     "☂️ 超大傘面\晴雨兩用｜黑膠防曬 買一送一 $850"
   );
 }
