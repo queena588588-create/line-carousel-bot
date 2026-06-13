@@ -63,13 +63,14 @@ if (
   event.message.type === "text" &&
   event.message.text === "私訊"
 ) {
-  await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  async function replyFolderButton(replyToken, token) {
+...
 }
 
 const text = event.message.text;
 
 if (text === "抗通膨專區") {
-  await replyInflationZone(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
 if (text === "超大傘" || text === "雨傘") {
@@ -125,7 +126,7 @@ async function replySimple(replyToken, token, text) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+   "Authorization": "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
@@ -339,17 +340,18 @@ async function replyText(replyToken, token, text) {
     })
   });
 }
+
 async function replyProduct(replyToken, token, imageUrl, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+"Authorization": "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
       messages: [
-        {
+               {
           type: "image",
           originalContentUrl: imageUrl,
           previewImageUrl: imageUrl
@@ -358,7 +360,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
           type: "text",
           text: text
         }
-     ]
-})
-});
+      ]
+    })
+  });
 }
