@@ -368,7 +368,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
 async function replyFolderButton(replyToken, token) {
   const message = {
     type: "flex",
-    altText: " ",
+    altText: "聰明挖寶趣 ",
     contents: {
       type: "bubble",
       body: {
@@ -378,7 +378,7 @@ async function replyFolderButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "聰明挖寶趣",
+            text: " ",
             weight: "bold",
             size: "lg",
             color: "#333333",
