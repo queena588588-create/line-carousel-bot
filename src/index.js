@@ -141,7 +141,6 @@ async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
     text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入商品名稱即可查看詳細資訊"
-    text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入品項查看詳細資訊"
   };
 
 
@@ -150,7 +149,7 @@ async function replyInflationZone(replyToken, token) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+     "Authorization": "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
