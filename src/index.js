@@ -84,7 +84,7 @@ if (text === "洗衣球" || text === "洗衣") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://img.shop.com/Image/290000/298800/298800/products/1986890534.jpg?plain&size=418x418",
+    "https://reurl.cc/2anME9",
     "三效合一洗衣膠球 200顆 $777"
   );
 } 
@@ -92,7 +92,7 @@ if (text === "冰淇淋被" || text === "被子") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/file/d/1JnjzkJY4kMg9iZG7ALYiWMgpMGlw-yHU/view",
+    "https://1024terabox.com/s/11cu7gA-MIvPJRelGzSvtKg",
     "冰淇淋被 買一送一 $999"
   );
 } 
