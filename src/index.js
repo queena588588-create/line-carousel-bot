@@ -109,9 +109,8 @@ if (text === "牛排") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/file/d/1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ/view",
-   text: "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
-               
+    "https://drive.google.com/uc?export=download&id=1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ",
+    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組\n優惠價 $1490"
   );
 }
 
