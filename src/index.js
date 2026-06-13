@@ -41,13 +41,12 @@ export default {
 
 
 🚚 商品問題｜訂單問題
-輸入「私訊」一對一聊聊 ❤️
+輸入「私訊」一對一私訊聊聊 ❤️
 
 🎯超值・抗漲區
 輸入「抗通膨專區」
 
-❤️ 查看近期推薦商品 
-🛒 輸入「購物車」
+🛒 輸入「購物車」查看近期推薦商品 ❤️`
     );
   }
 
@@ -109,8 +108,9 @@ if (text === "牛排") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/uc?export=download&id=1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ",
-    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組\n優惠價 $1490"
+    "https://drive.google.com/file/d/1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ/view",
+    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
+
   );
 }
 
@@ -123,10 +123,10 @@ return new Response("OK");
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
-   headers: {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer " + token
-},
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify({
       replyToken,
       messages: [{
@@ -140,16 +140,17 @@ async function replySimple(replyToken, token, text) {
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
+    text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入商品名稱即可查看詳細資訊"
     text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入品項查看詳細資訊"
   };
 
-  
+
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-     "Authorization": "Bearer " + token
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
       replyToken,
@@ -196,9 +197,9 @@ async function replyPrivateButton(replyToken, token) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
-  "Content-Type": "application/json",
-  "Authorization": "Bearer " + token
-}
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify({
       replyToken,
       messages: [message]
@@ -260,7 +261,7 @@ await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-    "Authorization": "Bearer " + token
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
       replyToken,
@@ -326,7 +327,7 @@ async function replyText(replyToken, token, text) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
       replyToken,
@@ -336,7 +337,7 @@ async function replyText(replyToken, token, text) {
           text: text
         }
       ]
-    });
+    })
   });
 }
 async function replyProduct(replyToken, token, imageUrl, text) {
@@ -344,7 +345,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
       replyToken,
@@ -363,4 +364,4 @@ async function replyProduct(replyToken, token, imageUrl, text) {
   });
 }
 
-
+~
