@@ -358,9 +358,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
           type: "text",
           text: text
         }
-      ]
-    })
-  });
+     ]
+})
+});
 }
-
-~
