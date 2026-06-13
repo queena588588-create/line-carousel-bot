@@ -362,9 +362,66 @@ async function replyProduct(replyToken, token, imageUrl, text) {
 }
 
 async function replyFolderButton(replyToken, token) {
-  await replySimple(
-    replyToken,
-    token,
-    "💰 抗通膨專區\n\n☂️ 抗 風 晴 雨 傘｜買一送一 $850\n🧺 三效合一洗衣球｜買一送一 $777\n🛏️ 冰 淇 淋 被｜買一送一 $999\n🔋 馬卡龍行動電源｜買一送一 $599\n\n📂 商品影片與照片：\nhttps://drive.google.com/drive/folders/1n0dPszGQg5HEGqj2lxelfgsY7xX5g8M0?usp=sharing"
-  );
+  const message = {
+    type: "flex",
+    altText: "💰 抗通膨專區",
+    contents: {
+      type: "bubble",
+      body: {
+        type: "box",
+        layout: "vertical",
+        paddingAll: "16px",
+        contents: [
+          {
+            type: "text",
+            text: "⚡ 偷偷點一下，沒人會發現...",
+            weight: "bold",
+            size: "lg",
+            color: "#333333",
+            wrap: true
+          },
+          {
+            type: "text",
+            text: "💰 抗通膨專區",
+            weight: "bold",
+            size: "xl",
+            margin: "lg",
+            wrap: true
+          },
+          {
+            type: "text",
+            text: "☂️ 抗風晴雨傘｜買一送一 $850\n🧺 三效合一洗衣球｜買一送一 $777\n🛏️ 冰淇淋被｜買一送一 $999\n🔋 行動電源｜買一送一 $599",
+            size: "sm",
+            color: "#555555",
+            margin: "md",
+            wrap: true
+          },
+          {
+            type: "button",
+            style: "primary",
+            color: "#06C755",
+            height: "sm",
+            margin: "xl",
+            action: {
+              type: "uri",
+              label: "📂 查看照片與影片",
+              uri: "https://drive.google.com/drive/folders/1n0dPszGQg5HEGqj2lxelfgsY7xX5g8M0?usp=sharing"
+            }
+          }
+        ]
+      }
+    }
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [message]
+    })
+  });
 }
