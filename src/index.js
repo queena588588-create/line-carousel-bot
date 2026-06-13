@@ -138,7 +138,7 @@ async function replySimple(replyToken, token, text) {
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
-    text: "💰 抗通膨專區\n\n☂️ 超大傘\n🧺 洗衣膠球\n🛏️ 冰淇淋被\n🔋 行動電源\n\n輸入商品名稱即可查看詳細資訊"
+    text: "💰 抗通膨專區\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n\n輸入商品名稱即可查看詳細資訊"
   };
 
 
