@@ -72,7 +72,7 @@ if (
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text;
 
-if (text === "👑 聰明挖寶趣") {
+if (text === "聰明挖寶趣") {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
@@ -142,7 +142,7 @@ async function replySimple(replyToken, token, text) {
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
-    text: "👑 聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n\n輸入商品名稱即可查看詳細資訊"
+    text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n\n輸入商品名稱即可查看詳細資訊"
   };
 
 
@@ -368,7 +368,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
 async function replyFolderButton(replyToken, token) {
   const message = {
     type: "flex",
-    altText: "👑 聰明挖寶趣",
+    altText: "聰明挖寶趣",
     contents: {
       type: "bubble",
       body: {
@@ -386,7 +386,7 @@ async function replyFolderButton(replyToken, token) {
           },
           {
             type: "text",
-            text: "👑 聰明挖寶趣",
+            text: "聰明挖寶趣",
             weight: "bold",
             size: "xl",
             margin: "lg",
