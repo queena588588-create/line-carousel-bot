@@ -365,7 +365,7 @@ async function replyFolderButton(replyToken, token) {
   await replySimple(
     replyToken,
     token,
-"💰 抗通膨專區\n\n☂️ 超大傘｜買一送一 $850\n🧺 洗衣膠球｜200顆 $777\n🛏️ 冰淇淋被｜買一送一 $999\n🔋 行動電源｜買一送一 $599\n\n📂 https://drive.google.com/drive/folders/1n0dPszGQg5HEGqj2lxelfgsY7xX5g8M0?usp=sharing"
-);
+    "💰 抗通膨專區\n\n☂️ 超大傘｜買一送一 $850\n🧺 洗衣膠球｜200顆 $777\n🛏️ 冰淇淋被｜買一送一 $999\n🔋 行動電源｜買一送一 $599\n\n📂 商品影片與照片：\nhttps://drive.google.com/drive/folders/1n0dPszGQg5HEGqj2lxelfgsY7xX5g8M0?usp=sharing"
+  );
 }
-} 
+}
