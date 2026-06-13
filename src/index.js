@@ -337,7 +337,7 @@ async function replyText(replyToken, token, text) {
           text: text
         }
       ]
-    })
+    });
   });
 }
 async function replyProduct(replyToken, token, imageUrl, text) {
