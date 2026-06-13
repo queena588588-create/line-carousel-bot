@@ -374,7 +374,7 @@ async function replyFolderButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "⚡ 偷偷點一下，沒人會發現...",
+            text: "⚡Queena 挖寶筆記🐾  ",
             weight: "bold",
             size: "lg",
             color: "#333333",
