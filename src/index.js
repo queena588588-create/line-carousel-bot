@@ -327,7 +327,7 @@ async function replyText(replyToken, token, text) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+      "Authorization": `Bearer+{token}`
     },
     body: JSON.stringify({
       replyToken,
@@ -345,7 +345,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
+      "Authorization": `Bearer +{token}`
     },
     body: JSON.stringify({
       replyToken,
