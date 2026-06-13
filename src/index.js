@@ -76,7 +76,7 @@ if (text === "抗風晴雨傘" || text === "雨傘") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://www.terabox.app/chinese/sharing/link",
+    "https://photos.fife.usercontent.google.com/pw/AP1GczPFfXhI2wkhoNqtnIuhDzyH6MhBvZYyCivUFuzSuw7yx72BH_g0IQs=w360-h640-s-k-no-gm?authuser=0",
     "☂️ 超大傘面\晴雨兩用 ⚡ 黑膠防曬 買一送一 $850"
   );
 }
@@ -84,15 +84,15 @@ if (text === "洗衣球" || text === "洗衣") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://reurl.cc/2anME9",
-    "三效合一洗衣膠球 ☘️→ 200顆  $777"
+    "https://photos.fife.usercontent.google.com/pw/AP1GczP8m9ANIM8ntSfRiFXDircKrYn8lOyOsDCY0GD7xg-z99FyZ71UtsI=w561-h998-s-no-gm?authuser=0",
+    "三效合一洗衣膠球 ☘️→ 買一送一  $777"
   );
 } 
 if (text === "冰淇淋被" || text === "被子") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://1024terabox.com/s/11cu7gA-MIvPJRelGzSvtKg",
+    "https://photos.fife.usercontent.google.com/pw/AP1GczNCBAU75CbpaIOtuP8vGaF8ZLQU8OsDD1-ahyx_Oxec0X17581RDso=w665-h998-s-no-gm?authuser=0",
     "冰淇淋被 🌸→ 買一送一  $999"
   );
 } 
@@ -100,7 +100,7 @@ if (text === "冰淇淋被" || text === "被子") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/file/d/1dAzzMdH0YkmfGaLUjomj2bLoLX1d-Uvx/view",
+    "https://photos.fife.usercontent.google.com/pw/AP1GczMhxC6XuiXPgn0JafvnnmDeMwZtDA6YGkHYs0cD1CvPC3_GYgqfvKM=w561-h998-s-no-gm?authuser=0",
     "馬卡龍行動電源 🔋 買一送一  $599"
   );
 }     
@@ -108,7 +108,7 @@ if (text === "牛排") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://drive.google.com/file/d/1sk5llgMPrI5LkEn42OO5th5UsAh3taEZ/view",
+    "https://photos.fife.usercontent.google.com/pw/AP1GczPnqRNRgmlvpuLM5iua4y8f7S2aUS8TrHBGxLK5HyO5en-XeAtDdoI=w561-h998-s-no-gm?authuser=0",
     "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
   );
 }
