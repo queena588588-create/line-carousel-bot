@@ -117,10 +117,10 @@ if (text === "冰淇淋被" || text === "被子") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     [
-      "https://github.com/queena588588-create/line-carousel-bot/blob/main/6D%E9%9B%B2%E6%9C%B5%E6%9E%95.jpg?raw=true",
-      "https://github.com/queena588588-create/line-carousel-bot/blob/main/EC30A28D-F36B-455A-B85C-FFF6FB800638.jpeg?raw=true",
+      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/6D%E9%9B%B2%E6%9C%B5%E6%9E%95.jpg",
+      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/EC30A28D-F36B-455A-B85C-FFF6FB800638.jpeg",
     ],
-    ""☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280""
+    "☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280"
   );
 }
 if (text === "牛排") {
