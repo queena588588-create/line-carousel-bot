@@ -29,7 +29,7 @@ export default {
                 {
                   type: "image",
                   originalContentUrl: "https://drive.google.com/file/d/1TI9cimJXKO_ofP_i1tHWvaJ-JJ-QCXlO/view",
-                  previewImageUrl: "https://drive.google.com/file/d/1sbX8PM18iaE6QR5YlgswzHD1XL_KrP8F/view"
+                  previewImageUrl: "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E7%BE%A4%E7%B5%84%E6%AD%A1%E8%BF%8E%E5%9C%96.png"
                 },
                 {
                   type: "text",
