@@ -97,6 +97,7 @@ if (text === "小幫手指令") {
 🚚 商品問題｜訂單問題
 輸入「私訊」一對一私訊聊聊`
   );
+  return;
 }
 if (text === "聰明挖寶趣") {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
