@@ -48,7 +48,7 @@ export default {
 
 🔕 訊息有點多可關閉提醒
 
-✈️【Queena 好物推薦 × 購物避雷指南】
+✈️【Queena 購物避雷指南】
 
 近期推薦單品❤️
 🛒 輸入「購物車」
@@ -87,7 +87,7 @@ if (text === "小幫手指令") {
   await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "【Queena 好物推薦 × 購物避雷指南】\n\n" +
+    "✈️【Queena 購物避雷指南】\n\n" +
     "近期推薦單品❤️\n" +
     "🛒 輸入「購物車」\n\n" +
     "🎯 超值・不踩坑日記\n" +
