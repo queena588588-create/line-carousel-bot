@@ -84,7 +84,7 @@ if (
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
 if (text === "小幫手指令") {
-  await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "按鈕測試前正常");
   continue;
 }
 
