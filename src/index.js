@@ -60,8 +60,10 @@ export default {
 輸入「私訊」一對一私訊聊聊`
 
     
-    });
-  }
+       ]
+    })
+  });
+}
 
  if (
   event.type === "message" &&
