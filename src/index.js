@@ -106,7 +106,7 @@ if (text === "洗衣球" || text === "洗衣") {
   );
 } 
 if (text === "冰淇淋被" || text === "被子") {
-  await replyProduct(
+  await replyMultiProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB.png",
@@ -115,7 +115,7 @@ if (text === "冰淇淋被" || text === "被子") {
   );
 } 
   if (text === "行動電源" || text === "輕巧行動電源") {
-  await replyProduct(
+  await replyMultiProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%951.png",
