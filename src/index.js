@@ -553,7 +553,7 @@ async function replyHelperButtons(replyToken, token) {
   label: "🚚 私訊",
   text: "私訊"
 }
-            }
+           ]
           ]
         }
       }]
