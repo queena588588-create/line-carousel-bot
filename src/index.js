@@ -100,7 +100,7 @@ if (text === "抗風晴雨傘" || text === "雨傘") {
   );
 }
 if (text === "洗衣球" || text === "洗衣") {
-  await replyProduct(
+   await replyMultiProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     [
