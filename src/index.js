@@ -544,10 +544,11 @@ async function replyHelperButtons(replyToken, token) {
               text: "購物車"
             },
             {
-              type: "message",
-              label: "🎯 聰明挖寶趣",
-              text: "聰明挖寶趣"
-            },
+             {
+  type: "message",
+  label: "🎯 聰明挖寶趣",
+  text: "聰明挖寶趣"
+},
             {
               type: "message",
               label: "🚚 私訊",
