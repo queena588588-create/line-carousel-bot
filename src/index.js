@@ -143,15 +143,10 @@ if (text === "牛排") {
     "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
   );
 }
-      }
+           }
 
       return new Response("OK");
-
-    } catch (error) {
-      console.error(error);
-      return new Response("ERROR", { status: 500 });
     }
-  }
 };
 
 async function replySimple(replyToken, token, text) {
