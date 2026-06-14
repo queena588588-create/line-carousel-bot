@@ -88,7 +88,7 @@ if (text === "小幫手指令") {
   continue;
 }
 
-if (text === "聰明挖寶趣") {
+if (text.includes("聰明挖寶趣")) {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 continue;
 }
