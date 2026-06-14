@@ -502,6 +502,7 @@ async function replyFolderButton(replyToken, token) {
     }
   };
 
+  async function replyHelperButtons(replyToken, token) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -509,8 +510,13 @@ async function replyFolderButton(replyToken, token) {
       "Authorization": "Bearer " + token
     },
     body: JSON.stringify({
-      replyToken,
-      messages: [message]
+      replyToken: replyToken,
+      messages: [
+        {
+          type: "text",
+          text: "Queena 好物小幫手\n\n請直接點選：\n\n🛒 購物車\n🎯 聰明挖寶趣\n🚚 私訊"
+        }
+      ]
     })
   });
 }
