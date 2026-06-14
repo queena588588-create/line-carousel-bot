@@ -143,7 +143,6 @@ if (text === "牛排") {
     "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
   );
 }
-         }
 
       return new Response("OK");
 
