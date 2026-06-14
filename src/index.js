@@ -89,7 +89,7 @@ if (text === "聰明挖寶趣") {
 }
 
 if (text === "抗風晴雨傘" || text === "雨傘") {
-  await replyProduct(
+ await replyMultiProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
