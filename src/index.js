@@ -155,7 +155,7 @@ if (text === "冰淇淋被" || text === "被子") {
     ],
     "☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280"
   );
-}
+
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
