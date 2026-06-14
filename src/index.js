@@ -1,21 +1,39 @@
-if (event.type === "memberJoined") {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + "yN2nn/Jk1J0I1KJXn2nUHf5Cpif1L6hef0D8AO+CZZ3Z6TPRiaG3Gg46fG0lUHLaVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD7TU7gM1cDlt+N4FHgQuNap6hGvZmk9pTQTlxgIfX+SjwdB04t89/1O/w1cDnyilFU=";
-    },
-    body: JSON.stringify({
-      replyToken: event.replyToken,
-      messages: [
-        {
-          type: "image",
-          originalContentUrl: "https://drive.google.com/file/d/1TI9cimJXKO_ofP_i1tHWvaJ-JJ-QCXlO/view",
-          previewImageUrl: "https://drive.google.com/file/d/1sbX8PM18iaE6QR5YlgswzHD1XL_KrP8F/view"
-        },
-        {
-          type: "text",
-          text: `🛒 歡迎加入塞爆購物車 🛒
+export default {
+  async fetch(request) {
+
+    if (request.method === "GET") {
+      return new Response("OK");
+    }
+
+    const CHANNEL_ACCESS_TOKEN = "yN2nn/Jk1J0I1KJXn2nUHf5Cpif1L6hef0D8AO+CZZ3Z6TPRiaG3Gg46fG0lUHLaVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD7TU7gM1cDlt+N4FHgQuNap6hGvZmk9pTQTlxgIfX+SjwdB04t89/1O/w1cDnyilFU=";
+
+    try {
+      const data = await request.json();
+
+      if (!data.events) {
+        return new Response("OK");
+      }
+
+      for (const event of data.events) {
+
+        if (event.type === "memberJoined") {
+          await fetch("https://api.line.me/v2/bot/message/reply", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + CHANNEL_ACCESS_TOKEN
+            },
+            body: JSON.stringify({
+              replyToken: event.replyToken,
+              messages: [
+                {
+                  type: "image",
+                  originalContentUrl: "妳的圖片Raw網址",
+                  previewImageUrl: "妳的圖片Raw網址"
+                },
+                {
+                  type: "text",
+                  text: `🛒 歡迎加入塞爆購物車 🛒
 
         🎀 About me 🩰
   👠 雙寶職業媽也能輕鬆斜槓
