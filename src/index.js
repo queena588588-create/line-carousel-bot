@@ -155,7 +155,6 @@ async function replySimple(replyToken, token, text) {
 }
 
 async function replyProduct(replyToken, token, imageUrl, text) {
-  ...
 }
 
 async function replyMultiProduct(
