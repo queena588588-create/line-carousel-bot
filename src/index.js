@@ -196,8 +196,7 @@ async function replyFolderButton(replyToken, token) {
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
-  text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n☁️ 6D蝶型涼感記憶枕\n\n輸入商品名稱即可查看詳細資訊"看詳細資訊"
-
+ text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n☁️ 6D蝶型涼感記憶枕\n\n輸入商品名稱即可查看詳細資訊"
 
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
