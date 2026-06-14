@@ -28,8 +28,8 @@ export default {
               messages: [
                 {
                   type: "image",
-                  originalContentUrl: "妳的圖片Raw網址",
-                  previewImageUrl: "妳的圖片Raw網址"
+                  originalContentUrl: "https://drive.google.com/file/d/1TI9cimJXKO_ofP_i1tHWvaJ-JJ-QCXlO/view",
+                  previewImageUrl: "https://drive.google.com/file/d/1sbX8PM18iaE6QR5YlgswzHD1XL_KrP8F/view"
                 },
                 {
                   type: "text",
