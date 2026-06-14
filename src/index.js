@@ -565,9 +565,35 @@ async function replyHelperButtons(replyToken, token) {
   });
 }
 async function replySmartFlex(replyToken, token) {
-  await replySimple(
-    replyToken,
-    token,
-    "Flex測試成功"
-  );
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "flex",
+        altText: "聰明挖寶趣",
+        contents: {
+          type: "bubble",
+          body: {
+            type: "box",
+            layout: "vertical",
+            spacing: "md",
+            contents: [
+              { type: "text", text: "聰明挖寶趣", weight: "bold", size: "xl" },
+              { type: "text", text: "請選擇商品", size: "sm", color: "#666666" },
+              { type: "button", action: { type: "message", label: "☂️ 雨傘", text: "雨傘" } },
+              { type: "button", action: { type: "message", label: "🧺 洗衣球", text: "洗衣球" } },
+              { type: "button", action: { type: "message", label: "🛏️ 冰淇淋被", text: "冰淇淋被" } },
+              { type: "button", action: { type: "message", label: "🔋 行動電源", text: "行動電源" } },
+              { type: "button", action: { type: "message", label: "☁️ 枕頭", text: "枕頭" } }
+            ]
+          }
+        }
+      }]
+    })
+  });
 }
