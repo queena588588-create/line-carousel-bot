@@ -120,7 +120,7 @@ if (text === "洗衣球" || text === "洗衣") {
     CHANNEL_ACCESS_TOKEN,
     [
     "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
-      "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F.png"
+      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
        ],
     "三效合一洗衣膠球 ☘️→ 買一送一  $777"
   );
