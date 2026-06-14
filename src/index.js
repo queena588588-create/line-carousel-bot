@@ -91,21 +91,7 @@ if (text === "小幫手指令") {
   );
   continue;
 }
-if (text === "小幫手指令") {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "測試成功"
-  );
-  continue;
-}
 
-if (text === "聰明挖寶趣") {
-  await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
-  continue;
-}
-}
-}
 if (text === "聰明挖寶趣") {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 continue;
@@ -184,7 +170,7 @@ if (text === "牛排") {
 
 
 return new Response("OK");
-}
+
 } catch (error) {
   console.error(error);
   return new Response("ERROR", { status: 500 });
