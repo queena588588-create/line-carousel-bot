@@ -91,15 +91,19 @@ if (text === "小幫手指令") {
   );
   continue;
 }
-    "【Queena 好物推薦 × 購物避雷指南】\n\n" +
-    "近期推薦單品❤️\n" +
-    "🛒 輸入「購物車」\n\n" +
-    "🎯 超值・不踩坑日記\n" +
-    "輸入「聰明挖寶趣」\n\n" +
-    "🚚 商品問題｜訂單問題\n" +
-    "輸入「私訊」一對一私訊聊聊"
+if (text === "小幫手指令") {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "測試成功"
   );
   continue;
+}
+
+if (text === "聰明挖寶趣") {
+  await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  continue;
+}
 }
 }
 if (text === "聰明挖寶趣") {
