@@ -89,12 +89,13 @@ if (text === "小幫手指令") {
 }
 
 if (text === "聰明挖寶趣") {
-  await replyInflationZone(
+  await replySmartFlex(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN
   );
   continue;
 }
+
 
 if (text === "抗風晴雨傘" || text === "雨傘") {
  await replyMultiProduct(
@@ -562,4 +563,11 @@ async function replyHelperButtons(replyToken, token) {
       }]
     })
   });
+}
+async function replySmartFlex(replyToken, token) {
+  await replySimple(
+    replyToken,
+    token,
+    "Flex測試成功"
+  );
 }
