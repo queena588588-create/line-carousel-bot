@@ -88,9 +88,12 @@ if (text === "小幫手指令") {
   continue;
 }
 
-if (text.includes("聰明挖寶趣")) {
-  await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
-continue;
+if (text === "聰明挖寶趣") {
+  await replyInflationZone(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
 }
 
 if (text === "抗風晴雨傘" || text === "雨傘") {
