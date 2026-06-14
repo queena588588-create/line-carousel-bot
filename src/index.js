@@ -84,7 +84,7 @@ if (
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
 if (text === "小幫手指令") {
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, "按鈕測試前正常");
+  await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
   continue;
 }
 
@@ -520,4 +520,42 @@ async function replyFolderButton(replyToken, token) {
     })
   });
 }
+}
+async function replyHelperButtons(replyToken, token) {
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "template",
+        altText: "小幫手",
+        template: {
+          type: "buttons",
+          title: "小幫手",
+          text: "請選擇功能",
+          actions: [
+            {
+              type: "message",
+              label: "🛒 購物車",
+              text: "購物車"
+            },
+            {
+              type: "message",
+              label: "🎯 聰明挖寶趣",
+              text: "聰明挖寶趣"
+            },
+            {
+              type: "message",
+              label: "🚚 私訊",
+              text: "私訊"
+            }
+          ]
+        }
+      }]
+    })
+  });
 }
