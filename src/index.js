@@ -175,8 +175,6 @@ return new Response("OK");
   console.error(error);
   return new Response("ERROR", { status: 500 });
 }
-}
-};
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
