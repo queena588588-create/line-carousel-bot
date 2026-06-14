@@ -313,6 +313,13 @@ async function replyCarousel(replyToken, token) {
       type: "carousel",
       contents: [
         productCard(
+      "▸ 𝘘𝘶𝘦𝘦𝘯𝘢’𝘴 𝘚𝘌𝘓𝘌𝘊𝘛",
+  "⌛ 日常生活提案 ✖ 限時特搜話題新品速報 🛒",
+  "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY5YWE5NTk4ODE5MWEzNWIxZjhiOWI1MjU5Mzk6ZmlsZV8wMDAwMDAwMDI2ZGM3MjA5OWQ4M2U1NzVjMmIxM2FjMCIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImNkYjJiZjc4ZTYyMmI2ZTJiOTdkYzM5NGE4NzQzYjViMDI3YjU1ZGRkMzgzOGE1MDYyMWI4NDQ4MWU5N2IyNDUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
+  "https://www.instagram.com/queena.520/",
+  "𝘕𝘌𝘞 𝘐𝘕 🔓 ─── [ 𝘓𝘖𝘈𝘋𝘐𝘕𝘎... ]"
+),
+        productCard(
           "仙女霜",
           "日常保養推薦 All in one",
           "https://lh7-rt.googleusercontent.com/formsz/AN7BsVBrKuvlr-PQtwilr8ARq2sdSIx_JVNmPeTSsk4tnpFyNxvh-YKoMIvqJxxDxxhUJ6__N4dSddx_TS4uvUzaL2QlqIyIQMgltUv9lr5MaJVTpAvWeodGJvCPK68WGkdYs9YWzPHD5UibRiXdUAwmM7JYYwbne-SefIcWO9GZ33ZLuTirs91Zd--qP3JMyDtjVbmGWGCsFY8EKnsgv_M_=w241?key=MPUY86i8CDh0wU0JOyGFfA",
@@ -341,14 +348,8 @@ async function replyCarousel(replyToken, token) {
           "夏季限定 香甜多汁",
           "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1YzdhY2Q0ODE5MThkMGViZDNmZjljYjQzZDI6ZmlsZV8wMDAwMDAwMDc4ZjA3MjA5YTc2OTE3MTViOWZmM2ZlZiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjY0OGI0MDViY2ZmYzQ2ZjE2YzIzMTMwZDcwY2YxNzQ0OTg4NjM5NjQzZTY2YTg2YzYxM2M0NDJlMzNkOGI0ODIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
           "https://forms.gle/9no8dTweGKEZzJwG6"
-        ),
- productCard(
-      "▸ 𝘘𝘶𝘦𝘦𝘯𝘢’𝘴 𝘚𝘌𝘓𝘌𝘊𝘛",
-  "⌛ 日常生活提案 ✖ 限時特搜話題新品速報 🛒",
-  "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY5YWE5NTk4ODE5MWEzNWIxZjhiOWI1MjU5Mzk6ZmlsZV8wMDAwMDAwMDI2ZGM3MjA5OWQ4M2U1NzVjMmIxM2FjMCIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImNkYjJiZjc4ZTYyMmI2ZTJiOTdkYzM5NGE4NzQzYjViMDI3YjU1ZGRkMzgzOGE1MDYyMWI4NDQ4MWU5N2IyNDUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-  "https://www.instagram.com/queena.520/",
-  "𝘕𝘌𝘞 𝘐𝘕 🔓 ─── [ 𝘓𝘖𝘈𝘋𝘐𝘕𝘎... ]"
-)
+        )
+ 
 ]
 }
 };
