@@ -554,7 +554,7 @@ async function replyHelperButtons(replyToken, token) {
   text: "私訊"
 }
            ]
-          ]
+          
         }
       }]
     })
