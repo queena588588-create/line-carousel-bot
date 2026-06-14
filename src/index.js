@@ -191,7 +191,6 @@ async function replyMultiProduct(
 }
 
 async function replyFolderButton(replyToken, token) {
-  ...
 }
 
 async function replyInflationZone(replyToken, token) {
