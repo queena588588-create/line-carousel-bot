@@ -144,15 +144,18 @@ if (text === "牛排") {
   );
 }
 
-      return new Response("OK");
+}
 
-    } catch (error) {
-      console.error(error);
-      return new Response("ERROR", { status: 500 });
-    }
-  }
+}
+
+return new Response("OK");
+
+} catch (error) {
+  console.error(error);
+  return new Response("ERROR", { status: 500 });
+}
+}
 };
-
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
