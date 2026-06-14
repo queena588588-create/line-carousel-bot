@@ -84,8 +84,9 @@ if (
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
 if (text === "小幫手指令") {
-  await replyMessage(
-    event.replyToken,
+  await replyMessage(event.replyToken, "測試成功");
+  return;
+}
     "【Queena 好物推薦 × 購物避雷指南】\n\n" +
     "近期推薦單品❤️\n" +
     "🛒 輸入「購物車」\n\n" +
