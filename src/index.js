@@ -539,20 +539,20 @@ async function replyHelperButtons(replyToken, token) {
           text: "請選擇功能",
           actions: [
             {
-              type: "message",
-              label: "🛒 購物車",
-              text: "購物車"
-            },
-            {
-             {
+  type: "message",
+  label: "🛒 購物車",
+  text: "購物車"
+},
+{
   type: "message",
   label: "🎯 聰明挖寶趣",
   text: "聰明挖寶趣"
 },
-            {
-              type: "message",
-              label: "🚚 私訊",
-              text: "私訊"
+{
+  type: "message",
+  label: "🚚 私訊",
+  text: "私訊"
+}
             }
           ]
         }
