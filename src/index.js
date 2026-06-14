@@ -83,7 +83,21 @@ if (
 }
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text;
+if (text === "小幫手指令") {
+  await replyMessage(
+    event.replyToken,
+    `【Queena 好物推薦 × 購物避雷指南】
 
+近期推薦單品❤️
+🛒 輸入「購物車」
+
+🎯 超值・不踩坑日記
+輸入「聰明挖寶趣」
+
+🚚 商品問題｜訂單問題
+輸入「私訊」一對一私訊聊聊`
+  );
+}
 if (text === "聰明挖寶趣") {
   await replyFolderButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
