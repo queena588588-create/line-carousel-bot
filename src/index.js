@@ -107,7 +107,22 @@ if (text === "冰淇淋被" || text === "被子") {
     "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%951.png?raw=true",
     "馬卡龍行動電源 🔋 買一送一  $599"
   );
-}     
+} 
+  if (
+  text === "枕頭" ||
+  text === "止鼾枕" ||
+  text === "6D枕頭"
+) {
+  await replyMultiProduct(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    [
+      "https://github.com/queena588588-create/line-carousel-bot/blob/main/6D%E9%9B%B2%E6%9C%B5%E6%9E%95.jpg?raw=true",
+      "https://github.com/queena588588-create/line-carousel-bot/blob/main/EC30A28D-F36B-455A-B85C-FFF6FB800638.jpeg?raw=true",
+    ],
+    ""☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280""
+  );
+}
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
@@ -139,10 +154,51 @@ async function replySimple(replyToken, token, text) {
   });
 }
 
+async function replyProduct(replyToken, token, imageUrl, text) {
+  ...
+}
+
+async function replyMultiProduct(
+  replyToken,
+  token,
+  imageUrls,
+  text
+) {
+  const imageMessages = imageUrls.map((imageUrl) => ({
+    type: "image",
+    originalContentUrl: imageUrl,
+    previewImageUrl: imageUrl
+  }));
+
+  const messages = [
+    ...imageMessages,
+    {
+      type: "text",
+      text: text
+    }
+  ];
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages
+    })
+  });
+}
+
+async function replyFolderButton(replyToken, token) {
+  ...
+}
+
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
-    text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n\n輸入商品名稱即可查看詳細資訊"
+   text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n☁️ 6D蝶型涼感記憶枕\n\n輸入商品名稱即可查看詳細資訊"\n\n輸入商品名稱即可查看詳細資訊"
   };
 
 
