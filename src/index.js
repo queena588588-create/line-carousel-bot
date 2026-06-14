@@ -141,7 +141,7 @@ if (text === "冰淇淋被" || text === "被子") {
     "馬卡龍行動電源 🔋 買一送一  $599"
   );
 } 
-  if (
+ if (
   text === "枕頭" ||
   text === "止鼾枕" ||
   text === "6D枕頭"
@@ -155,7 +155,8 @@ if (text === "冰淇淋被" || text === "被子") {
     ],
     "☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280"
   );
-
+  continue;
+}
 if (text === "牛排") {
   await replyProduct(
     event.replyToken,
