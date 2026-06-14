@@ -93,6 +93,7 @@ if (text === "抗風晴雨傘" || text === "雨傘") {
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
+  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
     "☂️ 超大傘面\晴雨兩用 ⚡ 黑膠防曬 買一送一 $850"
   );
 }
@@ -108,15 +109,17 @@ if (text === "冰淇淋被" || text === "被子") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB-1.jpg?raw=true",
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB.png",
+  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB-1.jpg"
     "冰淇淋被 🌸→ 買一送一  $999"
   );
 } 
-  if (text === "行動電源" || text === "洗衣") {
+  if (text === "行動電源" || text === "輕巧行動電源") {
   await replyProduct(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%951.png?raw=true",
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%951.png",
+  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%952.png"
     "馬卡龍行動電源 🔋 買一送一  $599"
   );
 } 
