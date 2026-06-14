@@ -1,30 +1,21 @@
-export default {
-  async fetch(request) {
-    if (request.method === "GET") {
-      return new Response("OK");
-    }
-
-    const CHANNEL_ACCESS_TOKEN = "yN2nn/Jk1J0I1KJXn2nUHf5Cpif1L6hef0D8AO+CZZ3Z6TPRiaG3Gg46fG0lUHLaVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD7TU7gM1cDlt+N4FHgQuNap6hGvZmk9pTQTlxgIfX+SjwdB04t89/1O/w1cDnyilFU=";
-
-    let body = {};
-
-    try {
-      body = await request.json();
-    } catch (e) {
-      return new Response("OK");
-    }
-
-    if (!body.events) {
-      return new Response("OK");
-    }
-
-    for (const event of body.events) {
-
-  if (event.type === "memberJoined") {
-    await replyText(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      `🛒 歡迎加入塞爆購物車 🛒
+if (event.type === "memberJoined") {
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + yN2nn/Jk1J0I1KJXn2nUHf5Cpif1L6hef0D8AO+CZZ3Z6TPRiaG3Gg46fG0lUHLaVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD7TU7gM1cDlt+N4FHgQuNap6hGvZmk9pTQTlxgIfX+SjwdB04t89/1O/w1cDnyilFU=
+    },
+    body: JSON.stringify({
+      replyToken: event.replyToken,
+      messages: [
+        {
+          type: "image",
+          originalContentUrl: "https://drive.google.com/file/d/1TI9cimJXKO_ofP_i1tHWvaJ-JJ-QCXlO/view",
+          previewImageUrl: "https://drive.google.com/file/d/1sbX8PM18iaE6QR5YlgswzHD1XL_KrP8F/view"
+        },
+        {
+          type: "text",
+          text: `🛒 歡迎加入塞爆購物車 🛒
 
         🎀 About me 🩰
   👠 雙寶職業媽也能輕鬆斜槓
