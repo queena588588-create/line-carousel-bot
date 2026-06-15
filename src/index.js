@@ -174,9 +174,8 @@ if (text === "洗衣球" || text === "洗衣") {
 
 }
 }
-}
-return new Response("OK");
 
+return new Response("OK");
 } catch (error) {
   console.error(error);
   return new Response("ERROR", { status: 500 });
