@@ -52,7 +52,7 @@ if (text === "雨傘") {
       "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
       "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
     ],
-    "☂️ 超大傘面\\n晴雨兩用 ⚡ 黑膠防曬\\n買一送一 $850"
+    "☂️ 超大傘面\晴雨兩用 ⚡ 黑膠防曬 買一送一 $850"
   );
   continue;
 }
@@ -65,7 +65,7 @@ if (text === "洗衣球") {
       "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
       "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
     ],
-    "🧺 三效合一洗衣膠球 🍀\\n買一送一 $777"
+"🧺 三效合一洗衣膠球 🍀 買一送一 $777"
   );
   continue;
 }
