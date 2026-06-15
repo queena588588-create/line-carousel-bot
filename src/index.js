@@ -239,7 +239,7 @@ async function replyMultiProduct(
 async function replyInflationZone(replyToken, token) {
   const message = {
     type: "text",
- text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n🛏️ 冰淇淋被\n🔋 馬卡龍行動電源\n☁️ 6D蝶型涼感記憶枕\n\n輸入商品名稱即可查看詳細資訊"
+text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n\n輸入商品名稱即可查看詳細資訊"
 
 };
   await fetch("https://api.line.me/v2/bot/message/reply", {
@@ -490,7 +490,7 @@ async function replyFolderButton(replyToken, token) {
           },
           {
             type: "text",
-            text: "☂️ 抗風晴雨傘｜買一送一 $850\n🧺 3效合1洗衣球｜買一送一 $777\n🛏️ 冰淇淋被｜買一送一 $999\n☁️ 6D蝶型涼感記憶枕｜買一送一 $1280\n🔋 行動電源｜買一送一 $599",
+          text: "☂️ 抗風晴雨傘｜買一送一 $850\n🧺 三效合一洗衣球｜買一送一 $777",
             size: "sm",
             color: "#555555",
             margin: "md",
