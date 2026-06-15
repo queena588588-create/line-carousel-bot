@@ -6,7 +6,8 @@ export default {
     }
 
     const CHANNEL_ACCESS_TOKEN = "F2vHBmUgcMhzxNWCsmC1K7dJcpvNt2Xu0GoIKuvWnmmAMWT+n0sGx61LCPBBCMQTVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6r1BtcZ9ful1AvxMl8avqesyrwL8v0ooO1QYfIC4L6mAdB04t89/1O/w1cDnyilFU=";
-
+const SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
+const SHEET_NAME = "商品資料庫";
     try {
       const data = await request.json();
 
@@ -96,7 +97,13 @@ if (text === "聰明挖寶趣") {
   continue;
 }
 
+// Google Sheet 商品搜尋
+const sheetProduct = await findProductFromSheet(text);
 
+if (sheetProduct) {
+  await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+  continue;
+}
 if (text === "抗風晴雨傘" || text === "雨傘") {
  await replyMultiProduct(
     event.replyToken,
@@ -594,6 +601,73 @@ async function replySmartFlex(replyToken, token) {
           }
         }
       }]
+    })
+  });
+}
+async function findProductFromSheet(keyword) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+  const res = await fetch(url);
+  const csv = await res.text();
+
+  const rows = csv
+    .split("\n")
+    .map(row => row.split(",").map(cell => cell.replace(/^"|"$/g, "").trim()));
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+
+    const sheetKeyword = row[0] || "";
+    const photo = row[1] || "";
+    const productName = row[2] || "";
+    const intro = row[3] || "";
+    const buyMethod = row[4] || "";
+
+    if (sheetKeyword === keyword || productName.includes(keyword)) {
+      return {
+        keyword: sheetKeyword,
+        photo,
+        productName,
+        intro,
+        buyMethod
+      };
+    }
+  }
+
+  return null;
+}
+
+async function replySheetProduct(replyToken, token, product) {
+  const text = `🛒 ${product.productName}
+
+${product.intro}
+
+${product.buyMethod || "要購買請留言+1或私訊Queena"}`;
+
+  const messages = [];
+
+  if (product.photo && product.photo.startsWith("http")) {
+    messages.push({
+      type: "image",
+      originalContentUrl: product.photo,
+      previewImageUrl: product.photo
+    });
+  }
+
+  messages.push({
+    type: "text",
+    text
+  });
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages
     })
   });
 }
