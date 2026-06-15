@@ -593,7 +593,7 @@ async function replyHelperButtons(replyToken, token) {
           title: "小幫手",
           text: "請選擇功能",
           actions: [
-            {
+            
 {
   type: "postback",
   label: "🛒 購物車",
