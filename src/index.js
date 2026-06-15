@@ -96,7 +96,16 @@ if (text === "聰明挖寶趣") {
   );
   continue;
 }
+if (text === "搜尋") {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    `🔍 商品搜尋功能
 
+直接輸入商品名稱即可查詢`
+  );
+  continue;
+}
 // Google Sheet 商品搜尋
 const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
 
@@ -596,7 +605,8 @@ async function replySmartFlex(replyToken, token) {
               { type: "button", action: { type: "message", label: "🧺 洗衣球", text: "洗衣球" } },
               { type: "button", action: { type: "message", label: "🛏️ 冰淇淋被", text: "冰淇淋被" } },
               { type: "button", action: { type: "message", label: "🔋 行動電源", text: "行動電源" } },
-              { type: "button", action: { type: "message", label: "☁️ 枕頭", text: "枕頭" } }
+           { type: "button", action: { type: "message", label: "☁️ 枕頭", text: "枕頭" } },
+              { type: "button", action: { type: "message", label: "🔍 搜商品", text: "搜尋" } }
             ]
           }
         }
