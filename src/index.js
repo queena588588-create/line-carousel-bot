@@ -610,9 +610,12 @@ async function findProductFromSheet(keyword) {
   const res = await fetch(url);
   const csv = await res.text();
 
-  const rows = csv
-    .split("\n")
-    .map(row => row.split(",").map(cell => cell.replace(/^"|"$/g, "").trim()));
+ const rows = csv
+  .split("\n")
+  .map(row =>
+    row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
+      ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || []
+  );
 
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
