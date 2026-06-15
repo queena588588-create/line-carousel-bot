@@ -16,7 +16,42 @@ const SHEET_NAME = "商品資料庫";
       }
 
       for (const event of data.events) {
+if (event.type === "postback") {
+  const text = event.postback.data;
 
+  if (text === "購物車") {
+    await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
+    continue;
+  }
+
+  if (text === "私訊") {
+    await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
+    continue;
+  }
+
+  if (text === "聰明挖寶趣") {
+    await replySmartFlex(event.replyToken, CHANNEL_ACCESS_TOKEN);
+    continue;
+  }
+
+  if (text === "搜尋") {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      `🔍 商品搜尋功能
+
+直接輸入商品名稱即可查詢`
+    );
+    continue;
+  }
+
+  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+
+  if (sheetProduct) {
+    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+    continue;
+  }
+}
         if (event.type === "memberJoined") {
           await fetch("https://api.line.me/v2/bot/message/reply", {
             method: "POST",
@@ -559,19 +594,20 @@ async function replyHelperButtons(replyToken, token) {
           text: "請選擇功能",
           actions: [
             {
-  type: "message",
+{
+  type: "postback",
   label: "🛒 購物車",
-  text: "購物車"
+  data: "購物車"
 },
 {
-  type: "message",
+  type: "postback",
   label: "🎯 聰明挖寶趣",
-  text: "聰明挖寶趣"
+  data: "聰明挖寶趣"
 },
 {
-  type: "message",
+  type: "postback",
   label: "🚚 私訊",
-  text: "私訊"
+  data: "私訊"
 }
            ]
           
@@ -599,14 +635,12 @@ async function replySmartFlex(replyToken, token) {
             layout: "vertical",
             spacing: "md",
             contents: [
-              { type: "text", text: "聰明挖寶趣", weight: "bold", size: "xl" },
-              { type: "text", text: "請選擇商品", size: "sm", color: "#666666" },
-              { type: "button", action: { type: "message", label: "☂️ 雨傘", text: "雨傘" } },
-              { type: "button", action: { type: "message", label: "🧺 洗衣球", text: "洗衣球" } },
-              { type: "button", action: { type: "message", label: "🛏️ 冰淇淋被", text: "冰淇淋被" } },
-              { type: "button", action: { type: "message", label: "🔋 行動電源", text: "行動電源" } },
-           { type: "button", action: { type: "message", label: "☁️ 枕頭", text: "枕頭" } },
-              { type: "button", action: { type: "message", label: "🔍 搜商品", text: "搜尋" } }
+           { type: "button", action: { type: "postback", label: "☂️ 雨傘", data: "雨傘" } },
+{ type: "button", action: { type: "postback", label: "🧺 洗衣球", data: "洗衣球" } },
+{ type: "button", action: { type: "postback", label: "🛏️ 冰淇淋被", data: "冰淇淋被" } },
+{ type: "button", action: { type: "postback", label: "🔋 行動電源", data: "行動電源" } },
+{ type: "button", action: { type: "postback", label: "☁️ 枕頭", data: "枕頭" } },
+{ type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } }
             ]
           }
         }
