@@ -689,7 +689,7 @@ async function replySheetProduct(replyToken, token, product) {
 
 ${product.intro}
 
-${product.buyMethod || "要購買請留言+1或私訊Queena"}`;
+${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
 
   const messages = [];
 
