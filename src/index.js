@@ -171,51 +171,7 @@ if (text === "洗衣球" || text === "洗衣") {
     "三效合一洗衣膠球 ☘️→ 買一送一  $777"
   );
 } 
-if (text === "冰淇淋被" || text === "被子") {
-  await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-     [
-    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB.png",
-  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%86%B0%E6%B7%87%E6%B7%8B%E8%A2%AB-1.jpg"
-        ],
-    "冰淇淋被 🌸→ 買一送一  $999"
-  );
-} 
-  if (text === "行動電源" || text === "輕巧行動電源") {
-  await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-     [
-    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%951.png",
-  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E5%BF%AB%E5%85%85%E8%A1%8C%E5%8B%95%E9%9B%BB%E6%BA%90_%E9%99%90%E5%8B%952.png"
-        ],
-    "馬卡龍行動電源 🔋 買一送一  $599"
-  );
-} 
- if (
-  text === "枕頭" ||
-  text === "止鼾枕" ||
-  text === "6D枕頭"
-) {
-  await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    [
-      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/6D%E9%9B%B2%E6%9C%B5%E6%9E%95.jpg",
-      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/EC30A28D-F36B-455A-B85C-FFF6FB800638.jpeg",
-    ],
-    "☁️ 6D蝶型涼感記憶枕 ☁️ 買一送一 $1280"
-  );
-  continue;
-}
-if (text === "牛排") {
-  await replyProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "https://github.com/queena588588-create/line-carousel-bot/blob/main/image%20(3).png?raw=true",
-    "🥩 加拿大 PRIME 雪花凝脂牛排\n\n4片/320g/包 4包組"
-  );
+
 }
 }
 }
@@ -638,9 +594,6 @@ async function replySmartFlex(replyToken, token) {
             contents: [
            { type: "button", action: { type: "postback", label: "☂️ 雨傘", data: "雨傘" } },
 { type: "button", action: { type: "postback", label: "🧺 洗衣球", data: "洗衣球" } },
-{ type: "button", action: { type: "postback", label: "🛏️ 冰淇淋被", data: "冰淇淋被" } },
-{ type: "button", action: { type: "postback", label: "🔋 行動電源", data: "行動電源" } },
-{ type: "button", action: { type: "postback", label: "☁️ 枕頭", data: "枕頭" } },
 { type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } }
             ]
           }
