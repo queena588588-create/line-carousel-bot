@@ -98,7 +98,7 @@ if (text === "聰明挖寶趣") {
 }
 
 // Google Sheet 商品搜尋
-const sheetProduct = await findProductFromSheet(text);
+const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
 
 if (sheetProduct) {
   await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
@@ -604,7 +604,7 @@ async function replySmartFlex(replyToken, token) {
     })
   });
 }
-async function findProductFromSheet(keyword) {
+async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
   const res = await fetch(url);
