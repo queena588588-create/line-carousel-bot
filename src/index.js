@@ -208,19 +208,21 @@ if (text === "預告" || text === "活動") {
 }
 
 // 影片清單
-if (text === "影片") {
-  const list = await getVideoListFromSheet();
+// 影片清單
 
+if (text === "影片") {
   await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    list
+    "📹 影片功能測試成功"
   );
   continue;
 }
 
 // 單一影片查詢
 const videoData = await findVideoFromSheet(text);
+
+
 
 if (videoData) {
   await replyVideoInfo(
