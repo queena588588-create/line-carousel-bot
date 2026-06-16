@@ -930,7 +930,7 @@ messages.push({
 async function getVideoListSafe() {
 
   const url =
-    `https://docs.google.com/spreadsheets/d/${1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c}/gviz/tq?tqx=out:csv&sheet=影片`;
+    `https://docs.google.com/spreadsheets/d/1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c/gviz/tq?tqx=out:csv&sheet=影片`;
 
   const res = await fetch(url);
   const csv = await res.text();
