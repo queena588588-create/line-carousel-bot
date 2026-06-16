@@ -212,19 +212,7 @@ if (text === "預告" || text === "活動") {
 
 
 
-// 單一影片查詢
-const videoData = await findVideoFromSheet(text);
 
-
-
-if (videoData) {
-  await replyVideoInfo(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    videoData
-  );
-  continue;
-}
 
 
 const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
