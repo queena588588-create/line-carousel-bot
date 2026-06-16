@@ -701,7 +701,8 @@ async function replySmartFlex(replyToken, token) {
             contents: [
            { type: "button", action: { type: "postback", label: "☂️ 雨傘", data: "雨傘" } },
 { type: "button", action: { type: "postback", label: "🧺 洗衣球", data: "洗衣球" } },
-{ type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } }
+{ type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } },
+              { type: "button", action: { type: "postback", label: "🎬 影片", data: "影片" } }
             ]
           }
         }
