@@ -235,22 +235,30 @@ if (text === "影片") {
   continue;
 }
 
-if (text.startsWith("看影片 ")) {
-  const keyword = text.replace("看影片 ", "").trim();
+if (text.startsWith("看影片")) {
+  try {
+    const keyword = text.replace("看影片", "").trim();
 
-  const videoData = await findVideoSafe(keyword);
+    const videoData = await findVideoSafe(keyword);
 
-  if (videoData) {
-    await replyVideoInfo(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      videoData
-    );
-  } else {
+    if (videoData) {
+      await replyVideoInfo(
+        event.replyToken,
+        CHANNEL_ACCESS_TOKEN,
+        videoData
+      );
+    } else {
+      await replySimple(
+        event.replyToken,
+        CHANNEL_ACCESS_TOKEN,
+        "找不到此影片：" + keyword
+      );
+    }
+  } catch (err) {
     await replySimple(
       event.replyToken,
       CHANNEL_ACCESS_TOKEN,
-      "找不到此影片"
+      "看影片錯誤：" + err.message
     );
   }
 
