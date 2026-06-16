@@ -217,12 +217,16 @@ if (text === "預告" || text === "活動") {
 
 // 影片功能
 if (text === "影片") {
-  const list = await getVideoListSafe();
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    list
-  );
+  try {
+    const list = await getVideoListSafe();
+    await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, list);
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "影片功能錯誤：" + err.message
+    );
+  }
   continue;
 }
 
