@@ -187,7 +187,7 @@ if (text === "洗衣球" || text === "洗衣") {
  );
  continue;
 }
-
+}
 return new Response("OK");
 } catch (error) {
   console.error(error);
