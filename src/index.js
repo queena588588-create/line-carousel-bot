@@ -670,13 +670,20 @@ ${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
 
   const messages = [];
 
-  if (product.photo && product.photo.startsWith("http")) {
+ if (product.photo) {
+  const photos = product.photo
+    .split(",")
+    .map(url => url.trim())
+    .filter(url => url.startsWith("http"));
+
+  for (const photoUrl of photos.slice(0, 4)) {
     messages.push({
       type: "image",
-      originalContentUrl: product.photo,
-      previewImageUrl: product.photo
+      originalContentUrl: photoUrl,
+      previewImageUrl: photoUrl
     });
   }
+}
 
   messages.push({
     type: "text",
