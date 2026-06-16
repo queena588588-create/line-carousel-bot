@@ -191,6 +191,47 @@ if (text === "搜尋") {
   continue;
 }
 // Google Sheet 商品搜尋
+
+// 預告、活動：試算表讀圖片＋文字
+if (text === "預告" || text === "活動") {
+  const data = await findNoticeFromSheet(text);
+
+  if (data) {
+    await replyImageText(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      data.imageUrl,
+      data.message
+    );
+    continue;
+  }
+}
+
+// 影片清單
+if (text === "影片") {
+  const list = await getVideoListFromSheet();
+
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    list
+  );
+  continue;
+}
+
+// 單一影片查詢
+const videoData = await findVideoFromSheet(text);
+
+if (videoData) {
+  await replyVideoInfo(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    videoData
+  );
+  continue;
+}
+
+
 const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
 
 if (sheetProduct) {
@@ -719,6 +760,141 @@ ${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
     headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages
+    })
+  });
+}
+async function readSheetCsv(sheetName) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+  const res = await fetch(url);
+  const csv = await res.text();
+
+  return csv
+    .split("\n")
+    .map(row =>
+      row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
+        ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || []
+    );
+}
+
+async function findNoticeFromSheet(command) {
+  const rows = await readSheetCsv("預告");
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+
+    const cmd = row[0] || "";
+    const imageUrl = row[1] || "";
+    const message = row[2] || "";
+
+    if (cmd === command) {
+      return { imageUrl, message };
+    }
+  }
+
+  return null;
+}
+
+async function getVideoListFromSheet() {
+  const rows = await readSheetCsv("影片");
+  let list = "📹 商品影片專區\n\n請輸入想看的商品：\n\n";
+
+  for (let i = 1; i < rows.length; i++) {
+    const keyword = rows[i][0] || "";
+    if (keyword) {
+      list += `🔸 ${keyword}\n`;
+    }
+  }
+
+  return list;
+}
+
+async function findVideoFromSheet(keyword) {
+  const rows = await readSheetCsv("影片");
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+
+    const key = row[0] || "";
+    const imageUrl = row[1] || "";
+    const title = row[2] || "";
+    const intro = row[3] || "";
+    const videoUrl = row[4] || "";
+
+    if (key === keyword) {
+      return { imageUrl, title, intro, videoUrl };
+    }
+  }
+
+  return null;
+}
+
+async function replyImageText(replyToken, token, imageUrl, message) {
+  const messages = [];
+
+  if (imageUrl) {
+    messages.push({
+      type: "image",
+      originalContentUrl: imageUrl,
+      previewImageUrl: imageUrl
+    });
+  }
+
+  if (message) {
+    messages.push({
+      type: "text",
+      text: message
+    });
+  }
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages
+    })
+  });
+}
+
+async function replyVideoInfo(replyToken, token, videoData) {
+  const messages = [];
+
+  if (videoData.imageUrl) {
+    messages.push({
+      type: "image",
+      originalContentUrl: videoData.imageUrl,
+      previewImageUrl: videoData.imageUrl
+    });
+  }
+
+  if (videoData.imageUrl) {
+  messages.push({
+    type: "image",
+    originalContentUrl: videoData.imageUrl,
+    previewImageUrl: videoData.imageUrl
+  });
+}
+
+messages.push({
+  type: "text",
+  text: "🎬 " + videoData.title +
+        "\n\n" + videoData.intro +
+        "\n\n觀看影片：\n" +
+        videoData.videoUrl
+});
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
