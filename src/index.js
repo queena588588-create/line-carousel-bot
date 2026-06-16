@@ -33,7 +33,13 @@ if (event.type === "postback") {
     await replySmartFlex(event.replyToken, CHANNEL_ACCESS_TOKEN);
     continue;
   }
-
+if (text === "小幫手指令") {
+  await replyHelperButtons(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
   if (text === "搜尋") {
     await replySimple(
       event.replyToken,
@@ -121,9 +127,26 @@ if (text === "洗衣球") {
 輸入「私訊」一對一私訊聊聊`
 
 
-         }
-      ]
-    })
+        },
+      
+             {
+  type: "template",
+  altText: "小幫手指令",
+  template: {
+    type: "buttons",
+    title: "🤖 購物車小幫手",
+    text: "點擊開啟功能選單",
+    actions: [
+      {
+        type: "postback",
+        label: "🤖 小幫手指令",
+        data: "小幫手指令"
+      }
+    ]
+  }
+} 
+     ]
+ })
   });
 }
 
