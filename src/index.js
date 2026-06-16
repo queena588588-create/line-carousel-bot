@@ -96,6 +96,7 @@ if (text === "洗衣球") {
                   text: `🛒 歡迎加入塞爆購物車 🛒
 
         🎀 About me 🩰
+  👠 雙寶職業媽也能輕鬆斜槓
   👠 雙寶媽也能輕鬆斜槓
   ✨ 電商合作｜經營開放中
 
@@ -107,14 +108,24 @@ if (text === "洗衣球") {
   💬 官方Line：@108yssta
 
 🔕 訊息有點多可關閉提醒
+
+✈️【Queena 購物避雷指南】
+
+近期推薦單品❤️
+🛒 輸入「購物車」
+
+🎯超值・不踩坑日記
+輸入「聰明挖寶趣」
       
 🚚 商品問題｜訂單問題
 輸入「私訊」一對一私訊聊聊`
 
-        }
+
+         }
       ]
-})
-});
+    })
+  });
+}
 
  if (
   event.type === "message" &&
@@ -133,7 +144,7 @@ if (
 }
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
- 
+
 if (text === "小幫手指令") {
   await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
   continue;
@@ -173,7 +184,6 @@ if (text === "抗風晴雨傘" || text === "雨傘") {
        ],
      "☂️ 超大傘面\晴雨兩用\n⚡黑膠防曬 買一送一 $850"
   );
-  continue;
 }
 if (text === "洗衣球" || text === "洗衣") {
    await replyMultiProduct(
@@ -183,11 +193,13 @@ if (text === "洗衣球" || text === "洗衣") {
     "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
       "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
        ],
-"🧺 三效合一洗衣膠球..."
- );
- continue;
+"🧺 三效合一洗衣膠球\n🍀 買一送一 $777"
+  );
+} 
+
 }
 }
+
 return new Response("OK");
 } catch (error) {
   console.error(error);
@@ -363,7 +375,7 @@ async function replyCarousel(replyToken, token) {
           "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1YzdhY2Q0ODE5MThkMGViZDNmZjljYjQzZDI6ZmlsZV8wMDAwMDAwMDc4ZjA3MjA5YTc2OTE3MTViOWZmM2ZlZiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjY0OGI0MDViY2ZmYzQ2ZjE2YzIzMTMwZDcwY2YxNzQ0OTg4NjM5NjQzZTY2YTg2YzYxM2M0NDJlMzNkOGI0ODIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
           "https://forms.gle/9no8dTweGKEZzJwG6"
         )
- 
+
 ]
 }
 };
@@ -562,7 +574,7 @@ async function replyHelperButtons(replyToken, token) {
           title: "小幫手",
           text: "請選擇功能",
           actions: [
-            
+
 {
   type: "postback",
   label: "🛒 購物車",
@@ -579,7 +591,7 @@ async function replyHelperButtons(replyToken, token) {
   data: "私訊"
 }
            ]
-          
+
         }
       }]
     })
