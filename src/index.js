@@ -8,6 +8,7 @@ export default {
     const CHANNEL_ACCESS_TOKEN = "F2vHBmUgcMhzxNWCsmC1K7dJcpvNt2Xu0GoIKuvWnmmAMWT+n0sGx61LCPBBCMQTVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6r1BtcZ9ful1AvxMl8avqesyrwL8v0ooO1QYfIC4L6mAdB04t89/1O/w1cDnyilFU=";
 const SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
 const SHEET_NAME = "商品資料庫";
+    const VIDEO_SHEET_ID = "1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c";
     try {
       const data = await request.json();
 
@@ -214,7 +215,38 @@ if (text === "預告" || text === "活動") {
 
 
 
+// 影片功能
+if (text === "影片") {
+  const list = await getVideoListSafe();
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    list
+  );
+  continue;
+}
 
+if (text.startsWith("看影片 ")) {
+  const keyword = text.replace("看影片 ", "").trim();
+
+  const videoData = await findVideoSafe(keyword);
+
+  if (videoData) {
+    await replyVideoInfo(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      videoData
+    );
+  } else {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "找不到此影片"
+    );
+  }
+
+  continue;
+}
 const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
 
 if (sheetProduct) {
@@ -884,4 +916,58 @@ messages.push({
       messages
     })
   });
+}
+async function getVideoListSafe() {
+
+  const url =
+    `https://docs.google.com/spreadsheets/d/${VIDEO_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=影片`;
+
+  const res = await fetch(url);
+  const csv = await res.text();
+
+  const rows = csv.split("\n");
+
+  let text = "📹 商品影片專區\n\n";
+
+  for (let i = 1; i < rows.length; i++) {
+
+    const cols = rows[i]
+      .split(",")
+      .map(v => v.replace(/"/g, "").trim());
+
+    if (cols[0]) {
+      text += `看影片 ${cols[0]}\n`;
+    }
+  }
+
+  return text;
+}
+async function findVideoSafe(keyword) {
+
+  const url =
+    `https://docs.google.com/spreadsheets/d/${VIDEO_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=影片`;
+
+  const res = await fetch(url);
+  const csv = await res.text();
+
+  const rows = csv.split("\n");
+
+  for (let i = 1; i < rows.length; i++) {
+
+    const cols = rows[i]
+      .split(",")
+      .map(v => v.replace(/"/g, "").trim());
+
+    if (cols[0] === keyword) {
+
+      return {
+        imageUrl: cols[1] || "",
+        title: cols[2] || "",
+        intro: cols[3] || "",
+        videoUrl: cols[4] || ""
+      };
+    }
+  }
+
+  return null;
 }
