@@ -647,7 +647,7 @@ async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
 
-    if (sheetKeyword === keyword || productName.includes(keyword)) {
+  if (sheetKeyword === keyword) {
       return {
         keyword: sheetKeyword,
         photo,
