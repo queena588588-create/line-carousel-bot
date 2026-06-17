@@ -899,13 +899,7 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
 
-  if (videoData.imageUrl) {
-    messages.push({
-      type: "image",
-      originalContentUrl: videoData.imageUrl,
-      previewImageUrl: videoData.imageUrl
-    });
-  }
+  
 
   if (videoData.imageUrl) {
   messages.push({
