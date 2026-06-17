@@ -264,6 +264,21 @@ if (text.startsWith("看影片 ")) {
 
   continue;
 }
+  try {
+  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+
+  if (sheetProduct) {
+    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+    continue;
+  }
+} catch (err) {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "商品搜尋錯誤：" + err.message
+  );
+  continue;
+}
 if (text === "聰明挖寶趣") {
   try {
     await replySmartFlex(
