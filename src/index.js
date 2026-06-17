@@ -975,7 +975,7 @@ async function replyVideoButtons(replyToken, token) {
     const data = JSON.parse(raw.slice(start, end + 1));
 
    const keywords = (data.table.rows || [])
-.filter(row => String(row.c?.[4]?.v || "").trim())
+.filter(row => String(row.c?.[5]?.v || "").trim())
 .map(row => String(row.c?.[2]?.v || "").trim())
 .filter(Boolean)
 .slice(0, 12);
