@@ -1019,12 +1019,12 @@ async function replyVideoButtons(replyToken, token) {
   }
 }
 async function replySmartFlex(replyToken, token) {
-const url =
-  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
-  encodeURIComponent("商品資料庫");
+  const url =
+    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("商品資料庫");
+
   const res = await fetch(url);
   const raw = await res.text();
-  
   const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
 
   const sheetButtons = (data.table.rows || [])
@@ -1045,22 +1045,8 @@ const url =
     }));
 
   const fixedButtons = [
-    {
-      type: "button",
-      action: {
-        type: "postback",
-        label: "🔍 搜商品",
-        data: "搜尋"
-      }
-    },
-    {
-      type: "button",
-      action: {
-        type: "postback",
-        label: "🎬 影片",
-        data: "影片"
-      }
-    }
+    { type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } },
+    { type: "button", action: { type: "postback", label: "🎬 影片", data: "影片" } }
   ];
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
