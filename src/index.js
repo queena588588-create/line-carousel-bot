@@ -31,9 +31,20 @@ if (event.type === "postback") {
   }
 
   if (text === "聰明挖寶趣") {
-    await replySmartFlex(event.replyToken, CHANNEL_ACCESS_TOKEN);
-    continue;
+  try {
+    await replySmartFlex(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN
+    );
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "挖寶趣錯誤：" + err.message
+    );
   }
+  continue;
+}
  if (text === "影片") {
   await replyVideoButtons(
     event.replyToken,
@@ -182,10 +193,18 @@ if (text === "小幫手指令") {
 }
 
 if (text === "聰明挖寶趣") {
-  await replySmartFlex(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
+  try {
+    await replySmartFlex(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN
+    );
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "挖寶趣錯誤：" + err.message
+    );
+  }
   continue;
 }
 if (text === "搜尋") {
