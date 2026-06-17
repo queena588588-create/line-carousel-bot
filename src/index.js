@@ -899,8 +899,8 @@ messages.push({
 async function findVideoSafe(keyword) {
 
   const url =
-   `https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs
-
+  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:csv&sheet=" +
+  encodeURIComponent("商品資料庫");
   const res = await fetch(url);
   const csv = await res.text();
 
@@ -926,9 +926,8 @@ async function findVideoSafe(keyword) {
   return null;
 }
 async function replyVideoButtons(replyToken, token) {
-  try {
-   const url =
-  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogO4Ijs/gviz/tq?tqx=out:json&sheet=" +
+  const url =
+  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
   encodeURIComponent("商品資料庫");
 
     const res = await fetch(url);
