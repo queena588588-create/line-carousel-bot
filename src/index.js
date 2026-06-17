@@ -115,13 +115,25 @@ if (text.startsWith("看影片 ")) {
 
   continue;
 }
-  try {
+ try {
   const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
 
   if (sheetProduct) {
-    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+    await replySheetProduct(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      sheetProduct
+    );
     continue;
   }
+
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "找不到商品：" + text
+  );
+  continue;
+
 } catch (err) {
   await replySimple(
     event.replyToken,
@@ -130,10 +142,7 @@ if (text.startsWith("看影片 ")) {
   );
   continue;
 }
-  if (sheetProduct) {
-    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
-    continue;
-  }
+ 
 }
         if (event.type === "memberJoined") {
           await fetch("https://api.line.me/v2/bot/message/reply", {
