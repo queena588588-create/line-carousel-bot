@@ -1081,4 +1081,3 @@ async function replyVideoButtons(replyToken, token) {
     );
   }
 }
-}
