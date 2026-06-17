@@ -212,6 +212,34 @@ const text = event.message.text.trim();
   );
   continue;
 }
+if (text.startsWith("看影片 ")) {
+  try {
+    const keyword = text.replace("看影片 ", "").trim();
+    const videoData = await findVideoSafe(keyword);
+
+    if (videoData) {
+      await replyVideoInfo(
+        event.replyToken,
+        CHANNEL_ACCESS_TOKEN,
+        videoData
+      );
+    } else {
+      await replySimple(
+        event.replyToken,
+        CHANNEL_ACCESS_TOKEN,
+        "找不到此影片：" + keyword
+      );
+    }
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "看影片錯誤：" + err.message
+    );
+  }
+
+  continue;
+}
 if (text === "聰明挖寶趣") {
   try {
     await replySmartFlex(
