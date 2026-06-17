@@ -1009,14 +1009,7 @@ async function replyVideoButtons(replyToken, token) {
       })
     });
 
-  } catch (err) {
-    await replySimple(
-      replyToken,
-      token,
-      "影片按鈕錯誤：" + err.message
-    );
-  }
-}
+  
 async function replySmartFlex(replyToken, token) {
   const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("商品資料庫");
 
