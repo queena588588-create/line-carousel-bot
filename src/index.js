@@ -1013,3 +1013,75 @@ async function replyVideoButtons(replyToken, token) {
     );
   }
 }
+async function replySmartFlex(replyToken, token) {
+  const url =
+    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogO4Ijs/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("商品資料庫");
+
+  const res = await fetch(url);
+  const raw = await res.text();
+  const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
+
+  const sheetButtons = (data.table.rows || [])
+    .map(row => ({
+      label: String(row.c?.[0]?.v || "").trim(),
+      keyword: String(row.c?.[0]?.v || "").trim(),
+      show: String(row.c?.[6]?.v || "").trim()
+    }))
+    .filter(item => item.label && item.show === "是")
+    .slice(0, 8)
+    .map(item => ({
+      type: "button",
+      action: {
+        type: "postback",
+        label: item.label.slice(0, 20),
+        data: item.keyword
+      }
+    }));
+
+  const fixedButtons = [
+    {
+      type: "button",
+      action: {
+        type: "postback",
+        label: "🔍 搜商品",
+        data: "搜尋"
+      }
+    },
+    {
+      type: "button",
+      action: {
+        type: "postback",
+        label: "🎬 影片",
+        data: "影片"
+      }
+    }
+  ];
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "flex",
+        altText: "聰明挖寶趣",
+        contents: {
+          type: "bubble",
+          body: {
+            type: "box",
+            layout: "vertical",
+            spacing: "md",
+            contents: [
+              ...sheetButtons,
+              ...fixedButtons
+            ]
+          }
+        }
+      }]
+    })
+  });
+}
