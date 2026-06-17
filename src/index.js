@@ -923,8 +923,10 @@ async function findVideoSafe(keyword) {
 async function replyVideoButtons(replyToken, token) {
   try {
     const url =
-      "https://docs.google.com/spreadsheets/d/1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c/gviz/tq?tqx=out:json&sheet=" +
-      encodeURIComponent("影片");
+  "https://docs.google.com/spreadsheets/d/" +
+  SHEET_ID +
+  "/gviz/tq?tqx=out:json&sheet=" +
+  encodeURIComponent("商品資料庫");
 
     const res = await fetch(url);
 
@@ -938,12 +940,10 @@ async function replyVideoButtons(replyToken, token) {
     const data = JSON.parse(raw.slice(start, end + 1));
 
     const keywords = (data.table.rows || [])
-      .map(row => String(row.c?.[0]?.v || "").trim())
-      .filter(keyword =>
-        keyword &&
-        keyword !== "關鍵字"
-      )
-      .slice(0, 12);
+  .filter(row => String(row.c?.[5]?.v || "").trim())
+  .map(row => String(row.c?.[2]?.v || "").trim())
+  .filter(Boolean)
+  .slice(0, 12);
 
     if (keywords.length === 0) {
       await replySimple(
