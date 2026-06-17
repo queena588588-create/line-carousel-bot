@@ -205,6 +205,13 @@ if (
 }
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
+  if (text === "影片") {
+  await replyVideoButtons(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
 if (text === "聰明挖寶趣") {
   try {
     await replySmartFlex(
@@ -974,10 +981,10 @@ async function replyVideoButtons(replyToken, token) {
     const end = raw.lastIndexOf("}");
     const data = JSON.parse(raw.slice(start, end + 1));
 
-   const keywords = (data.table.rows || [])
+ const keywords = (data.table.rows || [])
 .filter(row => String(row.c?.[5]?.v || "").trim())
 .map(row => String(row.c?.[2]?.v || "").trim())
-.filter(Boolean)
+.filter(name => name && name !== "商品名稱")
 .slice(0, 12);
 
     if (keywords.length === 0) {
