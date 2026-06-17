@@ -8,7 +8,7 @@ export default {
     const CHANNEL_ACCESS_TOKEN = "F2vHBmUgcMhzxNWCsmC1K7dJcpvNt2Xu0GoIKuvWnmmAMWT+n0sGx61LCPBBCMQTVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6r1BtcZ9ful1AvxMl8avqesyrwL8v0ooO1QYfIC4L6mAdB04t89/1O/w1cDnyilFU=";
 const SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
 const SHEET_NAME = "商品資料庫";
-    const VIDEO_SHEET_ID = "1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c";
+    const VIDEO_SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
     try {
       const data = await request.json();
 
@@ -913,7 +913,7 @@ messages.push({
 async function findVideoSafe(keyword) {
 
   const url =
-   `https://docs.google.com/spreadsheets/d/1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c/gviz/tq?tqx=out:csv&sheet=影片`;
+   `https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs
 
   const res = await fetch(url);
   const csv = await res.text();
