@@ -1007,18 +1007,14 @@ async function replyVideoButtons(replyToken, token) {
       .filter(Boolean)
       .slice(0, 13);
 
-    if (keywords.length === 0) {
-      await replySimple(
-        replyToken,
-        token,
-        = (data.table.rows || [])
-      .map(row => String(row.c?.[0]?.v || "").trim())
-      .filter(Boolean)
-      .slice "目前還沒有設定影片"
-      );
-      return;
-    }
-
+   if (keywords.length === 0) {
+  await replySimple(
+    replyToken,
+    token,
+    "目前還沒有設定影片"
+  );
+  return;
+}
     const items = keywords.map(keyword => ({
       type: "action",
       action: {
