@@ -205,7 +205,21 @@ if (
 }
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
-
+if (text === "聰明挖寶趣") {
+  try {
+    await replySmartFlex(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN
+    );
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "挖寶趣錯誤：" + err.message
+    );
+  }
+  continue;
+}
 if (text === "小幫手指令") {
   await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
   continue;
@@ -1028,7 +1042,7 @@ async function replyVideoButtons(replyToken, token) {
         ]
       })
     });
-
+}
   
 async function replySmartFlex(replyToken, token) {
   const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("商品資料庫");
@@ -1084,4 +1098,4 @@ async function replySmartFlex(replyToken, token) {
     })
   });
 }
-}
+
