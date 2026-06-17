@@ -222,18 +222,6 @@ if (text === "預告" || text === "活動") {
 
 
 
-// 影片功能
-if (text === "影片") {
-  try {
-    const list = await getVideoListSafe();
-    await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, list);
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "影片功能錯誤：" + err.message
-    );
-  }
   continue;
 }
 
@@ -695,36 +683,7 @@ async function replyHelperButtons(replyToken, token) {
     })
   });
 }
-async function replySmartFlex(replyToken, token) {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [{
-        type: "flex",
-        altText: "聰明挖寶趣",
-        contents: {
-          type: "bubble",
-          body: {
-            type: "box",
-            layout: "vertical",
-            spacing: "md",
-            contents: [
-           { type: "button", action: { type: "postback", label: "☂️ 雨傘", data: "雨傘" } },
-{ type: "button", action: { type: "postback", label: "🧺 洗衣球", data: "洗衣球" } },
-{ type: "button", action: { type: "postback", label: "🔍 搜商品", data: "搜尋" } },
-              { type: "button", action: { type: "postback", label: "🎬 影片", data: "影片" } }
-            ]
-          }
-        }
-      }]
-    })
-  });
-}
+
 async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
@@ -931,31 +890,7 @@ messages.push({
     })
   });
 }
-async function getVideoListSafe() {
 
-  const url =
-    `https://docs.google.com/spreadsheets/d/1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c/gviz/tq?tqx=out:csv&sheet=影片`;
-
-  const res = await fetch(url);
-  const csv = await res.text();
-
-  const rows = csv.split("\n");
-
-  let text = "📹 商品影片專區\n\n";
-
-  for (let i = 1; i < rows.length; i++) {
-
-    const cols = rows[i]
-      .split(",")
-      .map(v => v.replace(/"/g, "").trim());
-
-    if (cols[0]) {
-      text += `看影片 ${cols[0]}\n`;
-    }
-  }
-
-  return text;
-}
 async function findVideoSafe(keyword) {
 
   const url =
