@@ -95,7 +95,26 @@ if (text === "洗衣球") {
   continue;
 }
   const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+if (text.startsWith("看影片 ")) {
+  const keyword = text.replace("看影片 ", "").trim();
+  const videoData = await findVideoSafe(keyword);
 
+  if (videoData) {
+    await replyVideoInfo(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      videoData
+    );
+  } else {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "找不到此影片：" + keyword
+    );
+  }
+
+  continue;
+}
   if (sheetProduct) {
     await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
     continue;
@@ -942,6 +961,7 @@ async function replyVideoButtons(replyToken, token) {
     const data = JSON.parse(raw.slice(start, end + 1));
 
    const keywords = (data.table.rows || [])
+.filter(row => String(row.c?.[4]?.v || "").trim())
 .map(row => String(row.c?.[2]?.v || "").trim())
 .filter(Boolean)
 .slice(0, 12);
