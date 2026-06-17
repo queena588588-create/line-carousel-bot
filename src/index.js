@@ -1004,19 +1004,26 @@ async function replyVideoButtons(replyToken, token) {
 
     const keywords = (data.table.rows || [])
       .map(row => String(row.c?.[0]?.v || "").trim())
-      .filter(Boolean)
-      .slice(0, 13);
+      .filter(keyword =>
+        keyword &&
+        keyword !== "關鍵字"
+      )
+      .slice(0, 12);
 
-   if (keywords.length === 0) {
-  await replySimple(
-    replyToken,
-    token,
-    "目前還沒有設定影片"
-  );
-  return;
-}
-    const items = keywords.map(keyword => ({
-      type: "action",
+    if (keywords.length === 0) {
+      await replySimple(
+        replyToken,
+        token,
+        "目前還沒有設定影片"
+      );
+      return;
+    }
+
+    const buttons = keywords.map(keyword => ({
+      type: "button",
+      style: "secondary",
+      height: "sm",
+      margin: "sm",
       action: {
         type: "message",
         label: keyword.slice(0, 20),
@@ -1034,10 +1041,32 @@ async function replyVideoButtons(replyToken, token) {
         replyToken,
         messages: [
           {
-            type: "text",
-            text: "🎬 商品影片專區\n請點選想看的影片",
-            quickReply: {
-              items
+            type: "flex",
+            altText: "商品影片專區",
+            contents: {
+              type: "bubble",
+              size: "mega",
+              body: {
+                type: "box",
+                layout: "vertical",
+                spacing: "sm",
+                contents: [
+                  {
+                    type: "text",
+                    text: "🎬 商品影片專區",
+                    weight: "bold",
+                    size: "xl"
+                  },
+                  {
+                    type: "text",
+                    text: "請直接點選想看的影片",
+                    size: "sm",
+                    color: "#777777",
+                    margin: "sm"
+                  },
+                  ...buttons
+                ]
+              }
             }
           }
         ]
@@ -1051,4 +1080,5 @@ async function replyVideoButtons(replyToken, token) {
       "影片按鈕錯誤：" + err.message
     );
   }
+}
 }
