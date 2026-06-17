@@ -922,10 +922,8 @@ async function findVideoSafe(keyword) {
 }
 async function replyVideoButtons(replyToken, token) {
   try {
-    const url =
-  "https://docs.google.com/spreadsheets/d/" +
-  SHEET_ID +
-  "/gviz/tq?tqx=out:json&sheet=" +
+   const url =
+  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogO4Ijs/gviz/tq?tqx=out:json&sheet=" +
   encodeURIComponent("商品資料庫");
 
     const res = await fetch(url);
