@@ -94,7 +94,7 @@ if (text === "洗衣球") {
   );
   continue;
 }
-  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+
 if (text.startsWith("看影片 ")) {
   const keyword = text.replace("看影片 ", "").trim();
   const videoData = await findVideoSafe(keyword);
@@ -113,6 +113,21 @@ if (text.startsWith("看影片 ")) {
     );
   }
 
+  continue;
+}
+  try {
+  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+
+  if (sheetProduct) {
+    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+    continue;
+  }
+} catch (err) {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "商品搜尋錯誤：" + err.message
+  );
   continue;
 }
   if (sheetProduct) {
