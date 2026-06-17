@@ -192,21 +192,7 @@ if (text === "小幫手指令") {
   continue;
 }
 
-if (text === "聰明挖寶趣") {
-  try {
-    await replySmartFlex(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "挖寶趣錯誤：" + err.message
-    );
-  }
-  continue;
-}
+
 if (text === "搜尋") {
   await replySimple(
     event.replyToken,
