@@ -779,7 +779,7 @@ async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
 
-const buyMethod = row[4] || "";
+
 
 if (
   sheetKeyword
