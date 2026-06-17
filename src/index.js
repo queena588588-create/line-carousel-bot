@@ -1038,12 +1038,7 @@ const url =
   encodeURIComponent("商品資料庫");
   const res = await fetch(url);
   const raw = await res.text();
-  await replySimple(
-  replyToken,
-  token,
-  raw.substring(0, 200)
-);
-return;
+  
   const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
 
   const sheetButtons = (data.table.rows || [])
