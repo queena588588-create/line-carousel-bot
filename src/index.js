@@ -795,14 +795,7 @@ if (
     buyMethod
   };
 }
-      return {
-         keyword: sheetKeyword,
-        photo,
-        productName,
-        intro,
-        buyMethod
-      };
-    }
+      
   }
 
   return null;
