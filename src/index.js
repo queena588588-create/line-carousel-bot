@@ -779,7 +779,22 @@ async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
 
- if (sheetKeyword.split(",").map(k => k.trim()).includes(keyword)) {
+const buyMethod = row[4] || "";
+
+if (
+  sheetKeyword
+    .split(",")
+    .map(k => k.trim())
+    .some(k => keyword.includes(k) || k.includes(keyword))
+) {
+  return {
+    keyword: sheetKeyword,
+    photo,
+    productName,
+    intro,
+    buyMethod
+  };
+}
       return {
          keyword: sheetKeyword,
         photo,
