@@ -800,7 +800,7 @@ if (
   sheetKeyword
     .split(",")
     .map(k => k.trim())
-    .some(k => keyword.includes(k) || k.includes(keyword))
+    .includes(keyword)
 ) {
   return {
     keyword: sheetKeyword,
