@@ -980,14 +980,13 @@ async function findVideoSafe(keyword) {
       .split(",")
       .map(v => v.replace(/"/g, "").trim());
 
-    if (cols[0] === keyword) {
-
+   if (cols[0] === keyword || cols[2] === keyword) {
       return {
-        imageUrl: cols[1] || "",
-        title: cols[2] || "",
-        intro: cols[3] || "",
-        videoUrl: cols[4] || ""
-      };
+  imageUrl: cols[1] || "",
+  title: cols[2] || "",
+  intro: cols[3] || "",
+  videoUrl: cols[5] || ""
+};
     }
   }
 
