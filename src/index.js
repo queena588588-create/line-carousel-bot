@@ -1072,3 +1072,4 @@ async function replySmartFlex(replyToken, token) {
     })
   });
 }
+
