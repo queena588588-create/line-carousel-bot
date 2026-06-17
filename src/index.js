@@ -980,9 +980,13 @@ async function findVideoSafe(keyword) {
       .split(",")
       .map(v => v.replace(/"/g, "").trim());
 
-  if (
-  String(cols[0] || "").includes(keyword) ||
-  keyword.includes(String(cols[0] || "")) ||
+  const keys = String(cols[0] || "")
+  .split(",")
+  .map(k => k.trim());
+
+if (
+  keys.includes(keyword) ||
+  keys.some(k => keyword.includes(k)) ||
   String(cols[2] || "") === keyword
 ) {
       return {
