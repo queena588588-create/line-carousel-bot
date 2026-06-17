@@ -985,3 +985,74 @@ async function findVideoSafe(keyword) {
 
   return null;
 }
+async function replyVideoButtons(replyToken, token) {
+  try {
+    const url =
+      "https://docs.google.com/spreadsheets/d/1CpTnvJQWy45ZZyDAYqoTG1rIEoCFVKmuA86BvVu1-5c/gviz/tq?tqx=out:json&sheet=" +
+      encodeURIComponent("影片");
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("試算表讀取失敗：" + res.status);
+    }
+
+    const raw = await res.text();
+    const start = raw.indexOf("{");
+    const end = raw.lastIndexOf("}");
+    const data = JSON.parse(raw.slice(start, end + 1));
+
+    const keywords = (data.table.rows || [])
+      .map(row => String(row.c?.[0]?.v || "").trim())
+      .filter(Boolean)
+      .slice(0, 13);
+
+    if (keywords.length === 0) {
+      await replySimple(
+        replyToken,
+        token,
+        = (data.table.rows || [])
+      .map(row => String(row.c?.[0]?.v || "").trim())
+      .filter(Boolean)
+      .slice "目前還沒有設定影片"
+      );
+      return;
+    }
+
+    const items = keywords.map(keyword => ({
+      type: "action",
+      action: {
+        type: "message",
+        label: keyword.slice(0, 20),
+        text: "看影片 " + keyword
+      }
+    }));
+
+    await fetch("https://api.line.me/v2/bot/message/reply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify({
+        replyToken,
+        messages: [
+          {
+            type: "text",
+            text: "🎬 商品影片專區\n請點選想看的影片",
+            quickReply: {
+              items
+            }
+          }
+        ]
+      })
+    });
+
+  } catch (err) {
+    await replySimple(
+      replyToken,
+      token,
+      "影片按鈕錯誤：" + err.message
+    );
+  }
+}
