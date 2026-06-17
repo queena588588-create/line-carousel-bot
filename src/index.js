@@ -1033,10 +1033,9 @@ async function replyVideoButtons(replyToken, token) {
   }
 }
 async function replySmartFlex(replyToken, token) {
-  const url =
-    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogO4Ijs/gviz/tq?tqx=out:json&sheet=" +
-    encodeURIComponent("商品資料庫");
-
+const url =
+  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogO4Ijs/gviz/tq?tqx=out:json&sheet=" +
+  encodeURIComponent("商品資料庫");
   const res = await fetch(url);
   const raw = await res.text();
   await replySimple(
