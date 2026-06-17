@@ -34,9 +34,11 @@ if (event.type === "postback") {
     await replySmartFlex(event.replyToken, CHANNEL_ACCESS_TOKEN);
     continue;
   }
-  if (text === "影片") {
-  const list = await getVideoListSafe();
-  await replySimple(event.replyToken, CHANNEL_ACCESS_TOKEN, list);
+ if (text === "影片") {
+  await replyVideoButtons(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
   continue;
 }
 if (text === "小幫手指令") {
