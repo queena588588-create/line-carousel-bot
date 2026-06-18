@@ -709,7 +709,7 @@ const res = await fetch(url);
           action: {
             type: "message",
             label: "觀看影片",
-            text: "看影片 " + item.keyword
+           text: "看影片 " + item.keyword.split(",")[0].trim()
           }
         });
       }
