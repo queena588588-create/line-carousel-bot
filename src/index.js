@@ -648,7 +648,7 @@ async function replyCarouselFromSheet(replyToken, token) {
 
 const res = await fetch(url);
 
-  const res = await fetch(url);
+ 
   const raw = await res.text();
   const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
 
