@@ -669,6 +669,12 @@ style: "primary",
   };
 }
 async function replyCarouselFromSheet(replyToken, token) {
+  await replySimple(
+  replyToken,
+  token,
+  "已進入輪播函式"
+);
+return;
  const url =
   "https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" +
   encodeURIComponent("輪播專區");
