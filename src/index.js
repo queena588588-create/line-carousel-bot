@@ -1150,7 +1150,9 @@ messages.push({
   });
 }
 
-
+async function findVideoSafe(keyword) {
+  ...
+}
 async function replyVideoButtons(replyToken, token) {
   const url =
   "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
