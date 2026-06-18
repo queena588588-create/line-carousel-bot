@@ -1151,7 +1151,57 @@ messages.push({
 }
 
 async function findVideoSafe(keyword) {
-  ...
+  const url =
+    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("商品資料庫");
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("商品資料庫讀取失敗：" + res.status);
+  }
+
+  const raw = await res.text();
+  const jsonText = raw.substring(
+    raw.indexOf("{"),
+    raw.lastIndexOf("}") + 1
+  );
+  const data = JSON.parse(jsonText);
+
+  const target = String(keyword || "").trim();
+
+  for (const row of data.table.rows || []) {
+    const sheetKeyword = String(row.c?.[0]?.v || "").trim();
+    const imageUrl = String(row.c?.[1]?.v || "").trim();
+    const title = String(row.c?.[2]?.v || "").trim();
+    const intro = String(row.c?.[3]?.v || "").trim();
+    const videoUrl = String(row.c?.[5]?.v || "").trim();
+
+    const keys = sheetKeyword
+      .split(",")
+      .map(k => k.trim())
+      .filter(Boolean);
+
+    const matched =
+      keys.includes(target) ||
+      keys.some(k => target.includes(k) || k.includes(target)) ||
+      title === target;
+
+    if (matched) {
+      if (!videoUrl.startsWith("http")) {
+        return null;
+      }
+
+      return {
+        imageUrl,
+        title,
+        intro,
+        videoUrl
+      };
+    }
+  }
+
+  return null;
 }
 async function replyVideoButtons(replyToken, token) {
   const url =
