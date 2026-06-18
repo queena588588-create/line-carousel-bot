@@ -642,11 +642,119 @@ style: "primary",
   };
 }
 async function replyCarouselFromSheet(replyToken, token) {
-  await replySimple(
-    replyToken,
-    token,
-    "試算表輪播測試成功"
-  );
+  const url =
+    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("輪播專區");
+
+  const res = await fetch(url);
+  const raw = await res.text();
+  const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
+
+  const bubbles = (data.table.rows || [])
+    .map(row => ({
+      category: String(row.c?.[0]?.v || "").trim(),
+      sort: Number(row.c?.[1]?.v || 999),
+      image: String(row.c?.[2]?.v || "").trim(),
+      title: String(row.c?.[3]?.v || "").trim(),
+      desc: String(row.c?.[4]?.v || "").trim(),
+      keyword: String(row.c?.[5]?.v || "").trim(),
+      video: String(row.c?.[6]?.v || "").trim(),
+      show: String(row.c?.[7]?.v || "").trim()
+    }))
+    .filter(item => item.category === "購物車" && item.show === "是")
+    .sort((a, b) => a.sort - b.sort)
+    .slice(0, 10)
+    .map(item => {
+      const buttons = [];
+
+      if (item.keyword) {
+        buttons.push({
+          type: "button",
+          style: "primary",
+          height: "sm",
+          action: {
+            type: "message",
+            label: "查看商品",
+            text: item.keyword
+          }
+        });
+      }
+
+      if (item.video.startsWith("http")) {
+        buttons.push({
+          type: "button",
+          style: "secondary",
+          height: "sm",
+          action: {
+            type: "message",
+            label: "觀看影片",
+            text: "看影片 " + item.keyword
+          }
+        });
+      }
+
+      return {
+        type: "bubble",
+        hero: {
+          type: "image",
+          url: item.image,
+          size: "full",
+          aspectRatio: "20:13",
+          aspectMode: "cover"
+        },
+        body: {
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: [
+            {
+              type: "text",
+              text: item.title || "未命名商品",
+              weight: "bold",
+              size: "lg",
+              wrap: true
+            },
+            {
+              type: "text",
+              text: item.desc || " ",
+              size: "sm",
+              color: "#666666",
+              wrap: true
+            }
+          ]
+        },
+        footer: {
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: buttons
+        }
+      };
+    });
+
+  if (bubbles.length === 0) {
+    await replySimple(replyToken, token, "目前輪播專區沒有資料");
+    return;
+  }
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "flex",
+        altText: "購物車輪播",
+        contents: {
+          type: "carousel",
+          contents: bubbles
+        }
+      }]
+    })
+  });
 }
 async function replyText(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
