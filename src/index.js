@@ -21,7 +21,7 @@ if (event.type === "postback") {
   const text = event.postback.data;
 
   if (text === "購物車") {
-    await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
+    await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
     continue;
   }
 
@@ -217,7 +217,7 @@ if (text.startsWith("看影片 ")) {
   event.message.type === "text" &&
   event.message.text === "購物車"
 ) {
-  await replyCarousel(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
 if (
