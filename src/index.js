@@ -766,7 +766,7 @@ const res = await fetch(url);
     return;
   }
 
-  await fetch("https://api.line.me/v2/bot/message/reply", {
+ const lineRes = await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -784,6 +784,10 @@ const res = await fetch(url);
       }]
     })
   });
+  if (!lineRes.ok) {
+  const errorText = await lineRes.text();
+  throw new Error("LINE拒絕輪播：" + lineRes.status + " " + errorText);
+}
 }
 async function replyText(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
