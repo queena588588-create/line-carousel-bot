@@ -760,7 +760,12 @@ const res = await fetch(url);
         }
       };
     });
-
+await replySimple(
+  replyToken,
+  token,
+  "已讀到 " + bubbles.length + " 格輪播"
+);
+return;
   if (bubbles.length === 0) {
     await replySimple(replyToken, token, "目前輪播專區沒有資料");
     return;
