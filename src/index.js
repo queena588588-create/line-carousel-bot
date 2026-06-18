@@ -677,18 +677,29 @@ const res = await fetch(url);
     .map(item => {
       const buttons = [];
 
-      if (item.keyword) {
-        buttons.push({
-          type: "button",
-          style: "primary",
-          height: "sm",
-          action: {
-            type: "message",
-            label: "查看商品",
-            text: item.keyword
-          }
-        });
-      }
+      if (item.title === "IG") {
+  buttons.push({
+    type: "button",
+    style: "primary",
+    height: "sm",
+    action: {
+      type: "uri",
+      label: "前往 IG",
+      uri: "https://www.instagram.com/queena.520/"
+    }
+  });
+} else if (item.keyword) {
+  buttons.push({
+    type: "button",
+    style: "primary",
+    height: "sm",
+    action: {
+      type: "message",
+      label: "商品介紹",
+      text: item.keyword.split(",")[0].trim()
+    }
+  });
+}
 
       if (item.video.startsWith("http")) {
         buttons.push({
