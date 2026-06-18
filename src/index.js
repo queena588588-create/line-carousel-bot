@@ -643,8 +643,10 @@ style: "primary",
 }
 async function replyCarouselFromSheet(replyToken, token) {
  const url =
-"https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" +
-encodeURIComponent("輪播專區");
+  "https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" +
+  encodeURIComponent("輪播專區");
+
+const res = await fetch(url);
 
   const res = await fetch(url);
   const raw = await res.text();
