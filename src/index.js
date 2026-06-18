@@ -397,7 +397,7 @@ if (text === "洗衣球" || text === "洗衣") {
   );
 } 
 
-}
+
 
 
 return new Response("OK");
