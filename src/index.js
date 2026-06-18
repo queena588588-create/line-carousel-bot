@@ -1297,7 +1297,7 @@ async function replySmartFlex(replyToken, token) {
       action: {
         type: "postback",
         label: item.label.slice(0, 20),
-        data: item.keyword
+       data: item.keyword.split(",")[0].trim()
       }
     }));
 
