@@ -642,7 +642,11 @@ style: "primary",
   };
 }
 async function replyCarouselFromSheet(replyToken, token) {
-
+  await replySimple(
+    replyToken,
+    token,
+    "試算表輪播測試成功"
+  );
 }
 async function replyText(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
