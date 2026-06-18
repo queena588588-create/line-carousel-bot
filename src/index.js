@@ -337,8 +337,7 @@ if (text === "預告" || text === "活動") {
 
 
 
-  continue;
-}
+ 
 
 if (text.startsWith("看影片")) {
   try {
