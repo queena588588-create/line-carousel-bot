@@ -212,13 +212,6 @@ if (text.startsWith("看影片 ")) {
   });
 }
 
- if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "購物車"
-) {
-  await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
-}
 
 if (
   event.type === "message" &&
@@ -229,6 +222,18 @@ if (
 }
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
+  if (text === "購物車") {
+  try {
+    await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "輪播錯誤：" + err.message
+    );
+  }
+  continue;
+}
   if (text === "影片") {
   await replyVideoButtons(
     event.replyToken,
