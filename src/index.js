@@ -220,21 +220,7 @@ if (
 ) {
   await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
-if (text === "購物車") {
-  try {
-    await replyCarouselFromSheet(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "輪播錯誤：" + err.message
-    );
-  }
-  continue;
-}
+
 if (event.type === "message" && event.message.type === "text") {
   const text = event.message.text.trim();
 
