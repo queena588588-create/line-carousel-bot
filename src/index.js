@@ -1295,10 +1295,10 @@ async function replySmartFlex(replyToken, token) {
     .map(item => ({
       type: "button",
       action: {
-        type: "postback",
-        label: item.label.slice(0, 20),
-       data: item.keyword.split(",")[0].trim()
-      }
+  type: "message",
+  label: item.label.slice(0, 20),
+  text: "看影片 " + item.keyword.split(",")[0].trim()
+}
     }));
 
   const fixedButtons = [
