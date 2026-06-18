@@ -641,7 +641,9 @@ style: "primary",
     }
   };
 }
+async function replyCarouselFromSheet(replyToken, token) {
 
+}
 async function replyText(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
