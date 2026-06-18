@@ -238,21 +238,14 @@ if (text === "購物車") {
 if (event.type === "message" && event.message.type === "text") {
   const text = event.message.text.trim();
 
-  if (text === "購物車") {
-    try {
-      await replyCarouselFromSheet(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN
-      );
-    } catch (err) {
-      await replySimple(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN,
-        "輪播錯誤：" + err.message
-      );
-    }
-    continue;
-  }
+if (text === "購物車") {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "文字購物車入口正常"
+  );
+  continue;
+}
 
   if (text === "影片") {
     await replyVideoButtons(
