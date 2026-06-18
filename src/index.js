@@ -220,18 +220,23 @@ if (
 ) {
   await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
-if (event.type === "message" && event.message.type === "text") {
-const text = event.message.text.trim();
 if (text === "購物車") {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "進入購物車入口"
-  );
+  try {
+    await replyCarouselFromSheet(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN
+    );
+  } catch (err) {
+    await replySimple(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      "輪播錯誤：" + err.message
+    );
+  }
   continue;
 }
-}
-}
+
+
   if (text === "影片") {
   await replyVideoButtons(
     event.replyToken,
@@ -393,7 +398,8 @@ if (text === "洗衣球" || text === "洗衣") {
 
 
 
-
+  } // 關閉文字訊息區塊
+} // 關閉 for (const event of data.events)
 return new Response("OK");
 } catch (error) {
   console.error(error);
