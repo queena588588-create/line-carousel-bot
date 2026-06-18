@@ -366,13 +366,7 @@ if (text.startsWith("看影片")) {
     );
   }
 
-  continue;
-}
-const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
-
-if (sheetProduct) {
-  await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
-  continue;
+ 
 }
 if (text === "抗風晴雨傘" || text === "雨傘") {
  await replyMultiProduct(
