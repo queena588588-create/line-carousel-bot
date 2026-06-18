@@ -1150,43 +1150,7 @@ messages.push({
   });
 }
 
-async function findVideoSafe(keyword) {
 
-  const url =
-  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:csv&sheet=" +
-  encodeURIComponent("商品資料庫");
-  const res = await fetch(url);
-  const csv = await res.text();
-
-  const rows = csv.split("\n");
-
-  for (let i = 1; i < rows.length; i++) {
-
-    const cols =
-  rows[i]
-    .match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-    ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || [];
-
-  const keys = String(cols[0] || "")
-  .split(",")
-  .map(k => k.trim());
-
-if (
-  keys.includes(keyword) ||
-  keys.some(k => keyword.includes(k)) ||
-  String(cols[2] || "") === keyword
-) {
-      return {
-  imageUrl: cols[1] || "",
-  title: cols[2] || "",
-  intro: cols[3] || "",
-  videoUrl: cols[5] || ""
-};
-    }
-  }
-
-  return null;
-}
 async function replyVideoButtons(replyToken, token) {
   const url =
   "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
