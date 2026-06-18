@@ -1162,9 +1162,10 @@ async function findVideoSafe(keyword) {
 
   for (let i = 1; i < rows.length; i++) {
 
-    const cols = rows[i]
-      .split(",")
-      .map(v => v.replace(/"/g, "").trim());
+    const cols =
+  rows[i]
+    .match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
+    ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || [];
 
   const keys = String(cols[0] || "")
   .split(",")
