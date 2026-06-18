@@ -702,17 +702,17 @@ const res = await fetch(url);
 }
 
       if (item.video.startsWith("http")) {
-        buttons.push({
-          type: "button",
-          style: "secondary",
-          height: "sm",
-          action: {
-            type: "message",
-            label: "觀看影片",
-           text: "看影片 " + item.keyword.split(",")[0].trim()
-          }
-        });
-      }
+  buttons.push({
+    type: "button",
+    style: "secondary",
+    height: "sm",
+    action: {
+      type: "uri",
+      label: "觀看影片",
+      uri: item.video
+    }
+  });
+}
 
       return {
         type: "bubble",
