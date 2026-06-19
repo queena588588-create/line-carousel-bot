@@ -1188,10 +1188,7 @@ async function findVideoSafe(keyword) {
       title === target;
 
     if (matched) {
-      if (!videoUrl.startsWith("http")) {
-        return null;
-      }
-
+     
       return {
         imageUrl,
         title,
