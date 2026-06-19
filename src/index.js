@@ -979,7 +979,96 @@ if (
 
   return null;
 }
+async function getCountdownText(productKeyword) {
+  const url =
+    "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("結單倒數");
 
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    return "";
+  }
+
+  const raw = await res.text();
+  const jsonText = raw.substring(
+    raw.indexOf("{"),
+    raw.lastIndexOf("}") + 1
+  );
+
+  const data = JSON.parse(jsonText);
+
+  const productKeys = String(productKeyword || "")
+    .split(",")
+    .map(k => k.trim())
+    .filter(Boolean);
+
+  for (const row of data.table.rows || []) {
+    const countdownKeyword = String(row.c?.[0]?.v || "").trim();
+    const displayName = String(row.c?.[1]?.v || countdownKeyword).trim();
+    const deadlineText = String(
+      row.c?.[2]?.f || row.c?.[2]?.v || ""
+    ).trim();
+    const closingText = String(row.c?.[3]?.v || "").trim();
+    const show = String(row.c?.[4]?.v || "").trim();
+
+    if (show !== "是" || !countdownKeyword || !deadlineText) {
+      continue;
+    }
+
+    const matched =
+      productKeys.includes(countdownKeyword) ||
+      productKeys.some(k =>
+        k.includes(countdownKeyword) ||
+        countdownKeyword.includes(k)
+      );
+
+    if (!matched) {
+      continue;
+    }
+
+    const match = deadlineText.match(
+      /(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})\s+(\d{1,2}):(\d{2})/
+    );
+
+    if (!match) {
+      return "";
+    }
+
+    const [, year, month, day, hour, minute] = match;
+
+    const deadline = new Date(
+      `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
+    );
+
+    const remainingMs = deadline.getTime() - Date.now();
+
+    if (remainingMs <= 0) {
+      return `⏰ ${displayName}已結單${
+        closingText ? "\n\n" + closingText : ""
+      }`;
+    }
+
+    const totalMinutes = Math.floor(remainingMs / 60000);
+    const days = Math.floor(totalMinutes / 1440);
+    const hours = Math.floor((totalMinutes % 1440) / 60);
+    const minutes = totalMinutes % 60;
+
+    const parts = [];
+
+    if (days > 0) parts.push(`${days}天`);
+    if (hours > 0) parts.push(`${hours}小時`);
+    parts.push(`${minutes}分鐘`);
+
+    return `⏰ ${displayName}收單倒數
+
+還有 ${parts.join("")}${
+      closingText ? "\n\n" + closingText : ""
+    }`;
+  }
+
+  return "";
+}
 async function replySheetProduct(replyToken, token, product) {
   const text = `🛒 ${product.productName}
 
@@ -988,6 +1077,9 @@ ${product.intro}
 ${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
 
   const messages = [];
+  const countdownText = await getCountdownText(
+  product.keyword || product.productName
+);
 
  if (product.photo) {
   const photos = product.photo
