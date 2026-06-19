@@ -1087,7 +1087,7 @@ ${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
     .map(url => url.trim())
     .filter(url => url.startsWith("http"));
 
-  for (const photoUrl of photos.slice(0, 4)) {
+ for (const photoUrl of photos.slice(0, 3)) {
     messages.push({
       type: "image",
       originalContentUrl: photoUrl,
@@ -1100,7 +1100,12 @@ ${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
     type: "text",
     text
   });
-
+if (countdownText) {
+  messages.push({
+    type: "text",
+    text: countdownText
+  });
+}
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
