@@ -981,7 +981,7 @@ if (
 }
 async function getCountdownText(productKeyword) {
   const url =
-    "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" +
+  "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" +
     encodeURIComponent("結單倒數");
 
   const res = await fetch(url);
