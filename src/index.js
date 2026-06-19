@@ -1130,12 +1130,15 @@ async function replyVideoInfo(replyToken, token, videoData) {
   });
 }
 
+const videoText = videoData.videoUrl
+  ? "\n\n觀看影片：\n" + videoData.videoUrl
+  : "";
+
 messages.push({
   type: "text",
   text: "🎬 " + videoData.title +
-        "\n\n" + videoData.intro +
-        "\n\n觀看影片：\n" +
-        videoData.videoUrl
+    "\n\n" + videoData.intro +
+    videoText
 });
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
