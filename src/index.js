@@ -1415,7 +1415,9 @@ async function replySmartFlex(replyToken, token) {
   .trim()
   .slice(0, 20),
 
-text: "看影片 " + String(item.keyword || "")
+text: String(item.keyword || "")
+  .split(",")[0]
+  .trim()
   .split(",")[0]
   .trim()
 }
