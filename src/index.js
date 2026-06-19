@@ -1313,8 +1313,14 @@ async function replySmartFlex(replyToken, token) {
       type: "button",
       action: {
   type: "message",
-  label: item.label.slice(0, 20),
-label: item.label.split(",")[0].trim().slice(0, 20),
+  label: String(item.label || "")
+  .split(",")[0]
+  .trim()
+  .slice(0, 20),
+
+text: "看影片 " + String(item.keyword || "")
+  .split(",")[0]
+  .trim()
 }
     }));
 
