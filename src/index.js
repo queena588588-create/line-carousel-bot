@@ -727,6 +727,7 @@ const res = await fetch(url);
           type: "box",
           layout: "vertical",
           spacing: "sm",
+          flex: 1,
           contents: [
             {
               type: "text",
