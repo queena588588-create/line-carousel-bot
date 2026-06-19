@@ -1314,7 +1314,7 @@ async function replySmartFlex(replyToken, token) {
       action: {
   type: "message",
   label: item.label.slice(0, 20),
-  text: "看影片 " + item.keyword.split(",")[0].trim()
+label: item.label.split(",")[0].trim().slice(0, 20),
 }
     }));
 
