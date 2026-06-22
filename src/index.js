@@ -1277,7 +1277,7 @@ async function findVideoSafe(keyword) {
     const title = String(row.c?.[2]?.v || "").trim();
     const intro = String(row.c?.[3]?.v || "").trim();
     const videoUrl = String(row.c?.[5]?.v || "").trim();
-
+const videoIntro = String(row.c?.[7]?.v || "").trim();
     const keys = sheetKeyword
       .split(",")
       .map(k => k.trim())
@@ -1290,12 +1290,13 @@ async function findVideoSafe(keyword) {
 
     if (matched) {
      
-      return {
-        imageUrl,
-        title,
-        intro,
-        videoUrl
-      };
+      rreturn {
+  imageUrl,
+  title,
+  intro,
+  videoUrl,
+  videoIntro
+};
     }
   }
 
