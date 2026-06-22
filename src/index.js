@@ -1062,7 +1062,7 @@ async function getCountdownText(productKeyword) {
 
    return `📢 ${displayName}最後收單倒數
 
-只剩 ${parts.join("")}，🚨廠商系統即將自動關單，想要的快留言＋1，逾期不候！${
+只剩🚨 ${parts.join("")}，🚨廠商系統即將自動關單，想要的快留言＋1，逾期不候！${
   closingText ? "\n\n" + closingText : ""
 }`;
   }
