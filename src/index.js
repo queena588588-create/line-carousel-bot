@@ -1234,10 +1234,9 @@ const videoText = videoData.videoUrl
 messages.push({
   type: "text",
   text: "🎬 " + videoData.title +
-    "\n\n" + videoData.intro +
+    "\n\n" + (videoData.videoIntro || "點我看使用分享") +
     videoText
 });
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
