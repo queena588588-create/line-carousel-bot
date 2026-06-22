@@ -1289,7 +1289,7 @@ const videoIntro = String(row.c?.[7]?.v || "").trim();
 
     if (matched) {
      
-      rreturn {
+      return {
   imageUrl,
   title,
   intro,
