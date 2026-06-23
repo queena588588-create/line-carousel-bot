@@ -1398,55 +1398,63 @@ async function replySmartFlex(replyToken, token) {
   const jsonText = raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
   const data = JSON.parse(jsonText);
 
-  const sheetButtons = (data.table.rows || [])
+  const items = (data.table.rows || [])
     .map(row => ({
       label: String(row.c?.[0]?.v || "").trim(),
       keyword: String(row.c?.[0]?.v || "").trim(),
       show: String(row.c?.[6]?.v || "").trim()
     }))
     .filter(item => item.label && item.show === "是")
-    .slice(0, 8)
-    .map(item => ({
-      type: "button",
-      style: "secondary",
-      height: "sm",
-      margin: "none",
-      action: {
-        type: "message",
-        label: String(item.label || "")
-          .split(",")[0]
-          .trim()
-          .slice(0, 20),
-        text: String(item.keyword || "")
-          .split(",")[0]
-          .trim()
-      }
-    }));
+    .slice(0, 8);
 
-  const fixedButtons = [
-    {
-      type: "button",
-      style: "primary",
-      height: "sm",
-      margin: "sm",
-      action: {
-        type: "message",
-        label: "搜尋",
-        text: "搜尋"
-      }
-    },
-    {
-      type: "button",
-      style: "primary",
-      height: "sm",
-      margin: "sm",
-      action: {
-        type: "message",
-        label: "影片",
-        text: "影片"
-      }
-    }
+  const allItems = [
+    ...items,
+    { label: "搜尋商品", keyword: "搜尋" },
+    { label: "影片專區", keyword: "影片" }
   ];
+
+  const rows = [];
+  for (let i = 0; i < allItems.length; i += 2) {
+    const rowItems = allItems.slice(i, i + 2);
+
+    rows.push({
+      type: "box",
+      layout: "horizontal",
+      spacing: "xs",
+      margin: "xs",
+      contents: rowItems.map(item => ({
+        type: "box",
+        layout: "vertical",
+        flex: 1,
+        backgroundColor: "#F0F2F5",
+        cornerRadius: "md",
+        paddingAll: "sm",
+        action: {
+          type: "message",
+          label: String(item.label || "")
+            .split(",")[0]
+            .trim()
+            .slice(0, 20),
+          text: String(item.keyword || "")
+            .split(",")[0]
+            .trim()
+        },
+        contents: [
+          {
+            type: "text",
+            text: String(item.label || "")
+              .split(",")[0]
+              .trim(),
+            align: "center",
+            size: "sm",
+            weight: "bold",
+            color: "#333333",
+            wrap: true
+          }
+        ]
+      }))
+    });
+  }
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -1461,6 +1469,7 @@ async function replySmartFlex(replyToken, token) {
         altText: "商品選單",
         contents: {
           type: "bubble",
+          size: "mega",
           body: {
             type: "box",
             layout: "vertical",
@@ -1470,23 +1479,16 @@ async function replySmartFlex(replyToken, token) {
                 type: "text",
                 text: "🛒 聰明挖寶趣",
                 weight: "bold",
-                size: "lg",
-                margin: "none"
+                size: "lg"
               },
               {
                 type: "text",
-                text: "請選擇想看的商品",
+                text: "點選想看的商品",
                 size: "sm",
                 color: "#666666",
                 margin: "xs"
               },
-              {
-                type: "box",
-                layout: "vertical",
-                spacing: "xs",
-                margin: "sm",
-                contents: [...sheetButtons, ...fixedButtons]
-              }
+              ...rows
             ]
           }
         }
