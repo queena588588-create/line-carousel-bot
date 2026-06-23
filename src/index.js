@@ -1407,15 +1407,22 @@ async function replySmartFlex(replyToken, token) {
     .filter(item => item.label && item.show === "是")
     .slice(0, 8)
     .map(item => ({
-      type: "button",
-      action: {
-  type: "message",
-  label: String(item.label || "")
-  .split(",")[0]
-  .trim()
-  .slice(0, 20),
+  type: "button",
+  style: "secondary",
+  height: "sm",
+  margin: "none",
+  action: {
+    type: "message",
+    label: String(item.label || "")
+      .split(",")[0]
+      .trim()
+      .slice(0, 20),
 
-text: String(item.keyword || "")
+    text: String(item.keyword || "")
+      .split(",")[0]
+      .trim()
+  }
+}))
   .split(",")[0]
   .trim()
   .split(",")[0]
@@ -1444,7 +1451,7 @@ text: String(item.keyword || "")
           body: {
             type: "box",
             layout: "vertical",
-            spacing: "md",
+            spacing: "xs",
             contents: [...sheetButtons, ...fixedButtons]
           }
         }
