@@ -1406,29 +1406,36 @@ async function replySmartFlex(replyToken, token) {
     }))
     .filter(item => item.label && item.show === "是")
     .slice(0, 8)
-    .map(item => ({
-  type: "button",
-  style: "secondary",
-  height: "sm",
-  margin: "none",
-  action: {
-    type: "message",
-    label: String(item.label || "")
-      .split(",")[0]
-      .trim()
-      .slice(0, 20),
+   const sheetButtons = (data.table.rows || [])
+  .map(row => ({
+    label: String(row.c?.[0]?.v || "").trim(),
+    keyword: String(row.c?.[0]?.v || "").trim(),
+    show: String(row.c?.[6]?.v || "").trim()
+  }))
+  .filter(item => item.label && item.show === "是")
+  .slice(0, 8)
+  .map(item => ({
+    type: "button",
+    style: "secondary",
+    height: "sm",
+    margin: "none",
+    action: {
+      type: "message",
+      label: String(item.label || "")
+        .split(",")[0]
+        .trim()
+        .slice(0, 20),
 
-    text: String(item.keyword || "")
-      .split(",")[0]
-      .trim()
-  }
-}))
-  .split(",")[0]
-  .trim()
-  .split(",")[0]
-  .trim()
-}
-    }));
+      text: String(item.keyword || "")
+        .split(",")[0]
+        .trim()
+    }
+  }));
+
+const fixedButtons = [
+  { type: "button", action: { type: "postback", label: "搜尋", data: "搜尋" } },
+  { type: "button", action: { type: "postback", label: "影片", data: "影片" } }
+];
 
   const fixedButtons = [
     { type: "button", action: { type: "postback", label: "搜尋", data: "搜尋" } },
