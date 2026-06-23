@@ -1432,10 +1432,7 @@ async function replySmartFlex(replyToken, token) {
     }
   }));
 
-const fixedButtons = [
-  { type: "button", action: { type: "postback", label: "搜尋", data: "搜尋" } },
-  { type: "button", action: { type: "postback", label: "影片", data: "影片" } }
-];
+
 
   const fixedButtons = [
     { type: "button", action: { type: "postback", label: "搜尋", data: "搜尋" } },
