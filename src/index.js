@@ -1060,9 +1060,9 @@ async function getCountdownText(productKeyword) {
     if (hours > 0) parts.push(`${hours}小時`);
     parts.push(`${minutes}分鐘`);
 
-   return `📢 ${displayName}最後收單倒數
+   return `📢 ${displayName}收單倒數‼️
 
-只剩🚨 ${parts.join("")}，🚨廠商系統即將自動關單，想要的快留言＋1，逾期不候！${
+只剩🚨 ${parts.join("")}，🆘系統即將自動關單，逾期不候！${
   closingText ? "\n\n" + closingText : ""
 }`;
   }
