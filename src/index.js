@@ -1651,7 +1651,7 @@ async function replyClosingFlexList(replyToken, token) {
               },
               {
                 type: "text",
-                text: "想要的快留言＋1，逾期不候",
+                text: "👑 Queena 私心推薦 💥逾期不候",
                 size: "xs",
                 color: "#666666",
                 margin: "xs"
