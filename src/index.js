@@ -223,7 +223,13 @@ if (
 
 if (event.type === "message" && event.message.type === "text") {
   const text = event.message.text.trim();
-
+if (text === "收單" || text === "結單" || text === "即將結單") {
+  await replyClosingFlexList(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
 if (text === "購物車") {
   try {
     await replyCarouselFromSheet(
@@ -1489,6 +1495,172 @@ async function replySmartFlex(replyToken, token) {
                 margin: "xs"
               },
               ...rows
+            ]
+          }
+        }
+      }]
+    })
+  });
+}
+async function replyClosingFlexList(replyToken, token) {
+  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("結單倒數");
+
+  const res = await fetch(url);
+  const raw = await res.text();
+  const jsonText = raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
+  const data = JSON.parse(jsonText);
+
+  const now = Date.now();
+
+  const items = (data.table.rows || [])
+    .map(row => {
+      const keyword = String(row.c?.[0]?.v || "").trim();
+      const displayName = String(row.c?.[1]?.v || keyword).trim();
+      const deadlineText = String(row.c?.[2]?.f || row.c?.[2]?.v || "").trim();
+      const closingText = String(row.c?.[3]?.v || "").trim();
+      const show = String(row.c?.[4]?.v || "").trim();
+      const imageUrl = String(row.c?.[5]?.v || "").trim();
+
+      if (show !== "是") return null;
+
+      const match = deadlineText.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2}).*?(\d{1,2}):(\d{2})/);
+      if (!match) return null;
+
+      const [, year, month, day, hour, minute] = match;
+
+      const deadline = new Date(
+        `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
+      );
+
+      const remainingMs = deadline.getTime() - now;
+
+      const totalMinutes = Math.floor(remainingMs / 60000);
+      const days = Math.floor(totalMinutes / 1440);
+      const hours = Math.floor((totalMinutes % 1440) / 60);
+      const minutes = totalMinutes % 60;
+
+      let timeText = "";
+
+      if (remainingMs <= 0) {
+        timeText = "已結單";
+      } else {
+        const parts = [];
+        if (days > 0) parts.push(`${days}天`);
+        if (hours > 0) parts.push(`${hours}小時`);
+        parts.push(`${minutes}分鐘`);
+        timeText = `剩 ${parts.join("")}`;
+      }
+
+      return {
+        displayName,
+        closingText,
+        imageUrl,
+        deadline,
+        timeText,
+        keyword
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.deadline - b.deadline)
+    .slice(0, 5);
+
+  if (items.length === 0) {
+    await replySimple(replyToken, token, "目前沒有設定即將結單商品");
+    return;
+  }
+
+  const itemRows = items.map(item => ({
+    type: "box",
+    layout: "horizontal",
+    spacing: "sm",
+    margin: "md",
+    action: {
+      type: "message",
+      label: item.displayName.slice(0, 20),
+      text: item.keyword
+    },
+    contents: [
+      {
+        type: "image",
+        url: item.imageUrl || "https://dummyimage.com/120x120/f5f5f5/999999.png&text=SALE",
+        size: "sm",
+        aspectRatio: "1:1",
+        aspectMode: "cover",
+        flex: 1
+      },
+      {
+        type: "box",
+        layout: "vertical",
+        flex: 3,
+        contents: [
+          {
+            type: "text",
+            text: item.displayName,
+            weight: "bold",
+            size: "sm",
+            color: "#333333",
+            wrap: true,
+            maxLines: 1
+          },
+          {
+            type: "text",
+            text: "⏰ " + item.timeText,
+            size: "xs",
+            color: "#D32F2F",
+            weight: "bold",
+            margin: "xs"
+          },
+          {
+            type: "text",
+            text: item.closingText || "想要的快留言＋1",
+            size: "xs",
+            color: "#666666",
+            wrap: true,
+            maxLines: 2,
+            margin: "xs"
+          }
+        ]
+      }
+    ]
+  }));
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "flex",
+        altText: "最近結單清單",
+        contents: {
+          type: "bubble",
+          body: {
+            type: "box",
+            layout: "vertical",
+            spacing: "xs",
+            contents: [
+              {
+                type: "text",
+                text: "⏰ 最近結單清單",
+                weight: "bold",
+                size: "lg",
+                color: "#333333"
+              },
+              {
+                type: "text",
+                text: "想要的快留言＋1，逾期不候",
+                size: "xs",
+                color: "#666666",
+                margin: "xs"
+              },
+              {
+                type: "separator",
+                margin: "md"
+              },
+              ...itemRows
             ]
           }
         }
