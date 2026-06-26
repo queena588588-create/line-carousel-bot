@@ -1340,7 +1340,7 @@ async function replyVideoButtons(replyToken, token) {
       };
     })
     .filter(item => item.keyword && item.videoUrl.startsWith("http"))
-    .slice(0, 6);
+    .slice(0, 12);
 
   if (items.length === 0) {
     await replySimple(replyToken, token, "目前沒有設定商品影片");
