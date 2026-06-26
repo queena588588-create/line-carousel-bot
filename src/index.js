@@ -1309,93 +1309,145 @@ const videoIntro = String(row.c?.[7]?.v || "").trim();
 }
 async function replyVideoButtons(replyToken, token) {
   const url =
-  "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
-  encodeURIComponent("商品資料庫");
+    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent("商品資料庫");
 
-    const res = await fetch(url);
+  const res = await fetch(url);
 
-    if (!res.ok) {
-      throw new Error("試算表讀取失敗：" + res.status);
-    }
+  if (!res.ok) {
+    throw new Error("試算表讀取失敗：" + res.status);
+  }
 
-    const raw = await res.text();
-    const start = raw.indexOf("{");
-    const end = raw.lastIndexOf("}");
-    const data = JSON.parse(raw.slice(start, end + 1));
+  const raw = await res.text();
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  const data = JSON.parse(raw.slice(start, end + 1));
 
- const keywords = (data.table.rows || [])
-.filter(row => {
-  const video = String(row.c?.[5]?.v || "").trim();
-  return video.startsWith("http");
-})
-.map(row => String(row.c?.[2]?.v || "").trim())
-.filter(name => name && name !== "商品名稱")
-.slice(0, 12);
+  const items = (data.table.rows || [])
+    .map(row => {
+      const keyword = String(row.c?.[0]?.v || "").trim();
+      const imageUrl = String(row.c?.[1]?.v || "").split(",")[0].trim();
+      const title = String(row.c?.[2]?.v || keyword).trim();
+      const videoUrl = String(row.c?.[5]?.v || "").trim();
+      const videoIntro = String(row.c?.[7]?.v || "").trim();
 
-    if (keywords.length === 0) {
-      await replySimple(
-        replyToken,
-        token,
-        "目前還沒有設定影片"
-      );
-      return;
-    }
+      return {
+        keyword,
+        imageUrl,
+        title,
+        videoUrl,
+        videoIntro
+      };
+    })
+    .filter(item => item.keyword && item.videoUrl.startsWith("http"))
+    .slice(0, 6);
 
-    const buttons = keywords.map(keyword => ({
-      type: "button",
-      style: "secondary",
-      height: "sm",
-      margin: "sm",
-      action: {
-        type: "message",
-        label: keyword.slice(0, 20),
-        text: "看影片 " + keyword
-      }
-    }));
+  if (items.length === 0) {
+    await replySimple(replyToken, token, "目前沒有設定商品影片");
+    return;
+  }
 
-    await fetch("https://api.line.me/v2/bot/message/reply", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
+  const itemRows = items.map(item => ({
+    type: "box",
+    layout: "horizontal",
+    spacing: "sm",
+    margin: "md",
+    action: {
+      type: "message",
+      label: item.title.slice(0, 20),
+      text: "看影片 " + String(item.keyword || "")
+        .split(",")[0]
+        .trim()
+    },
+    contents: [
+      {
+        type: "image",
+        url: item.imageUrl || "https://dummyimage.com/120x120/f5f5f5/999999.png&text=VIDEO",
+        size: "sm",
+        aspectRatio: "1:1",
+        aspectMode: "cover",
+        flex: 1
       },
-      body: JSON.stringify({
-        replyToken,
-        messages: [
+      {
+        type: "box",
+        layout: "vertical",
+        flex: 3,
+        contents: [
           {
-            type: "flex",
-            altText: "商品影片專區",
-            contents: {
-              type: "bubble",
-              size: "mega",
-              body: {
-                type: "box",
-                layout: "vertical",
-                spacing: "sm",
-                contents: [
-                  {
-                    type: "text",
-                    text: "🎬 商品影片專區",
-                    weight: "bold",
-                    size: "xl"
-                  },
-                  {
-                    type: "text",
-                    text: "請直接點選想看的影片",
-                    size: "sm",
-                    color: "#777777",
-                    margin: "sm"
-                  },
-                  ...buttons
-                ]
-              }
-            }
+            type: "text",
+            text: item.title,
+            weight: "bold",
+            size: "sm",
+            color: "#333333",
+            wrap: true,
+            maxLines: 1
+          },
+          {
+            type: "text",
+            text: "🎬 點我看影片",
+            size: "xs",
+            color: "#7B1FA2",
+            weight: "bold",
+            margin: "xs"
+          },
+          {
+            type: "text",
+            text: item.videoIntro || "使用分享｜商品介紹｜實拍影片",
+            size: "xs",
+            color: "#666666",
+            wrap: true,
+            maxLines: 2,
+            margin: "xs"
           }
         ]
-      })
-    });
-}
-  
+      }
+    ]
+  }));
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [{
+        type: "flex",
+        altText: "商品影片專區",
+        contents: {
+          type: "bubble",
+          body: {
+            type: "box",
+            layout: "vertical",
+            spacing: "xs",
+            contents: [
+              {
+                type: "text",
+                text: "🎬 商品影片專區",
+                weight: "bold",
+                size: "lg",
+                color: "#333333"
+              },
+              {
+                type: "text",
+                text: "點選想看的影片",
+                size: "xs",
+                color: "#666666",
+                margin: "xs"
+              },
+              {
+                type: "separator",
+                margin: "md"
+              },
+              ...itemRows
+            ]
+          }
+        }
+      }]
+    })
+  });
+} 
 async function replySmartFlex(replyToken, token) {
   const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("商品資料庫");
 
