@@ -695,19 +695,35 @@ const res = await fetch(url);
     }
   });
 } else if (item.keyword) {
-  buttons.push({
-    type: "button",
-    style: "primary",
-    height: "sm",
-    action: {
-      type: "message",
-      label: "商品介紹",
-      text: item.keyword.split(",")[0].trim()
-    }
-  });
+  const mainKeyword = item.keyword.split(",")[0].trim();
+
+  if (mainKeyword === "IG" && item.video.startsWith("http")) {
+    buttons.push({
+      type: "button",
+      style: "primary",
+      height: "sm",
+      action: {
+        type: "uri",
+        label: "前往 IG",
+        uri: item.video
+      }
+    });
+  } else {
+    buttons.push({
+      type: "button",
+      style: "primary",
+      height: "sm",
+      action: {
+        type: "message",
+        label: "商品介紹",
+        text: mainKeyword
+      }
+    });
+  }
+}
 }
 
-      if (item.video.startsWith("http")) {
+     if (item.video.startsWith("http") && String(item.keyword || "").split(",")[0].trim() !== "IG") {
   buttons.push({
     type: "button",
     style: "secondary",
