@@ -733,7 +733,7 @@ hero: {
           type: "image",
           url: item.image,
           size: "full",
-          aspectRatio: "20:13",
+          aspectRatio: "20:10",
           aspectMode: "cover"
         },
         body: {
