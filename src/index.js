@@ -711,7 +711,7 @@ if (item.keyword) {
     });
   }
 }
-}
+
 
      if (item.video.startsWith("http") && String(item.keyword || "").split(",")[0].trim() !== "IG") {
   buttons.push({
