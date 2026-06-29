@@ -727,8 +727,9 @@ if (item.keyword) {
 }
 
       return {
-        type: "bubble",
-        hero: {
+       type: "bubble",
+size: "kilo",
+hero: {
           type: "image",
           url: item.image,
           size: "full",
