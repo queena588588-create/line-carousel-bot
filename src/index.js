@@ -1330,16 +1330,17 @@ async function replyVideoButtons(replyToken, token) {
       const title = String(row.c?.[2]?.v || keyword).trim();
       const videoUrl = String(row.c?.[5]?.v || "").trim();
       const videoIntro = String(row.c?.[7]?.v || "").trim();
-
+const videoShow = String(row.c?.[8]?.v || "").trim();
       return {
-        keyword,
-        imageUrl,
-        title,
-        videoUrl,
-        videoIntro
-      };
+  keyword,
+  imageUrl,
+  title,
+  videoUrl,
+  videoIntro,
+  videoShow
+};
     })
-    .filter(item => item.keyword && item.videoUrl.startsWith("http"))
+   .filter(item => item.keyword && item.videoUrl.startsWith("http") && item.videoShow === "是")
     .slice(0, 12);
 
   if (items.length === 0) {
