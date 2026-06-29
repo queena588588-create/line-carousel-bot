@@ -683,18 +683,8 @@ const res = await fetch(url);
     .map(item => {
       const buttons = [];
 
-      if (item.title === "IG") {
-  buttons.push({
-    type: "button",
-    style: "primary",
-    height: "sm",
-    action: {
-      type: "uri",
-      label: "前往 IG",
-      uri: "https://www.instagram.com/queena.520/"
-    }
-  });
-} else if (item.keyword) {
+     
+if (item.keyword) {
   const mainKeyword = item.keyword.split(",")[0].trim();
 
   if (mainKeyword === "IG" && item.video.startsWith("http")) {
