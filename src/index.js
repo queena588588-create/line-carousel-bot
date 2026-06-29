@@ -283,11 +283,21 @@ if (text.startsWith("看影片 ")) {
 
   continue;
 }
-  try {
-  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+try {
+  let sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+
+  // 第一次沒抓到時，自動再查一次，避免第一次輸入沒反應
+  if (!sheetProduct) {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
+  }
 
   if (sheetProduct) {
-    await replySheetProduct(event.replyToken, CHANNEL_ACCESS_TOKEN, sheetProduct);
+    await replySheetProduct(
+      event.replyToken,
+      CHANNEL_ACCESS_TOKEN,
+      sheetProduct
+    );
     continue;
   }
 } catch (err) {
