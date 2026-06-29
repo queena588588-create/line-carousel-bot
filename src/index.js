@@ -1467,10 +1467,9 @@ async function replySmartFlex(replyToken, token) {
     .slice(0, 8);
 
   const allItems = [
-    ...items,
-    { label: "搜尋商品", keyword: "搜尋" },
-    { label: "影片專區", keyword: "影片" }
-  ];
+  ...items,
+  { label: "搜尋商品", keyword: "搜尋" }
+];
 
   const rows = [];
   for (let i = 0; i < allItems.length; i += 2) {
