@@ -223,6 +223,25 @@ if (
 
 if (event.type === "message" && event.message.type === "text") {
   const text = event.message.text.trim();
+  const sourceId =
+  event.source.groupId ||
+  event.source.roomId ||
+  event.source.userId ||
+  "unknown";
+
+const userId = event.source.userId || "unknown";
+const dedupeKey = `${sourceId}:${userId}:${text}`;
+const nowTime = Date.now();
+
+if (recentMessages.has(dedupeKey)) {
+  const lastTime = recentMessages.get(dedupeKey);
+
+  if (nowTime - lastTime < 30000) {
+    continue;
+  }
+}
+
+recentMessages.set(dedupeKey, nowTime);
 if (text === "收單" || text === "結單" || text === "即將結單") {
   await replyClosingFlexList(
     event.replyToken,
