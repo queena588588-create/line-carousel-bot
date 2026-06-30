@@ -999,7 +999,7 @@ async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
     const productName = row[2] || "";
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
-
+const status = row[9] || "";
 
 
 if (
@@ -1013,9 +1013,9 @@ if (
     photo,
     productName,
     intro,
-    buyMethod
-  };
-}
+   buyMethod,
+status
+};
       
   }
 
