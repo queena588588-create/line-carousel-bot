@@ -999,7 +999,7 @@ async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
     const productName = row[2] || "";
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
-const status = row[9] || "";
+
 
 
 if (
@@ -1013,9 +1013,9 @@ if (
     photo,
     productName,
     intro,
-   buyMethod,
-status
-};
+    buyMethod
+  };
+}
       
   }
 
@@ -1112,14 +1112,12 @@ async function getCountdownText(productKeyword) {
   return "";
 }
 async function replySheetProduct(replyToken, token, product) {
-     const text =
-    "🛒 " + product.productName +
-    "\n\n" +
-    product.intro +
-    (product.status ? "\n\n商品狀態：" + product.status : "") +
-    "\n\n" +
-    (product.buyMethod || "🛒購買請留言+1或💙私訊Queena");
-   
+  const text = `🛒 ${product.productName}
+
+${product.intro}
+
+${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
+
   const messages = [];
   const countdownText = await getCountdownText(
   product.keyword || product.productName
