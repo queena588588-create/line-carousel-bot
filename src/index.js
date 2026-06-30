@@ -1112,12 +1112,11 @@ async function getCountdownText(productKeyword) {
   return "";
 }
 async function replySheetProduct(replyToken, token, product) {
-  const text = `🛒 ${product.productName}
+ const text = `🛒 ${product.productName}
 
-${product.intro}
+${product.intro}${product.status ? "\n\n商品狀態：" + product.status : ""}
 
-${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
-
+${product.buyMethod || "🛒購買請留言+1或💙私訊Queena"}`;
   const messages = [];
   const countdownText = await getCountdownText(
   product.keyword || product.productName
