@@ -958,7 +958,7 @@ async function replyFolderButton(replyToken, token) {
       messages: [
         {
           type: "text",
-          🛒 購物車\n📂 分類逛逛\n🚚 私訊
+ text: "Queena 好物小幫手\n\n請直接點選：\n\n🛒 購物車\n📂 分類逛逛\n🚚 私訊"
         }
       ]
     })
