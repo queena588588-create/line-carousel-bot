@@ -2032,9 +2032,9 @@ async function replyUvOnly(replyToken, token, env) {
     n = Number(n);
     if (isNaN(n)) return "-";
     if (n <= 2) return "低量級 ☀紫外線較低";
-    if (n <= 5) return "中量級 💧會曬黑";
-    if (n <= 7) return "高量級 🌡️容易曬傷";
-    if (n <= 10) return "過量級 🚨曝曬風險高";
+    if (n <= 5) return "中量級 💧曬黑";
+    if (n <= 7) return "高量級 🌡️曬傷";
+    if (n <= 10) return "過量級 🚨曬傷 老化";
     return "危險級 🚨非常毒";
   }
 
@@ -2069,8 +2069,8 @@ async function replyUvOnly(replyToken, token, env) {
     const uv = getUv(area);
 
     return `${area.label}
-目前紫外線：${uv === null ? "-" : uv + " " + uvLevel(uv)}
-提醒：${uvAdvice(uv)}`;
+目前：${uv === null ? "-" : uv + " " + uvLevel(uv)}
+💗：${uvAdvice(uv)}`;
   });
 
   const msg =
