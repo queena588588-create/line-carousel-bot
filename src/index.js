@@ -1697,7 +1697,10 @@ async function replyClosingFlexList(replyToken, token) {
     return;
   }
 
-  const itemRows = items.map(item => ({
+  const itemRows = [
+  ...items,
+  { displayName: "🔍 搜尋商品", keyword: "搜尋" }
+].map(item => ({
     type: "box",
     layout: "horizontal",
     spacing: "sm",
