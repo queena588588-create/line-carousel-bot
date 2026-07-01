@@ -1591,7 +1591,7 @@ async function replySmartFlex(replyToken, token) {
               },
               {
                 type: "text",
-    text: "點選分類 查看商品"
+    text: "點選分類 查看商品",
                 size: "sm",
                 color: "#666666",
                 margin: "xs"
