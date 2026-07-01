@@ -1932,13 +1932,14 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
     .sort((a, b) => a.sort - b.sort)
     .slice(0, 6);
 
-  const buttons = [
-    ...categories,
-    ...mainProducts.map(item => ({
-      label: item.productName,
-      text: item.firstKeyword
-    }))
-  ];
+ const buttons = [
+  ...categories,
+  { label: "🔍 搜尋商品", text: "搜尋" },
+  ...mainProducts.map(item => ({
+    label: item.productName,
+    text: item.firstKeyword
+  }))
+];
 
   const mainText = mainProducts.length
     ? mainProducts.map(item => "・" + item.productName).join("\n")
