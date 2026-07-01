@@ -31,21 +31,7 @@ if (event.type === "postback") {
     continue;
   }
 
-  if (text === "聰明挖寶趣") {
-  try {
-    await replySmartFlex(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "挖寶趣錯誤：" + err.message
-    );
-  }
-  continue;
-}
+  
  if (text === "影片") {
   await replyVideoButtons(
     event.replyToken,
@@ -897,7 +883,7 @@ async function replyProduct(replyToken, token, imageUrl, text) {
 async function replyFolderButton(replyToken, token) {
   const message = {
     type: "flex",
-    altText: "聰明挖寶趣 ",
+altText: "分類逛逛",
     contents: {
       type: "bubble",
       body: {
@@ -915,7 +901,7 @@ async function replyFolderButton(replyToken, token) {
           },
           {
             type: "text",
-            text: "聰明挖寶趣",
+text: "📂 分類逛逛",
             weight: "bold",
             size: "xl",
             margin: "lg",
@@ -1532,7 +1518,7 @@ async function replySmartFlex(replyToken, token) {
 
   const allItems = [
   ...items,
-  { label: "搜尋商品", keyword: "搜尋" }
+{ label: "🔍 搜尋商品", keyword: "搜尋" }
 ];
 
   const rows = [];
@@ -1605,7 +1591,7 @@ async function replySmartFlex(replyToken, token) {
               },
               {
                 type: "text",
-                text: "點選想看的商品",
+    text: "點選分類 查看商品"
                 size: "sm",
                 color: "#666666",
                 margin: "xs"
