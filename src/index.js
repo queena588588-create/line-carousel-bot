@@ -251,7 +251,7 @@ recentMessages.set(dedupeKey, nowTime);
   await replyProductCategoryHome(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    SHEET_ID2,
+   SHEET_ID,
     SHEET_NAME
   );
   continue;
@@ -266,7 +266,7 @@ if (categoryMatch) {
   await replyProductCategoryList(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    SHEET_ID2,
+   SHEET_ID,
     SHEET_NAME,
     category,
     page
