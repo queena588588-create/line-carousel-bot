@@ -55,7 +55,7 @@ if (text === "小幫手指令") {
 }
 
 if (text === "分類") {
-  await replyFolderButton(
+  await replySmartFlex(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN
   );
