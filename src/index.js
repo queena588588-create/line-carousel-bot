@@ -166,7 +166,6 @@ if (text.startsWith("看影片 ")) {
 
         🎀 About me 🩰
   👠 雙寶媽也能輕鬆斜槓
-  👠 雙寶媽也能輕鬆斜槓
   ✨ 電商合作｜經營開放中
 
   💰 生活消費賺回饋
@@ -269,7 +268,7 @@ recentMessages.set(dedupeKey, nowTime);
   continue;
 }
 
-/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/
+const categoryMatch = text.match(/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/);
 
 if (categoryMatch) {
   const category = categoryMatch[1];
