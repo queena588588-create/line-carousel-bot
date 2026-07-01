@@ -1,6 +1,6 @@
 const recentMessages = new Map();
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
 
     if (request.method === "GET") {
       return new Response("OK");
@@ -243,6 +243,18 @@ if (recentMessages.has(dedupeKey)) {
 }
 
 recentMessages.set(dedupeKey, nowTime);
+  if (
+  text === "紫外線" ||
+  text === "目前紫外線" ||
+  text === "北中南紫外線"
+) {
+  await replyUvOnly(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    env
+  );
+  continue;
+}
   if (
   text === "商品分類" ||
   text === "分類" ||
@@ -1994,4 +2006,76 @@ async function replyProductCategoryList(replyToken, token, sheetId, sheetName, c
     productText;
 
   await replyQuickButtons(replyToken, token, msg, buttons);
+}
+async function replyUvOnly(replyToken, token, env) {
+  if (!env || !env.CWA_API_KEY) {
+    await replySimple(replyToken, token, "紫外線查詢失敗：CWA_API_KEY 尚未設定");
+    return;
+  }
+
+  const url =
+    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001" +
+    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
+    "&format=JSON";
+
+  const res = await fetch(url);
+  const data = await res.json();
+  const stations = data.records?.Station || [];
+
+  const areas = [
+    { label: "北部｜台北", id: "466920", names: ["臺北", "台北"] },
+    { label: "中部｜台中", id: "467490", names: ["臺中", "台中"] },
+    { label: "南部｜高雄", id: "467440", names: ["高雄"] }
+  ];
+
+  function uvLevel(n) {
+    n = Number(n);
+    if (isNaN(n)) return "-";
+    if (n <= 2) return "低量級";
+    if (n <= 5) return "中量級";
+    if (n <= 7) return "高量級";
+    if (n <= 10) return "過量級";
+    return "危險級";
+  }
+
+  function uvAdvice(n) {
+    n = Number(n);
+    if (isNaN(n)) return "目前沒有抓到紫外線數值";
+    if (n <= 2) return "紫外線較低，也是要擦 青春防曬 ";
+    if (n <= 5) return "會曬黑，一定要擦 青春防曬 還要多補充水份";
+    if (n <= 7) return "容易曬傷，更要擦 青春防曬 還要多補充水份 最好還能帶個帽子或陽傘";
+    if (n <= 10) return "曝曬風險高，盡量避開中午外出";
+    return "紫外線危險級，減少曝曬並加強遮蔽 晚上記得厚敷平泰秀呀 ";
+  }
+
+  function getUv(area) {
+    const station = stations.find(s => {
+      const stationId = String(s.StationId || "");
+      const stationName = String(s.StationName || "");
+      return stationId === area.id || area.names.some(name => stationName.includes(name));
+    });
+
+    if (!station) return null;
+
+    const w = station.WeatherElement || {};
+    const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
+    const n = Number(uv);
+
+    if (isNaN(n) || n < 0) return null;
+    return n;
+  }
+
+  const blocks = areas.map(area => {
+    const uv = getUv(area);
+
+    return `${area.label}
+目前紫外線：${uv === null ? "-" : uv + " " + uvLevel(uv)}
+提醒：${uvAdvice(uv)}`;
+  });
+
+  const msg =
+    "☀️ 目前紫外線指數\n\n" +
+    blocks.join("\n\n");
+
+  await replySimple(replyToken, token, msg);
 }
