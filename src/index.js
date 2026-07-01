@@ -2049,9 +2049,16 @@ async function replyUvOnly(replyToken, token, env) {
 
   function getUv(area) {
     const station = stations.find(s => {
-      const stationId = String(s.StationId || "");
-      const stationName = String(s.StationName || "");
-      return stationId === area.id || area.names.some(name => stationName.includes(name));
+      const stationId = String(s.StationId || s.stationId || s.StationID || "");
+const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
+const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.countyName || "");
+
+return (
+  stationId === area.id ||
+  area.names.some(name =>
+    stationName.includes(name) || countyName.includes(name)
+  )
+);
     });
 
     if (!station) return null;
