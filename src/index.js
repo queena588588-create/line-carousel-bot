@@ -1906,12 +1906,12 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
   const products = await getProductCategoryItems(sheetId, sheetName);
 
   const categories = [
-    "保養美妝",
-    "居家生活",
-    "生鮮美食",
-    "3C",
-    "服飾",
-    "香氛美學"
+    "💄保養美妝",
+    "🏡居家生活",
+    "😋生鮮美食",
+    "💻3C",
+    "👗服飾",
+    "🌿香氛美學"
   ];
 
   const mainProducts = products
