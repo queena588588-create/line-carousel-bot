@@ -2034,18 +2034,18 @@ async function replyUvOnly(replyToken, token, env) {
     if (n <= 2) return "低量級 ☀紫外線較低";
     if (n <= 5) return "中量級 💧曬黑";
     if (n <= 7) return "高量級 🌡️曬傷";
-    if (n <= 10) return "過量級 🚨曬傷 老化";
+    if (n <= 10) return "過量級 ⚠️曬傷 老化";
     return "危險級 🚨非常毒";
   }
 
   function uvAdvice(n) {
     n = Number(n);
     if (isNaN(n)) return "目前沒有抓到紫外線數值";
-    if (n <= 2) return "✔️擦🧴青春防曬 ";
-    if (n <= 5) return "✔️擦🧴青春防曬 ✔️補充水份";
-    if (n <= 7) return "✔️擦🧴青春防曬 ✔️補充水份或🍺芒果茶 ✔️帽子或陽傘";
-    if (n <= 10) return "✔️擦🧴青春防曬 ✔️補充水份或🍺芒果茶 ✔️帽子或陽傘";
-    return "減少曝曬 ✔️擦🧴青春防曬✔️補充水份或🍺芒果茶 ✔️帽子或陽傘 📌晚上記得厚敷平泰秀呀 ";
+    if (n <= 2) return "🧴擦 青春防曬 ";
+    if (n <= 5) return "🧴擦 青春防曬 補充水份";
+    if (n <= 7) return "🧴擦 青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣";
+    if (n <= 10) return "🧴擦 青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣";
+    return "減少曝曬 🧴擦青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣 📌晚上記得厚敷平泰秀 ";
   }
 
   function getUv(area) {
@@ -2070,7 +2070,7 @@ async function replyUvOnly(replyToken, token, env) {
 
     return `${area.label}
 目前：${uv === null ? "-" : uv + " " + uvLevel(uv)}
-💗：${uvAdvice(uv)}`;
+💕：${uvAdvice(uv)}`;
   });
 
   const msg =
