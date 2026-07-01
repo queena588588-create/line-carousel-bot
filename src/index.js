@@ -1934,6 +1934,7 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
 
  const buttons = [
   ...categories,
+  { label: "🎬 影片專區", text: "影片" },
   { label: "🔍 搜尋商品", text: "搜尋" },
   ...mainProducts.map(item => ({
     label: item.productName,
