@@ -1906,13 +1906,13 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
   const products = await getProductCategoryItems(sheetId, sheetName);
 
   const categories = [
-    "💄保養美妝",
-    "🏡居家生活",
-    "😋生鮮美食",
-    "💻3C",
-    "👗服飾",
-    "🌿香氛美學"
-  ];
+  { label: "💄 保養美妝", text: "保養美妝" },
+  { label: "🏠 居家生活", text: "居家生活" },
+  { label: "🍗 生鮮美食", text: "生鮮美食" },
+  { label: "📱 3C", text: "3C" },
+  { label: "👕 服飾", text: "服飾" },
+  { label: "🌸 香氛美學", text: "香氛美學" }
+];
 
   const mainProducts = products
     .filter(item => item.isMain === "是")
@@ -1920,10 +1920,7 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
     .slice(0, 6);
 
   const buttons = [
-    ...categories.map(name => ({
-      label: name,
-      text: name
-    })),
+    ...categories,
     ...mainProducts.map(item => ({
       label: item.productName,
       text: item.firstKeyword
