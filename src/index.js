@@ -1692,7 +1692,7 @@ async function replyClosingFlexList(replyToken, token) {
     .sort((a, b) => a.deadline - b.deadline)
     .slice(0, 6);
 
-  if (items.length === 0) {
+ if (false && items.length === 0) {
     await replySimple(replyToken, token, "目前沒有設定即將結單商品");
     return;
   }
