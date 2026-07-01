@@ -2039,14 +2039,13 @@ async function replyUvOnly(replyToken, token, env) {
   }
 
   function uvAdvice(n) {
-    n = Number(n);
-    if (isNaN(n)) return "目前沒有抓到紫外線數值";
-    if (n <= 2) return "🧴擦 青春防曬 ";
-    if (n <= 5) return "🧴擦 青春防曬 補充水份";
-    if (n <= 7) return "🧴擦 青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣";
-    if (n <= 10) return "🧴擦 青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣";
-    return "減少曝曬 🧴擦青春防曬 補充水份或🍺芒果茶 帽子或冰冰衣 📌晚上記得厚敷平泰秀 ";
-  }
+  n = Number(n);
+
+  if (isNaN(n)) return "目前沒有抓到紫外線數值";
+  if (n <= 2) return "🧴 擦 青春防曬";
+  if (n <= 5) return "🧴  擦 青春防曬＋補水或芒果茶";
+  return "🧴  擦 青春防曬＋補水或芒果茶＋帽子或冰冰衣📌晚上記得厚敷平泰秀";
+}
 
   function getUv(area) {
     const station = stations.find(s => {
