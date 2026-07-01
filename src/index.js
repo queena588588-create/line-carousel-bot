@@ -1839,14 +1839,27 @@ async function getProductCategoryItems(sheetId, sheetName) {
 }
 
 async function replyQuickButtons(replyToken, token, text, buttons) {
-  const items = buttons.slice(0, 13).map(btn => ({
-    type: "action",
-    action: {
-      type: "message",
-      label: String(btn.label).slice(0, 20),
-      text: String(btn.text)
-    }
-  }));
+  const rows = [];
+
+  for (let i = 0; i < buttons.length; i += 2) {
+    const rowButtons = buttons.slice(i, i + 2).map(btn => ({
+      type: "button",
+      style: "primary",
+      height: "sm",
+      action: {
+        type: "message",
+        label: String(btn.label).slice(0, 20),
+        text: String(btn.text)
+      }
+    }));
+
+    rows.push({
+      type: "box",
+      layout: "horizontal",
+      spacing: "sm",
+      contents: rowButtons
+    });
+  }
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -1858,10 +1871,30 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
       replyToken,
       messages: [
         {
-          type: "text",
-          text,
-          quickReply: {
-            items
+          type: "flex",
+          altText: "商品分類",
+          contents: {
+            type: "bubble",
+            size: "mega",
+            body: {
+              type: "box",
+              layout: "vertical",
+              spacing: "md",
+              contents: [
+                {
+                  type: "text",
+                  text: text,
+                  weight: "bold",
+                  size: "md",
+                  wrap: true
+                },
+                {
+                  type: "separator",
+                  margin: "md"
+                },
+                ...rows
+              ]
+            }
           }
         }
       ]
