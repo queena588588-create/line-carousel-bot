@@ -1944,9 +1944,8 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
     : "目前尚未設定主打商品";
 
   const msg =
-    "🛒 購物車小幫手\n\n" +
     "📂 分類逛逛\n" +
-    "請點下方分類查看商品\n\n" +
+    "點選分類 查看商品\n\n" +
     "🔥 主打商品\n" +
     mainText;
 
