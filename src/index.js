@@ -182,8 +182,8 @@ if (text.startsWith("看影片 ")) {
 近期推薦單品❤️
 🛒 輸入「購物車」
 
-🎯超值・不踩坑日記
-輸入「聰明挖寶趣」
+📂 商品分類
+輸入「分類」
       
 🚚 商品問題｜訂單問題
 輸入「私訊」一對一私訊聊聊`
@@ -369,21 +369,7 @@ try {
   );
   continue;
 }
-if (text === "聰明挖寶趣") {
-  try {
-    await replySmartFlex(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "挖寶趣錯誤：" + err.message
-    );
-  }
-  continue;
-}
+
 if (text === "小幫手指令") {
   await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
   continue;
@@ -972,7 +958,7 @@ async function replyFolderButton(replyToken, token) {
       messages: [
         {
           type: "text",
-          text: "Queena 好物小幫手\n\n請直接點選：\n\n🛒 購物車\n🎯 聰明挖寶趣\n🚚 私訊"
+          🛒 購物車\n📂 分類逛逛\n🚚 私訊
         }
       ]
     })
@@ -998,9 +984,9 @@ async function replyHelperButtons(replyToken, token) {
           actions: [
 
 {
-  type: "postback",
-  label: "🛒 購物車",
-  data: "購物車"
+  type: "message",
+  label: "📂 分類逛逛",
+  text: "分類"
 },
 {
   type: "postback",
