@@ -449,11 +449,11 @@ return new Response("OK");
 }
 };
 async function replySimple(replyToken, token, text) {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
+  const res = await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-   "Authorization": "Bearer " + token
+      "Authorization": "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
@@ -463,8 +463,15 @@ async function replySimple(replyToken, token, text) {
       }]
     })
   });
-}
 
+  const resultText = await res.text();
+
+  if (!res.ok) {
+    console.error("LINE replySimple failed:", res.status, resultText);
+  } else {
+    console.log("LINE replySimple success");
+  }
+}
 
 async function replyMultiProduct(
   replyToken,
