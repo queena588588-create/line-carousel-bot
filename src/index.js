@@ -46,6 +46,32 @@ if (text === "小幫手指令") {
   );
   continue;
 }
+  if (text === "小幫手指令") {
+  await replyHelperButtons(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
+
+if (text === "分類") {
+  await replyFolderButton(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
+
+if (text === "搜尋") {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    `🔎 商品搜尋功能
+
+直接輸入商品名稱即可查詢`
+  );
+  continue;
+}
   if (text === "搜尋") {
     await replySimple(
       event.replyToken,
