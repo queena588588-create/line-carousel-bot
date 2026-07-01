@@ -1548,8 +1548,8 @@ async function replySmartFlex(replyToken, token) {
 ];
 
   const rows = [];
-  for (let i = 0; i < allItems.length; i += 2) {
-    const rowItems = allItems.slice(i, i + 2);
+  for (let i = 0; i < allItems.length; i += 1) {
+    const rowItems = allItems.slice(i, i + 1);
 
     rows.push({
       type: "box",
