@@ -269,7 +269,7 @@ recentMessages.set(dedupeKey, nowTime);
   continue;
 }
 
-const categoryMatch = text.match(/^(保養美妝|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/);
+/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/
 
 if (categoryMatch) {
   const category = categoryMatch[1];
@@ -1919,6 +1919,7 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
 
   const categories = [
   { label: "💄 保養美妝", text: "保養美妝" },
+  { label: "💪 營養保健", text: "營養保健" },
   { label: "🏠 居家生活", text: "居家生活" },
   { label: "🍗 生鮮美食", text: "生鮮美食" },
   { label: "📱 3C", text: "3C" },
