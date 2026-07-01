@@ -982,17 +982,17 @@ async function replyHelperButtons(replyToken, token) {
           title: "小幫手",
           text: "請選擇功能",
           actions: [
-
+{
+  type: "message",
+  label: "🛒 購物車",
+  text: "購物車"
+},
 {
   type: "message",
   label: "📂 分類逛逛",
   text: "分類"
 },
-{
-  type: "postback",
-  label: "🎯 聰明挖寶趣",
-  data: "聰明挖寶趣"
-},
+
 {
   type: "postback",
   label: "🚚 私訊",
