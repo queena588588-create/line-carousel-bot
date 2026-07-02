@@ -2140,9 +2140,9 @@ async function replyCuteHome(replyToken, token) {
     { label: "📂 分類逛逛", text: "分類" },
     { label: "🎬 影片專區", text: "影片" },
     { label: "🔍 搜尋商品", text: "搜尋" },
-    { label: "🌞 天氣", text: "天氣" },
+    { label: "☀️ 天氣", text: "天氣" },
     { label: "⛱️ 紫外線", text: "紫外線" },
-    { label: "🚚 私訊 Queena", text: "私訊" }
+    { label: "💌 私訊 Queena", text: "私訊" }
   ];
 
   const rows = [];
@@ -2193,7 +2193,7 @@ async function replyCuteHome(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "🌸 Queena 小幫手",
+            text: "👑 Queena 小幫手",
             weight: "bold",
             size: "xl",
             color: "#D85C8A",
@@ -2201,7 +2201,7 @@ async function replyCuteHome(replyToken, token) {
           },
           {
             type: "text",
-            text: "陪你變美、變健康、變快樂 💕",
+            text: "💄 精選好物報報 💖",
             size: "sm",
             color: "#8A5A5A",
             align: "center",
@@ -2215,7 +2215,7 @@ async function replyCuteHome(replyToken, token) {
           ...rows,
           {
             type: "text",
-            text: "記得防曬、補水、多休息 ✨",
+            text: "🎀陪你把日子過成喜歡的樣子🎀",
             size: "xs",
             color: "#A66A7A",
             align: "center",
