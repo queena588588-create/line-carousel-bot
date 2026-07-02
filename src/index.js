@@ -2040,15 +2040,9 @@ async function replyUvOnly(replyToken, token, env) {
     return "危險級 🚨非常毒";
   }
 
-  function uvAdvice(n) {
-  n = Number(n);
-
-  if (isNaN(n)) return "目前沒有抓到紫外線數值";
-  if (n <= 2) return "🧴 擦 青春防曬";
-  if (n <= 5) return "🧴  擦 青春防曬＋補水或芒果茶";
-  return "🧴  擦 青春防曬＋補水或芒果茶＋帽子或冰冰衣📌晚上記得厚敷平泰秀";
+ function uvAdvice(n) {
+  return "";
 }
-
   function getUv(area) {
     const station = stations.find(s => {
       const stationId = String(s.StationId || s.stationId || s.StationID || "");
@@ -2082,8 +2076,14 @@ return (
   });
 
   const msg =
-    "⛱️ 目前紫外線指數\n\n" +
-    blocks.join("\n\n");
+  "⛱️ 目前紫外線指數\n\n" +
+  blocks.join("\n\n") +
+
+  "\n\n━━━━━━━━━━━━━━\n" +
+  "💕 今日紫外線提醒\n\n" +
+  "🧴 擦青春防曬＋補水或芒果茶\n" +
+  "👒 帽子／陽傘／冰冰衣\n" +
+  "🌙 晚上記得厚敷平泰秀";
 
   await replySimple(replyToken, token, msg);
 }
