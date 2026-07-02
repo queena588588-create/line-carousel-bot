@@ -2041,6 +2041,12 @@ async function replyUvOnly(replyToken, token, env) {
   }
 
  function uvAdvice(n) {
+  n = Number(n);
+  if (isNaN(n)) return "";
+
+  if (n <= 2) return "💕：🌤️ 紫外線較低，外出正常防護即可";
+  if (n <= 5) return "💕：🧴 建議擦防曬，適時補水";
+
   return "";
 }
   function getUv(area) {
@@ -2072,18 +2078,21 @@ return (
 
     return `${area.label}
 目前：${uv === null ? "-" : uv + " " + uvLevel(uv)}
-💕：${uvAdvice(uv)}`;
+${uvAdvice(uv)}`;
   });
 
   const msg =
   "⛱️ 目前紫外線指數\n\n" +
   blocks.join("\n\n") +
-
-  "\n\n━━━━━━━━━━━━━━\n" +
-  "💕 今日紫外線提醒\n\n" +
-  "🧴 擦青春防曬＋補水或芒果茶\n" +
-  "👒 帽子／陽傘／冰冰衣\n" +
-  "🌙 晚上記得厚敷平泰秀";
+  (
+    maxUv >= 6
+      ? "\n\n━━━━━━━━━━━━━━\n" +
+        "💕 今日紫外線提醒\n\n" +
+        "🧴 擦青春防曬＋補水或芒果茶\n" +
+        "👒 帽子／陽傘／冰冰衣\n" +
+        "🌙 晚上記得厚敷平泰秀"
+      : ""
+  );
 
   await replySimple(replyToken, token, msg);
 }
