@@ -31,7 +31,7 @@ if (event.type === "postback") {
     continue;
   }
 
-
+  
  if (text === "影片") {
   await replyVideoButtons(
     event.replyToken,
@@ -39,11 +39,11 @@ if (event.type === "postback") {
   );
   continue;
 }
- if (text === "天氣") {
-  await replyMorningWeather(
+ if (text.includes("天氣")) {
+  await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    env
+    "天氣指令有接到"
   );
   continue;
 }
@@ -156,7 +156,7 @@ if (text.startsWith("看影片 ")) {
   );
   continue;
 }
-
+ 
 }
         if (event.type === "memberJoined") {
           await fetch("https://api.line.me/v2/bot/message/reply", {
@@ -203,7 +203,7 @@ if (text.startsWith("看影片 ")) {
 
 
         },
-
+      
              {
   type: "template",
   altText: "小幫手指令",
@@ -336,7 +336,7 @@ if (text === "購物車") {
     continue;
   }
 
-
+  
 if (text.startsWith("看影片 ")) {
   try {
     const keyword = text.replace("看影片 ", "").trim();
@@ -431,7 +431,7 @@ if (text === "預告" || text === "活動") {
 
 
 
-
+ 
 
 if (text.startsWith("看影片")) {
   try {
@@ -460,7 +460,7 @@ if (text.startsWith("看影片")) {
     );
   }
 
-
+ 
 }
 if (text === "抗風晴雨傘" || text === "雨傘") {
  await replyMultiProduct(
@@ -733,14 +733,14 @@ style: "primary",
   };
 }
 async function replyCarouselFromSheet(replyToken, token) {
-
+ 
  const url =
   "https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" +
   encodeURIComponent("輪播專區");
 
 const res = await fetch(url);
 
-
+ 
   const raw = await res.text();
   const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
 
@@ -761,7 +761,7 @@ const res = await fetch(url);
     .map(item => {
       const buttons = [];
 
-
+     
 if (item.keyword) {
   const mainKeyword = item.keyword.split(",")[0].trim();
 
@@ -1065,7 +1065,7 @@ if (
     buyMethod
   };
 }
-
+      
   }
 
   return null;
@@ -1308,7 +1308,7 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
 
-
+  
 
   if (videoData.imageUrl) {
   messages.push({
@@ -1379,7 +1379,7 @@ const videoIntro = String(row.c?.[7]?.v || "").trim();
       title === target;
 
     if (matched) {
-
+     
       return {
   imageUrl,
   title,
@@ -2114,67 +2114,37 @@ await replySimple(replyToken, token, msg);
 
 }
 async function replyMorningWeather(replyToken, token, env) {
-  if (!env || !env.CWA_API_KEY) {
+    if (!env || !env.CWA_API_KEY) {
     await replySimple(replyToken, token, "天氣查詢失敗：CWA_API_KEY 尚未設定");
     return;
   }
 
-  const url =
+  const forecastUrl =
     "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001" +
     "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
     "&format=JSON";
 
-  const res = await fetch(url);
-  const data = await res.json();
+  const uvUrl =
+    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001" +
+    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
+    "&format=JSON";
+
+  const forecastRes = await fetch(forecastUrl);
+  const forecastData = await forecastRes.json();
+
+  const uvRes = await fetch(uvUrl);
+  const uvData = await uvRes.json();
 
   const areas = [
-    { label: "北部｜台北", city: "臺北市", uv: 7 },
-    { label: "中部｜台中", city: "臺中市", uv: 7 },
-    { label: "南部｜高雄", city: "高雄市", uv: 7 }
+    { label: "北部｜台北", city: "臺北市", id: "466920", names: ["臺北", "台北"] },
+    { label: "中部｜台中", city: "臺中市", id: "467490", names: ["臺中", "台中"] },
+    { label: "南部｜高雄", city: "高雄市", id: "467440", names: ["高雄"] }
   ];
 
   function getElement(location, name) {
     const el = location.weatherElement.find(e => e.elementName === name);
     return el?.time?.[0]?.parameter?.parameterName || "-";
   }
-
-  function uvLevel(n) {
-    n = Number(n);
-    if (isNaN(n)) return "-";
-    if (n <= 2) return "低量級 ☀️";
-    if (n <= 5) return "中量級 💧曬黑";
-    if (n <= 7) return "高量級 🌡️曬傷";
-    if (n <= 10) return "過量級 ⚠️";
-    return "危險級 🚨";
-  }
-
-  const locations = data.records?.location || [];
-
-  const blocks = areas.map(area => {
-    const location = locations.find(l => l.locationName === area.city);
-
-    const pop = location ? getElement(location, "PoP") : "-";
-    const minT = location ? getElement(location, "MinT") : "-";
-    const maxT = location ? getElement(location, "MaxT") : "-";
-
-    return area.label + "\n" +
-      "天氣：" + minT + "～" + maxT + "°C\n" +
-      "降雨機率：" + pop + "%\n" +
-      "預報最高紫外線：" + area.uv + " " + uvLevel(area.uv);
-  });
-
-  const msg =
-    "🌞 Queena 早安天氣小提醒\n\n" +
-    blocks.join("\n\n") +
-    "\n\n━━━━━━━━━━━━━━\n" +
-    "💕 今日提醒\n" +
-    "☂️ 降雨機率高記得帶傘\n" +
-    "🧴 UV 6以上防曬＋補水\n" +
-    "👒 帽子／陽傘／冰冰衣";
-
-  await replySimple(replyToken, token, msg);
-}
-
 
   function uvLevel(n) {
     n = Number(n);
@@ -2203,7 +2173,7 @@ async function replyMorningWeather(replyToken, token, env) {
     return uv === undefined ? "-" : Number(uv);
   }
 
-  const locations = data.records?.location || [];
+  const locations = forecastData.records?.location || [];
 
   const blocks = areas.map(area => {
     const location = locations.find(l => l.locationName === area.city);
@@ -2224,3 +2194,4 @@ async function replyMorningWeather(replyToken, token, env) {
     blocks.join("\n\n");
 
   await replySimple(replyToken, token, msg);
+}
