@@ -40,10 +40,10 @@ if (event.type === "postback") {
   continue;
 }
 if (text === "天氣") {
-  await replyMorningWeather(
+  await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    env
+    "天氣測試OK"
   );
   continue;
 }
