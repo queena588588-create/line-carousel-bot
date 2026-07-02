@@ -2035,13 +2035,13 @@ async function replyUvOnly(replyToken, token, env) {
 
   const areas = [
     { label: "北部｜台北", id: "466920", names: ["臺北", "台北"] },
-    { label: "中部｜台中", id: "467490", names: ["臺中", "台中"] },
+{ label: "中部｜台中", id: "467490", names: ["臺中", "台中", "臺中市", "台中市", "梧棲"] },
     { label: "南部｜高雄", id: "467440", names: ["高雄"] }
   ];
 
   function uvLevel(n) {
     n = Number(n);
-    if (isNaN(n)) return "-";
+ if (isNaN(n)) return "尚未抓到資料";
     if (n <= 2) return "低量級 ☀紫外線較低";
     if (n <= 5) return "中量級 💧曬黑";
     if (n <= 7) return "高量級 🌡️曬傷";
