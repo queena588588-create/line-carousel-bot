@@ -2202,25 +2202,3 @@ async function replyMorningWeather(replyToken, token, env) {
     const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
     return uv === undefined ? "-" : Number(uv);
   }
-
-  const locations = data.records?.location || [];
-
-  const blocks = areas.map(area => {
-    const location = locations.find(l => l.locationName === area.city);
-
-    const pop = location ? getElement(location, "PoP") : "-";
-    const minT = location ? getElement(location, "MinT") : "-";
-    const maxT = location ? getElement(location, "MaxT") : "-";
-    const uv = getUv(area);
-
-    return area.label + "\n" +
-      "天氣：" + minT + "～" + maxT + "°C\n" +
-      "降雨機率：" + pop + "%\n" +
-      "預報最高紫外線：" + uv + " " + uvLevel(uv);
-  });
-
-  const msg =
-    "👑 Queena 天氣小提醒\n\n" +
-    blocks.join("\n\n");
-
-  await replySimple(replyToken, token, msg);
