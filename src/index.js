@@ -2182,7 +2182,7 @@ async function replyCuteHome(replyToken, token) {
 
   const message = {
     type: "flex",
-    altText: "Queena 小幫手",
+       altText: "Queena 小幫手",
     contents: {
       type: "bubble",
       body: {
@@ -2193,7 +2193,7 @@ async function replyCuteHome(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "💄 精選好物報報 💖",
+            text: "👑 Queena 好物私藏庫",
             weight: "bold",
             size: "xl",
             color: "#D85C8A",
@@ -2201,6 +2201,7 @@ async function replyCuteHome(replyToken, token) {
           },
           {
             type: "text",
+            text: "💄 精選好物報報 💖",
             size: "sm",
             color: "#8A5A5A",
             align: "center",
