@@ -39,7 +39,7 @@ if (event.type === "postback") {
   );
   continue;
 }
- if (text === "天氣") {
+if (text === "天氣") {
   await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
