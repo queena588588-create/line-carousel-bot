@@ -2,9 +2,22 @@ const recentMessages = new Map();
 export default {
   async fetch(request, env) {
 
-    if (request.method === "GET") {
-      return new Response("OK");
-    }
+   if (request.method === "GET") {
+  const url = new URL(request.url);
+
+  if (url.pathname === "/menu/1040" || url.pathname === "/menu/700") {
+    const img = await fetch("https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/line%E6%A9%9F%E5%99%A8%E4%BA%BA%E5%9C%96880kb%E5%85%A7.jpg");
+
+    return new Response(img.body, {
+      headers: {
+        "Content-Type": "image/jpeg",
+        "Cache-Control": "public, max-age=3600"
+      }
+    });
+  }
+
+  return new Response("OK");
+}
 
     const CHANNEL_ACCESS_TOKEN = "F2vHBmUgcMhzxNWCsmC1K7dJcpvNt2Xu0GoIKuvWnmmAMWT+n0sGx61LCPBBCMQTVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6r1BtcZ9ful1AvxMl8avqesyrwL8v0ooO1QYfIC4L6mAdB04t89/1O/w1cDnyilFU=";
 const SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
@@ -2137,7 +2150,7 @@ async function replyMorningWeather(replyToken, token) {
 async function replyCuteHome(replyToken, token) {
   const message = {
     type: "imagemap",
-    baseUrl: "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/line%E6%A9%9F%E5%99%A8%E4%BA%BA%E5%9C%96.png",
+    baseUrl: "baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu",",
     altText: "Queena 好物私藏庫功能選單",
     baseSize: {
       width: 1040,
