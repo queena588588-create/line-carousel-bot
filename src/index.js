@@ -2151,7 +2151,7 @@ async function replyCuteHome(replyToken, token) {
   const message = {
     type: "imagemap",
     baseUrl: "baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu",",
-    altText: "Queena 好物私藏庫功能選單",
+    altText: "Queena 不踩雷指南",
     baseSize: {
       width: 1040,
       height: 1471
