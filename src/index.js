@@ -236,6 +236,14 @@ if (
 
 if (event.type === "message" && event.message.type === "text") {
 const text = event.message.text.trim();
+  if (text.includes("天氣")) {
+  await replySimple(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN,
+    "天氣指令有接到"
+  );
+  continue;
+}
   const sourceId =
   event.source.groupId ||
   event.source.roomId ||
@@ -2094,7 +2102,7 @@ const msg =
   blocks.join("\n\n") +
   (
     maxUv >= 6
-      ? "\n\n━━━━━━━━━━━━━━\n" +
+      ? "\n\n━━━━━━━━━━━\n" +
         "💕 今日紫外線提醒\n\n" +
         "🧴 擦青春防曬＋補水或芒果茶\n" +
         "👒 帽子／陽傘／冰冰衣\n" +
