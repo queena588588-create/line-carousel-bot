@@ -2135,7 +2135,7 @@ async function replyMorningWeather(replyToken, token) {
   await replySimple(replyToken, token, msg);
 }
 async function replyCuteHome(replyToken, token) {
-  const actions = [
+  const buttons = [
     { label: "🛒 購物車", text: "購物車" },
     { label: "📂 分類逛逛", text: "分類" },
     { label: "🎬 影片專區", text: "影片" },
@@ -2145,10 +2145,96 @@ async function replyCuteHome(replyToken, token) {
     { label: "🚚 私訊 Queena", text: "私訊" }
   ];
 
-  await replySimple(
-    replyToken,
-    token,
-    "🌸 Queena 小幫手\n\n" +
-    actions.map(a => a.label).join("\n")
-  );
+  const rows = [];
+  for (let i = 0; i < buttons.length; i += 2) {
+    const rowItems = buttons.slice(i, i + 2);
+
+    rows.push({
+      type: "box",
+      layout: "horizontal",
+      spacing: "sm",
+      margin: "sm",
+      contents: rowItems.map(item => ({
+        type: "box",
+        layout: "vertical",
+        flex: 1,
+        backgroundColor: "#FFEAF2",
+        cornerRadius: "xl",
+        paddingAll: "md",
+        action: {
+          type: "message",
+          label: item.label,
+          text: item.text
+        },
+        contents: [
+          {
+            type: "text",
+            text: item.label,
+            size: "lg",
+            weight: "bold",
+            align: "center",
+            color: "#5A3A3A"
+          }
+        ]
+      }))
+    });
+  }
+
+  const message = {
+    type: "flex",
+    altText: "Queena 小幫手",
+    contents: {
+      type: "bubble",
+      body: {
+        type: "box",
+        layout: "vertical",
+        backgroundColor: "#FFF4F7",
+        paddingAll: "18px",
+        contents: [
+          {
+            type: "text",
+            text: "🌸 Queena 小幫手",
+            weight: "bold",
+            size: "xl",
+            color: "#D85C8A",
+            align: "center"
+          },
+          {
+            type: "text",
+            text: "陪你變美、變健康、變快樂 💕",
+            size: "sm",
+            color: "#8A5A5A",
+            align: "center",
+            margin: "sm"
+          },
+          {
+            type: "separator",
+            margin: "md",
+            color: "#F5B8C8"
+          },
+          ...rows,
+          {
+            type: "text",
+            text: "記得防曬、補水、多休息 ✨",
+            size: "xs",
+            color: "#A66A7A",
+            align: "center",
+            margin: "md"
+          }
+        ]
+      }
+    }
+  };
+
+  await fetch("https://api.line.me/v2/bot/message/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+      replyToken,
+      messages: [message]
+    })
+  });
 }
