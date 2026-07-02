@@ -234,13 +234,11 @@ if (
   await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
 }
 
-if (event.type === "message" && event.message.type === "text") {
-const text = event.message.text.trim();
-  if (text.includes("天氣")) {
-  await replySimple(
+if (text === "天氣") {
+  await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "天氣指令有接到"
+    env
   );
   continue;
 }
