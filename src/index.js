@@ -2214,7 +2214,7 @@ async function replyMorningWeather(replyToken, token, env) {
     return uv === undefined ? "-" : Number(uv);
   }
 
-  const locations = forecastData.records?.location || [];
+  const locations = data.records?.location || [];
 
   const blocks = areas.map(area => {
     const location = locations.find(l => l.locationName === area.city);
