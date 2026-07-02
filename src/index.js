@@ -46,10 +46,11 @@ if (text === "小幫手指令") {
   );
   continue;
 }
-  if (text === "小幫手指令") {
-  await replyHelperButtons(
+if (text === "天氣") {
+  await replyMorningWeather(
     event.replyToken,
-    CHANNEL_ACCESS_TOKEN
+    CHANNEL_ACCESS_TOKEN,
+    env
   );
   continue;
 }
@@ -2102,6 +2103,87 @@ const msg =
   );
 
 await replySimple(replyToken, token, msg);
+
+}
+async function replyMorningWeather(replyToken, token, env) {
+    if (!env || !env.CWA_API_KEY) {
+    await replySimple(replyToken, token, "天氣查詢失敗：CWA_API_KEY 尚未設定");
+    return;
+  }
+
+  const forecastUrl =
+    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001" +
+    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
+    "&format=JSON";
+
+  const uvUrl =
+    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001" +
+    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
+    "&format=JSON";
+
+  const forecastRes = await fetch(forecastUrl);
+  const forecastData = await forecastRes.json();
+
+  const uvRes = await fetch(uvUrl);
+  const uvData = await uvRes.json();
+
+  const areas = [
+    { label: "北部｜台北", city: "臺北市", id: "466920", names: ["臺北", "台北"] },
+    { label: "中部｜台中", city: "臺中市", id: "467490", names: ["臺中", "台中"] },
+    { label: "南部｜高雄", city: "高雄市", id: "467440", names: ["高雄"] }
+  ];
+
+  function getElement(location, name) {
+    const el = location.weatherElement.find(e => e.elementName === name);
+    return el?.time?.[0]?.parameter?.parameterName || "-";
+  }
+
+  function uvLevel(n) {
+    n = Number(n);
+    if (isNaN(n)) return "-";
+    if (n <= 2) return "低量級 ☀️紫外線較低";
+    if (n <= 5) return "中量級 💧曬黑";
+    if (n <= 7) return "高量級 🌡️曬傷";
+    if (n <= 10) return "過量級 ⚠️曬傷 老化";
+    return "危險級 🚨非常毒";
+  }
+
+  function getUv(area) {
+    const stations = uvData.records?.Station || [];
+    const station = stations.find(s => {
+      const stationId = String(s.StationId || s.stationId || s.StationID || "");
+      const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
+      const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.countyName || "");
+
+      return stationId === area.id ||
+        area.names.some(name => stationName.includes(name) || countyName.includes(name));
+    });
+
+    if (!station) return "-";
+    const w = station.WeatherElement || {};
+    const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
+    return uv === undefined ? "-" : Number(uv);
+  }
+
+  const locations = forecastData.records?.location || [];
+
+  const blocks = areas.map(area => {
+    const location = locations.find(l => l.locationName === area.city);
+
+    const pop = location ? getElement(location, "PoP") : "-";
+    const minT = location ? getElement(location, "MinT") : "-";
+    const maxT = location ? getElement(location, "MaxT") : "-";
+    const uv = getUv(area);
+
+    return area.label + "\n" +
+      "天氣：" + minT + "～" + maxT + "°C\n" +
+      "降雨機率：" + pop + "%\n" +
+      "預報最高紫外線：" + uv + " " + uvLevel(uv);
+  });
+
+  const msg =
+    "👑 Queena 天氣小提醒\n\n" +
+    blocks.join("\n\n");
 
   await replySimple(replyToken, token, msg);
 }
