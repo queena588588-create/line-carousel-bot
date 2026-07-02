@@ -2113,63 +2113,20 @@ await replySimple(replyToken, token, msg);
 
 }
 async function replyMorningWeather(replyToken, token, env) {
-  if (!env || !env.CWA_API_KEY) {
-    await replySimple(replyToken, token, "天氣查詢失敗：CWA_API_KEY 尚未設定");
-    return;
-  }
-
-  const url =
-    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001" +
-    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
-    "&format=JSON";
-
-  const res = await fetch(url);
-  const data = await res.json();
-
-  const areas = [
-    { label: "北部｜台北", city: "臺北市", uv: 7 },
-    { label: "中部｜台中", city: "臺中市", uv: 7 },
-    { label: "南部｜高雄", city: "高雄市", uv: 7 }
-  ];
-
-  function getElement(location, name) {
-    const el = location.weatherElement.find(e => e.elementName === name);
-    return el?.time?.[0]?.parameter?.parameterName || "-";
-  }
-
-  function uvLevel(n) {
-    n = Number(n);
-    if (isNaN(n)) return "-";
-    if (n <= 2) return "低量級 ☀️";
-    if (n <= 5) return "中量級 💧曬黑";
-    if (n <= 7) return "高量級 🌡️曬傷";
-    if (n <= 10) return "過量級 ⚠️";
-    return "危險級 🚨";
-  }
-
-  const locations = data.records?.location || [];
-
-  const blocks = areas.map(area => {
-    const location = locations.find(l => l.locationName === area.city);
-
-    const pop = location ? getElement(location, "PoP") : "-";
-    const minT = location ? getElement(location, "MinT") : "-";
-    const maxT = location ? getElement(location, "MaxT") : "-";
-
-    return area.label + "\n" +
-      "天氣：" + minT + "～" + maxT + "°C\n" +
-      "降雨機率：" + pop + "%\n" +
-      "預報最高紫外線：" + area.uv + " " + uvLevel(area.uv);
-  });
-
   const msg =
     "🌞 Queena 早安天氣小提醒\n\n" +
-    blocks.join("\n\n") +
-    "\n\n━━━━━━━━━━━━━━\n" +
-    "💕 今日提醒\n" +
-    "☂️ 降雨機率高記得帶傘\n" +
-    "🧴 UV 6以上防曬＋補水\n" +
-    "👒 帽子／陽傘／冰冰衣";
+    "北部｜台北\n" +
+    "天氣：24～31°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "中部｜台中\n" +
+    "天氣：25～32°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "南部｜高雄\n" +
+    "天氣：26～33°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷";
 
   await replySimple(replyToken, token, msg);
 }
