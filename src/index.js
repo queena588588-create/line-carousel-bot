@@ -2114,7 +2114,7 @@ await replySimple(replyToken, token, msg);
 
 async function replyMorningWeather(replyToken, token) {
   const msg =
-    "👑 Queena 天氣報報📰\n\n" +
+    "👑 Queena 天氣報報\n\n" +
     "北部｜台北\n" +
     "天氣：24～31°C\n" +
     "降雨💧：30%\n" +
@@ -2193,7 +2193,7 @@ async function replyCuteHome(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "👑 Queena 小幫手",
+            text: "💄 精選好物報報 💖",
             weight: "bold",
             size: "xl",
             color: "#D85C8A",
@@ -2201,7 +2201,6 @@ async function replyCuteHome(replyToken, token) {
           },
           {
             type: "text",
-            text: "💄 精選好物報報 💖",
             size: "sm",
             color: "#8A5A5A",
             align: "center",
