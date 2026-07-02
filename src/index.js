@@ -2075,18 +2075,11 @@ return (
 
   const blocks = areas.map(area => {
     const uv = getUv(area);
-
-    return `${area.label}
-目前：${uv === null ? "-" : uv + " " + uvLevel(uv)}
-${uvAdvice(uv)}`;
-  });
-
-  const msg =
+const msg =
   "⛱️ 目前紫外線指數\n\n" +
-  blocks.join("\n\n") +
-  (
-    maxUv >= 6
-      ? "\n\n━━━━━━━━━━━━━━\n" +
+  blocks.join("\n\n");
+
+await replySimple(replyToken, token, msg);
         "💕 今日紫外線提醒\n\n" +
         "🧴 擦青春防曬＋補水或芒果茶\n" +
         "👒 帽子／陽傘／冰冰衣\n" +
