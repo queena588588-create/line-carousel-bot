@@ -235,7 +235,7 @@ if (
 }
 
 if (event.type === "message" && event.message.type === "text") {
-  const text = event.message.text.trim();
+const text = event.message.text.trim();
   const sourceId =
   event.source.groupId ||
   event.source.roomId ||
