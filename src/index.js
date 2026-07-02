@@ -2135,95 +2135,51 @@ async function replyMorningWeather(replyToken, token) {
   await replySimple(replyToken, token, msg);
 }
 async function replyCuteHome(replyToken, token) {
-  const buttons = [
-    { label: "🛒 購物車", text: "購物車" },
-    { label: "📂 分類逛逛", text: "分類" },
-    { label: "🎬 影片專區", text: "影片" },
-    { label: "🔍 搜尋商品", text: "搜尋" },
-    { label: "☀️ 天氣", text: "天氣" },
-    { label: "⛱️ 紫外線", text: "紫外線" },
-    { label: "💌 私訊 Queena", text: "私訊" }
-  ];
-
-  const rows = [];
-  for (let i = 0; i < buttons.length; i += 2) {
-    const rowItems = buttons.slice(i, i + 2);
-
-    rows.push({
-      type: "box",
-      layout: "horizontal",
-      spacing: "sm",
-      margin: "sm",
-      contents: rowItems.map(item => ({
-        type: "box",
-        layout: "vertical",
-        flex: 1,
-        backgroundColor: "#FFEAF2",
-        cornerRadius: "xl",
-        paddingAll: "md",
-        action: {
-          type: "message",
-          label: item.label,
-          text: item.text
-        },
-        contents: [
-          {
-            type: "text",
-            text: item.label,
-            size: "lg",
-            weight: "bold",
-            align: "center",
-            color: "#5A3A3A"
-          }
-        ]
-      }))
-    });
-  }
-
   const message = {
-    type: "flex",
-       altText: "Queena 小幫手",
-    contents: {
-      type: "bubble",
-      body: {
-        type: "box",
-        layout: "vertical",
-        backgroundColor: "#FFF4F7",
-        paddingAll: "18px",
-        contents: [
-          {
-            type: "text",
-            text: "👑 Queena 好物私藏庫",
-            weight: "bold",
-            size: "xl",
-            color: "#D85C8A",
-            align: "center"
-          },
-          {
-            type: "text",
-            text: "💄 精選好物報報 💖",
-            size: "sm",
-            color: "#8A5A5A",
-            align: "center",
-            margin: "sm"
-          },
-          {
-            type: "separator",
-            margin: "md",
-            color: "#F5B8C8"
-          },
-          ...rows,
-          {
-            type: "text",
-            text: "🎀陪你把日子過成喜歡的樣子🎀",
-            size: "xs",
-            color: "#A66A7A",
-            align: "center",
-            margin: "md"
-          }
-        ]
+    type: "imagemap",
+    baseUrl: "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/line%E6%A9%9F%E5%99%A8%E4%BA%BA%E5%9C%96.png",
+    altText: "Queena 好物私藏庫功能選單",
+    baseSize: {
+      width: 1040,
+      height: 1471
+    },
+    actions: [
+      {
+        type: "message",
+        text: "購物車",
+        area: { x: 0, y: 560, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "分類",
+        area: { x: 520, y: 560, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "影片",
+        area: { x: 0, y: 790, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "搜尋",
+        area: { x: 520, y: 790, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "天氣",
+        area: { x: 0, y: 1020, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "紫外線",
+        area: { x: 520, y: 1020, width: 520, height: 230 }
+      },
+      {
+        type: "message",
+        text: "私訊",
+        area: { x: 0, y: 1250, width: 1040, height: 220 }
       }
-    }
+    ]
   };
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
