@@ -2174,21 +2174,7 @@ async function replyMorningWeather(replyToken, token, env) {
 
   await replySimple(replyToken, token, msg);
 }
-  const forecastUrl =
-    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001" +
-    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
-    "&format=JSON";
-
-  const uvUrl =
-    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001" +
-    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
-    "&format=JSON";
-
-  const forecastRes = await fetch(forecastUrl);
-  const forecastData = await forecastRes.json();
-
-  const uvRes = await fetch(uvUrl);
-  const uvData = await uvRes.json();
+ 
 
   const areas = [
     { label: "北部｜台北", city: "臺北市", id: "466920", names: ["臺北", "台北"] },
