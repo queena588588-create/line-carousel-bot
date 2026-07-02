@@ -2249,4 +2249,3 @@ async function replyMorningWeather(replyToken, token, env) {
     blocks.join("\n\n");
 
   await replySimple(replyToken, token, msg);
-}
