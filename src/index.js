@@ -39,11 +39,11 @@ if (event.type === "postback") {
   );
   continue;
 }
-  if (text === "天氣") {
-  await replyMorningWeather(
+ if (text.includes("天氣")) {
+  await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    env
+    "天氣指令有接到"
   );
   continue;
 }
