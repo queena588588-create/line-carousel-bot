@@ -2176,25 +2176,6 @@ async function replyMorningWeather(replyToken, token, env) {
 }
  
 
-  async function replyMorningWeather(replyToken, token, env) {
-  const msg =
-    "👑 Queena 天氣小提醒\n\n" +
-    "北部｜台北\n" +
-    "天氣：24～31°C\n" +
-    "降雨機率：30%\n" +
-    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
-    "中部｜台中\n" +
-    "天氣：25～32°C\n" +
-    "降雨機率：30%\n" +
-    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
-    "南部｜高雄\n" +
-    "天氣：26～33°C\n" +
-    "降雨機率：30%\n" +
-    "預報最高紫外線：7 高量級 🌡️曬傷";
-
-  await replySimple(replyToken, token, msg);
-}
-
   function uvLevel(n) {
     n = Number(n);
     if (isNaN(n)) return "-";
