@@ -236,6 +236,13 @@ const text = event.message.text.trim();
   );
   continue;
 }
+  if (text === "首頁") {
+  await replyCuteHome(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
+  );
+  continue;
+}
   const sourceId =
   event.source.groupId ||
   event.source.roomId ||
@@ -2126,4 +2133,22 @@ async function replyMorningWeather(replyToken, token) {
     "👒 帽子／陽傘／冰冰衣";
 
   await replySimple(replyToken, token, msg);
+}
+async function replyCuteHome(replyToken, token) {
+  const actions = [
+    { label: "🛒 購物車", text: "購物車" },
+    { label: "📂 分類逛逛", text: "分類" },
+    { label: "🎬 影片專區", text: "影片" },
+    { label: "🔍 搜尋商品", text: "搜尋" },
+    { label: "🌞 天氣", text: "天氣" },
+    { label: "⛱️ 紫外線", text: "紫外線" },
+    { label: "🚚 私訊 Queena", text: "私訊" }
+  ];
+
+  await replySimple(
+    replyToken,
+    token,
+    "🌸 Queena 小幫手\n\n" +
+    actions.map(a => a.label).join("\n")
+  );
 }
