@@ -2044,8 +2044,8 @@ async function replyUvOnly(replyToken, token, env) {
   n = Number(n);
   if (isNaN(n)) return "";
 
-  if (n <= 2) return "💕：🌤️ 紫外線較低，外出正常防護即可";
-  if (n <= 5) return "💕：🧴 建議擦防曬，適時補水";
+  if (n <= 2) return "💕：🌤️ 紫外線較低，青春防曬記得擦";
+  if (n <= 5) return "💕：🧴 青春防曬記得擦，適時補水或芒果茶";
 
   return "";
 }
