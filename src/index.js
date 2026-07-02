@@ -46,11 +46,12 @@ if (text === "小幫手指令") {
   );
   continue;
 }
-if (text === "天氣") {
-  await replySimple(
+
+  if (text === "天氣") {
+  await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    "天氣指令有接到"
+    request.cf ? env : env
   );
   continue;
 }
