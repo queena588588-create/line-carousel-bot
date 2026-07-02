@@ -2176,16 +2176,24 @@ async function replyMorningWeather(replyToken, token, env) {
 }
  
 
-  const areas = [
-    { label: "北部｜台北", city: "臺北市", id: "466920", names: ["臺北", "台北"] },
-    { label: "中部｜台中", city: "臺中市", id: "467490", names: ["臺中", "台中"] },
-    { label: "南部｜高雄", city: "高雄市", id: "467440", names: ["高雄"] }
-  ];
+  async function replyMorningWeather(replyToken, token, env) {
+  const msg =
+    "👑 Queena 天氣小提醒\n\n" +
+    "北部｜台北\n" +
+    "天氣：24～31°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "中部｜台中\n" +
+    "天氣：25～32°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "南部｜高雄\n" +
+    "天氣：26～33°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷";
 
-  function getElement(location, name) {
-    const el = location.weatherElement.find(e => e.elementName === name);
-    return el?.time?.[0]?.parameter?.parameterName || "-";
-  }
+  await replySimple(replyToken, token, msg);
+}
 
   function uvLevel(n) {
     n = Number(n);
