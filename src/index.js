@@ -39,19 +39,18 @@ if (event.type === "postback") {
   );
   continue;
 }
-if (text === "小幫手指令") {
-  await replyHelperButtons(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-
   if (text === "天氣") {
   await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    request.cf ? env : env
+    env
+  );
+  continue;
+}
+if (text === "小幫手指令") {
+  await replyHelperButtons(
+    event.replyToken,
+    CHANNEL_ACCESS_TOKEN
   );
   continue;
 }
