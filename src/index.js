@@ -47,8 +47,8 @@ if (event.type === "postback") {
   );
   continue;
 }
-if (text === "小幫手指令") {
-  await replyHelperButtons(
+if (text === "天氣") {
+  await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN
   );
@@ -2156,42 +2156,30 @@ async function replyMorningWeather(replyToken, token, env) {
     return "危險級 🚨非常毒";
   }
 
-  function getUv(area) {
-    const stations = uvData.records?.Station || [];
-    const station = stations.find(s => {
-      const stationId = String(s.StationId || s.stationId || s.StationID || "");
-      const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
-      const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.countyName || "");
+  
 
-      return stationId === area.id ||
-        area.names.some(name => stationName.includes(name) || countyName.includes(name));
-    });
-
-    if (!station) return "-";
-    const w = station.WeatherElement || {};
-    const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
-    return uv === undefined ? "-" : Number(uv);
-  }
-
-  const locations = forecastData.records?.location || [];
-
-  const blocks = areas.map(area => {
-    const location = locations.find(l => l.locationName === area.city);
-
-    const pop = location ? getElement(location, "PoP") : "-";
-    const minT = location ? getElement(location, "MinT") : "-";
-    const maxT = location ? getElement(location, "MaxT") : "-";
-    const uv = getUv(area);
-
-    return area.label + "\n" +
-      "天氣：" + minT + "～" + maxT + "°C\n" +
-      "降雨機率：" + pop + "%\n" +
-      "預報最高紫外線：" + uv + " " + uvLevel(uv);
-  });
-
+  await replySimple(replyToken, token, msg);
+}
+async function replyMorningWeather(replyToken, token) {
   const msg =
-    "👑 Queena 天氣小提醒\n\n" +
-    blocks.join("\n\n");
+    "🌞 Queena 天氣小提醒\n\n" +
+    "北部｜台北\n" +
+    "天氣：24～31°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "中部｜台中\n" +
+    "天氣：25～32°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "南部｜高雄\n" +
+    "天氣：26～33°C\n" +
+    "降雨機率：30%\n" +
+    "預報最高紫外線：7 高量級 🌡️曬傷\n\n" +
+    "━━━━━━━━━\n" +
+    "💕 今日提醒\n\n" +
+    "☂️ 降雨機率高記得帶傘\n" +
+    "🧴 UV 6以上防曬＋補水\n" +
+    "👒 帽子／陽傘／冰冰衣";
 
   await replySimple(replyToken, token, msg);
 }
