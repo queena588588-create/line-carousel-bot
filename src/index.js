@@ -1957,8 +1957,8 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
 
   const msg =
     "📂 分類逛逛\n" +
-    "點選分類 查看商品\n\n" +
-    "🔥 主打商品\n" +
+    "點選分類 查看商品👀\n\n" +
+    "🎀 精選\n" +
     mainText;
 
   await replyQuickButtons(replyToken, token, msg, buttons);
