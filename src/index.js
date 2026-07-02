@@ -484,7 +484,7 @@ if (text === "洗衣球" || text === "洗衣") {
 } 
 
 
-
+}
   } // 關閉文字訊息區塊
 } // 關閉 for (const event of data.events)
 return new Response("OK");
