@@ -487,11 +487,12 @@ if (text === "洗衣球" || text === "洗衣") {
 }
   } // 關閉文字訊息區塊
 
-return new Response("OK");
 } catch (error) {
   console.error(error);
   return new Response("ERROR", { status: 500 });
 }
+
+return new Response("OK");
 
 }
 };
