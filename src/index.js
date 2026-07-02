@@ -2073,19 +2073,35 @@ return (
     return n;
   }
 
-  const blocks = areas.map(area => {
-    const uv = getUv(area);
+ const uvValues = [];
+
+const blocks = areas.map(area => {
+  const uv = getUv(area);
+  const advice = uvAdvice(uv);
+
+  if (uv !== null) uvValues.push(uv);
+
+  return area.label + "\n" +
+    "目前：" + (uv === null ? "-" : uv) + " " + uvLevel(uv) +
+    (advice ? "\n" + advice : "");
+});
+
+const maxUv = uvValues.length ? Math.max(...uvValues) : 0;
+
 const msg =
   "⛱️ 目前紫外線指數\n\n" +
-  blocks.join("\n\n");
-
-await replySimple(replyToken, token, msg);
+  blocks.join("\n\n") +
+  (
+    maxUv >= 6
+      ? "\n\n━━━━━━━━━━━━━━\n" +
         "💕 今日紫外線提醒\n\n" +
         "🧴 擦青春防曬＋補水或芒果茶\n" +
         "👒 帽子／陽傘／冰冰衣\n" +
         "🌙 晚上記得厚敷平泰秀"
       : ""
   );
+
+await replySimple(replyToken, token, msg);
 
   await replySimple(replyToken, token, msg);
 }
