@@ -1675,7 +1675,7 @@ async function replyCuteHome(replyToken, token) {
       },
       {
         type: "message",
-    text: "即時天氣",
+text: "即時天氣",
         area: { x: 0, y: 830, width: 520, height: 180 }
       },
       {
