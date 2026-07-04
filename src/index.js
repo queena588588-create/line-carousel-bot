@@ -1621,13 +1621,17 @@ async function replyWeatherSummary(replyToken, token, env) {
   const areas = [
     { label: "北部｜台北", id: "466930" },
     { label: "中部｜台中", id: "467490" },
-   { label: "南部｜高雄", id: "467440" }
+  { label: "南部｜高雄", names: ["高雄", "小港", "左營", "岡山"] }
   ];
 
   const blocks = areas.map(area => {
-    const s = stations.find(x =>
-      String(x.StationId || x.stationId || "") === area.id
-    );
+    const s = stations.find(x => {
+  const stationName = String(x.StationName || x.stationName || x.StationNameZh || "");
+  const countyName = String(x.GeoInfo?.CountyName || x.geoInfo?.CountyName || "");
+  return area.names.some(name =>
+    stationName.includes(name) || countyName.includes(name)
+  );
+});
 
     if (!s) return `${area.label}｜尚未抓到資料`;
 
@@ -1640,7 +1644,7 @@ async function replyWeatherSummary(replyToken, token, env) {
   await replySimple(
     replyToken,
     token,
-    `🌤 今日天氣速報\n\n${blocks.join("\n")}\n\n輸入「紫外線」查看即時紫外線指數`
+    `🌤 今日天氣速報\n\n${blocks.join("\n")}\n\n輸入「紫外線」查看即時指數`
   );
 }
 async function replyCuteHome(replyToken, token) {
