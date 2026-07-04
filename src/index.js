@@ -1597,7 +1597,7 @@ const showUv = Number(uv) <= -90 ? "暫無資料" : uv + " " + uvLevel(uv);
     "👑 Queena 即時天氣\n\n" +
     blocks.join("\n\n") +
     "\n\n. . .💕 貼心提醒 . . .\n" +
-    "🧴 青春防曬＋補水或芒果茶\n" +
+    "🧴擦 青春防曬＋補水 芒果茶\n" +
     "👒 帽子／陽傘／冰冰衣";
 
   await replySimple(replyToken, token, msg);
@@ -1640,7 +1640,7 @@ async function replyWeatherSummary(replyToken, token, env) {
   await replySimple(
     replyToken,
     token,
-    `🌤 今日天氣速報\n\n${blocks.join("\n")}\n\n輸入「紫外線」查看即時指數`
+    `🌤 目前氣溫\n\n${blocks.join("\n")}\n\n輸入「紫外線」查看即時指數`
   );
 }
 async function replyCuteHome(replyToken, token) {
