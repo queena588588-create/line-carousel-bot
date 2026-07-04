@@ -1625,13 +1625,9 @@ async function replyWeatherSummary(replyToken, token, env) {
   ];
 
   const blocks = areas.map(area => {
-    const s = stations.find(x => {
-  const stationName = String(x.StationName || x.stationName || x.StationNameZh || "");
-  const countyName = String(x.GeoInfo?.CountyName || x.geoInfo?.CountyName || "");
-  return area.names.some(name =>
-    stationName.includes(name) || countyName.includes(name)
-  );
-});
+   const s = stations.find(x =>
+  String(x.StationId || x.stationId || "") === area.id
+);
 
     if (!s) return `${area.label}｜尚未抓到資料`;
 
