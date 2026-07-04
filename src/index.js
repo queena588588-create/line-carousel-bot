@@ -243,7 +243,7 @@ return new Response("OK");
   continue;
 }
 
-if (text === "即時天氣" || text === "天氣" || text === "今日天氣") {
+if (text === "天氣速報" || text === "天氣" || text === "今日天氣") {
   await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
@@ -1675,7 +1675,7 @@ async function replyCuteHome(replyToken, token) {
       },
       {
         type: "message",
-text: "即時天氣",
+text: "天氣速報",
         area: { x: 0, y: 830, width: 520, height: 180 }
       },
       {
