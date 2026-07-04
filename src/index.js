@@ -243,7 +243,7 @@ return new Response("OK");
   continue;
 }
 
-if (text === "即時天氣" || text === "天氣" || text === "今日天氣") {
+if (text === "即時天氣" || text === "天氣") {
   await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
@@ -1603,46 +1603,7 @@ const showUv = Number(uv) <= -90 ? "暫無資料" : uv + " " + uvLevel(uv);
   await replySimple(replyToken, token, msg);
 }
 __name(replyMorningWeather, "replyMorningWeather");
-async function replyWeatherSummary(replyToken, token, env) {
-  if (!env || !env.CWA_API_KEY) {
-    await replySimple(replyToken, token, "天氣速報功能尚未設定完成");
-    return;
-  }
 
-  const url =
-    "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001" +
-    "?Authorization=" + encodeURIComponent(env.CWA_API_KEY) +
-    "&format=JSON";
-
-  const res = await fetch(url);
-  const data = await res.json();
-  const stations = data.records?.Station || [];
-
-  const areas = [
-    { label: "北部｜台北", id: "466930" },
-    { label: "中部｜台中", id: "467490" },
-{ label: "南部｜高雄", id: "467441" }
-  ];
-
-  const blocks = areas.map(area => {
-   const s = stations.find(x =>
-  String(x.StationId || x.stationId || "") === area.id
-);
-
-    if (!s) return `${area.label}｜尚未抓到資料`;
-
-    const w = s.WeatherElement || {};
-    const temp = w.AirTemperature ?? w.airTemperature ?? "--";
-
-    return `${area.label} ${temp}°C`;
-  });
-
-  await replySimple(
-    replyToken,
-    token,
-    `🌤 今日天氣速報\n\n${blocks.join("\n")}\n\n輸入「紫外線」查看即時指數`
-  );
-}
 async function replyCuteHome(replyToken, token) {
   const message = {
   type: "imagemap",
