@@ -1,169 +1,170 @@
-const recentMessages = new Map();
-export default {
-  async fetch(request, env) {
+var __defProp = Object.defineProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
+// src/index.js
+var recentMessages = /* @__PURE__ */ new Map();
+var index_default = {
+  async fetch(request, env) {
    if (request.method === "GET") {
   const url = new URL(request.url);
+if (url.pathname === "/menu-v2/1040" || url.pathname === "/menu-v3/1040") {
+  const img = await fetch(
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/1040.png"
+  );
 
-  if (url.pathname === "/menu/1040" || url.pathname === "/menu/700") {
-    const img = await fetch("https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/line%E6%A9%9F%E5%99%A8%E4%BA%BA%E5%9C%96880kb%E5%85%A7.jpg");
-
-    return new Response(img.body, {
-      headers: {
-        "Content-Type": "image/jpeg",
-        "Cache-Control": "public, max-age=3600"
-      }
-    });
-  }
-
-  return new Response("OK");
+  return new Response(img.body, {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
 }
 
+if (url.pathname === "/menu-v2/700" || url.pathname === "/menu-v3/700") {
+  const img = await fetch(
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/700.png.png"
+  );
+
+  return new Response(img.body, {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+
+return new Response("OK");
+}
     const CHANNEL_ACCESS_TOKEN = "F2vHBmUgcMhzxNWCsmC1K7dJcpvNt2Xu0GoIKuvWnmmAMWT+n0sGx61LCPBBCMQTVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD6r1BtcZ9ful1AvxMl8avqesyrwL8v0ooO1QYfIC4L6mAdB04t89/1O/w1cDnyilFU=";
-const SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
-const SHEET_NAME = "商品資料庫";
+    const SHEET_ID2 = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
+    const SHEET_NAME = "\u5546\u54C1\u8CC7\u6599\u5EAB";
     const VIDEO_SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
     try {
       const data = await request.json();
-
       if (!data.events) {
         return new Response("OK");
       }
-
       for (const event of data.events) {
-if (event.type === "postback") {
-  const text = event.postback.data;
+        if (event.type === "postback") {
+          const text = event.postback.data;
+          if (text === "\u8CFC\u7269\u8ECA") {
+            await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
+            continue;
+          }
+          if (text === "\u79C1\u8A0A") {
+            await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
+            continue;
+          }
+          if (text === "\u5F71\u7247") {
+            await replyVideoButtons(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+          if (text === "\u5929\u6C23") {
+            await replyMorningWeather(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+        
+    
+          if (text === "\u5206\u985E") {
+            await replySmartFlex(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+          if (text === "\u641C\u5C0B") {
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              `\u{1F50E} \u5546\u54C1\u641C\u5C0B\u529F\u80FD
 
-  if (text === "購物車") {
-    await replyCarouselFromSheet(event.replyToken, CHANNEL_ACCESS_TOKEN);
-    continue;
-  }
+\u76F4\u63A5\u8F38\u5165\u5546\u54C1\u540D\u7A31\u5373\u53EF\u67E5\u8A62`
+            );
+            continue;
+          }
+          if (text === "\u641C\u5C0B") {
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              `\u{1F50D} \u5546\u54C1\u641C\u5C0B\u529F\u80FD
 
-  if (text === "私訊") {
-    await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
-    continue;
-  }
-
-  
- if (text === "影片") {
-  await replyVideoButtons(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-
-if (text === "天氣") {
-  await replyMorningWeather(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-
-if (text === "分類") {
-  await replySmartFlex(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-
-if (text === "搜尋") {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    `🔎 商品搜尋功能
-
-直接輸入商品名稱即可查詢`
-  );
-  continue;
-}
-  if (text === "搜尋") {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      `🔍 商品搜尋功能
-
-直接輸入商品名稱即可查詢`
-    );
-    continue;
-  }
-if (text === "雨傘") {
-  await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    [
-      "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
-      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
-    ],
-    "☂️ 超大傘面\晴雨兩用\n⚡黑膠防曬 買一送一 $850"
-  );
-  continue;
-}
-
-if (text === "洗衣球") {
-  await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    [
-      "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
-      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
-    ],
-"🧺 三效合一洗衣膠球\n🍀 買一送一 $777"
-  );
-  continue;
-}
-
-if (text.startsWith("看影片 ")) {
-  const keyword = text.replace("看影片 ", "").trim();
-  const videoData = await findVideoSafe(keyword);
-
-  if (videoData) {
-    await replyVideoInfo(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      videoData
-    );
-  } else {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "找不到此影片：" + keyword
-    );
-  }
-
-  continue;
-}
- try {
-  const sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
-
-  if (sheetProduct) {
-    await replySheetProduct(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      sheetProduct
-    );
-    continue;
-  }
-
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "找不到商品：" + text
-  );
-  continue;
-
-} catch (err) {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "商品搜尋錯誤：" + err.message
-  );
-  continue;
-}
- 
-}
+\u76F4\u63A5\u8F38\u5165\u5546\u54C1\u540D\u7A31\u5373\u53EF\u67E5\u8A62`
+            );
+            continue;
+          }
+          if (text === "\u96E8\u5098") {
+            await replyMultiProduct(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              [
+                "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
+                "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
+              ],
+              "\u2602\uFE0F \u8D85\u5927\u5098\u9762\u6674\u96E8\u5169\u7528\n\u26A1\u9ED1\u81A0\u9632\u66EC \u8CB7\u4E00\u9001\u4E00 $850"
+            );
+            continue;
+          }
+          if (text === "\u6D17\u8863\u7403") {
+            await replyMultiProduct(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              [
+                "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
+                "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
+              ],
+              "\u{1F9FA} \u4E09\u6548\u5408\u4E00\u6D17\u8863\u81A0\u7403\n\u{1F340} \u8CB7\u4E00\u9001\u4E00 $777"
+            );
+            continue;
+          }
+          if (text.startsWith("\u770B\u5F71\u7247 ")) {
+            const keyword = text.replace("\u770B\u5F71\u7247 ", "").trim();
+            const videoData = await findVideoSafe(keyword);
+            if (videoData) {
+              await replyVideoInfo(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                videoData
+              );
+            } else {
+              await replySimple(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                "\u627E\u4E0D\u5230\u6B64\u5F71\u7247\uFF1A" + keyword
+              );
+            }
+            continue;
+          }
+          try {
+            const sheetProduct = await findProductFromSheet(text, SHEET_ID2, SHEET_NAME);
+            if (sheetProduct) {
+              await replySheetProduct(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                sheetProduct
+              );
+              continue;
+            }
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              "\u627E\u4E0D\u5230\u5546\u54C1\uFF1A" + text
+            );
+            continue;
+          } catch (err) {
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              "\u5546\u54C1\u641C\u5C0B\u932F\u8AA4\uFF1A" + err.message
+            );
+            continue;
+          }
+        }
         if (event.type === "memberJoined") {
           await fetch("https://api.line.me/v2/bot/message/reply", {
             method: "POST",
@@ -181,372 +182,304 @@ if (text.startsWith("看影片 ")) {
                 },
                 {
                   type: "text",
-                  text: `🛒 歡迎加入塞爆購物車 🛒
+                  text: `\u{1F6D2} \u6B61\u8FCE\u52A0\u5165\u585E\u7206\u8CFC\u7269\u8ECA \u{1F6D2}
 
-        🎀 About me 🩰
-  👠 雙寶媽也能輕鬆斜槓
-  ✨ 電商合作｜經營開放中
+        \u{1F380} About me \u{1FA70}
+  \u{1F460} \u96D9\u5BF6\u5ABD\u4E5F\u80FD\u8F15\u9B06\u659C\u69D3
+  \u2728 \u96FB\u5546\u5408\u4F5C\uFF5C\u7D93\u71DF\u958B\u653E\u4E2D
 
-  💰 生活消費賺回饋
-  📱 對網路行銷有興趣
-  📚 想培養第二專長
-  ✈️ 出國邊玩邊賺錢
-  🙋‍♀️任一有興趣者歡迎私訊
-  💬 官方Line：@108yssta
+  \u{1F4B0} \u751F\u6D3B\u6D88\u8CBB\u8CFA\u56DE\u994B
+  \u{1F4F1} \u5C0D\u7DB2\u8DEF\u884C\u92B7\u6709\u8208\u8DA3
+  \u{1F4DA} \u60F3\u57F9\u990A\u7B2C\u4E8C\u5C08\u9577
+  \u2708\uFE0F \u51FA\u570B\u908A\u73A9\u908A\u8CFA\u9322
+  \u{1F64B}\u200D\u2640\uFE0F\u4EFB\u4E00\u6709\u8208\u8DA3\u8005\u6B61\u8FCE\u79C1\u8A0A
+  \u{1F4AC} \u5B98\u65B9Line\uFF1A@108yssta
 
-🔕 訊息有點多可關閉提醒
+\u{1F515} \u8A0A\u606F\u6709\u9EDE\u591A\u53EF\u95DC\u9589\u63D0\u9192
 
-✈️【Queena 購物避雷指南】
+\u2708\uFE0F\u3010Queena \u8CFC\u7269\u907F\u96F7\u6307\u5357\u3011
 
-近期推薦單品❤️
-🛒 輸入「購物車」
+\u8FD1\u671F\u63A8\u85A6\u55AE\u54C1\u2764\uFE0F
+\u{1F6D2} \u8F38\u5165\u300C\u8CFC\u7269\u8ECA\u300D
 
-📂 商品分類
-輸入「分類」
+\u{1F4C2} \u5546\u54C1\u5206\u985E
+\u8F38\u5165\u300C\u5206\u985E\u300D
       
-🚚 商品問題｜訂單問題
-輸入「私訊」一對一私訊聊聊`
-
-
-        },
-      
-             {
-  type: "template",
-  altText: "小幫手指令",
-  template: {
-    type: "buttons",
-    title: "🤖 購物車小幫手",
-    text: "點擊開啟功能選單",
-    actions: [
-      {
-        type: "postback",
-        label: "🤖 小幫手指令",
-        data: "小幫手指令"
-      }
-    ]
-  }
-} 
-     ]
- })
-  });
-}
-
-
-if (
-  event.type === "message" &&
-  event.message.type === "text" &&
-  event.message.text === "私訊"
-) {
-  await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
-}
-
-if (event.type === "message" && event.message.type === "text") {
-const text = event.message.text.trim();
- if (text === "天氣") {
+\u{1F69A} \u5546\u54C1\u554F\u984C\uFF5C\u8A02\u55AE\u554F\u984C
+\u8F38\u5165\u300C\u79C1\u8A0A\u300D\u4E00\u5C0D\u4E00\u79C1\u8A0A\u804A\u804A`
+                },
+                {
+                  type: "template",
+                  altText: "\u5C0F\u5E6B\u624B\u6307\u4EE4",
+                  template: {
+                    type: "buttons",
+                    title: "\u{1F916} \u8CFC\u7269\u8ECA\u5C0F\u5E6B\u624B",
+                    text: "\u9EDE\u64CA\u958B\u555F\u529F\u80FD\u9078\u55AE",
+                    actions: [
+                      {
+                        type: "postback",
+                        label: "\u{1F916} \u5C0F\u5E6B\u624B\u6307\u4EE4",
+                        data: "\u5C0F\u5E6B\u624B\u6307\u4EE4"
+                      }
+                    ]
+                  }
+                }
+              ]
+            })
+          });
+        }
+        if (event.type === "message" && event.message.type === "text" && event.message.text === "\u79C1\u8A0A") {
+          await replyPrivateButton(event.replyToken, CHANNEL_ACCESS_TOKEN);
+        }
+        if (event.type === "message" && event.message.type === "text") {
+          const text = event.message.text.trim();
+         
+        if (text === "即時天氣") {
   await replyMorningWeather(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-  if (text === "首頁") {
-  await replyCuteHome(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-  const sourceId =
-  event.source.groupId ||
-  event.source.roomId ||
-  event.source.userId ||
-  "unknown";
-
-const userId = event.source.userId || "unknown";
-const dedupeKey = `${sourceId}:${userId}:${text}`;
-const nowTime = Date.now();
-
-if (recentMessages.has(dedupeKey)) {
-  const lastTime = recentMessages.get(dedupeKey);
-
-  if (nowTime - lastTime < 30000) {
-    continue;
-  }
-}
-
-recentMessages.set(dedupeKey, nowTime);
-  if (
-  text === "紫外線" ||
-  text === "目前紫外線" ||
-  text === "北中南紫外線"
-) {
-  await replyUvOnly(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
     env
   );
   continue;
 }
-  if (
-  text === "商品分類" ||
-  text === "分類" ||
-  text === "逛逛"
-) {
-  await replyProductCategoryHome(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-   SHEET_ID,
-    SHEET_NAME
-  );
-  continue;
-}
+          if (text === "\u9996\u9801") {
+            await replyCuteHome(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+          const sourceId = event.source.groupId || event.source.roomId || event.source.userId || "unknown";
+          const userId = event.source.userId || "unknown";
+          const dedupeKey = `${sourceId}:${userId}:${text}`;
+          const nowTime = Date.now();
+          if (recentMessages.has(dedupeKey)) {
+            const lastTime = recentMessages.get(dedupeKey);
+            if (nowTime - lastTime < 3e4) {
+              continue;
+            }
+          }
+          recentMessages.set(dedupeKey, nowTime);
+          if (text === "\u7D2B\u5916\u7DDA" || text === "\u76EE\u524D\u7D2B\u5916\u7DDA" || text === "\u5317\u4E2D\u5357\u7D2B\u5916\u7DDA") {
+            await replyUvOnly(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              env
+            );
+            continue;
+          }
+          if (text === "\u5546\u54C1\u5206\u985E" || text === "\u5206\u985E" || text === "\u901B\u901B") {
+            await replyProductCategoryHome(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              SHEET_ID2,
+              SHEET_NAME
+            );
+            continue;
+          }
+          const categoryMatch = text.match(/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/);
+          if (categoryMatch) {
+            const category = categoryMatch[1];
+            const page = Number(categoryMatch[2] || 1);
+            await replyProductCategoryList(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              SHEET_ID2,
+              SHEET_NAME,
+              category,
+              page
+            );
+            continue;
+          }
+          if (text === "\u6536\u55AE" || text === "\u7D50\u55AE" || text === "\u5373\u5C07\u7D50\u55AE") {
+            await replyClosingFlexList(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+          if (text === "\u8CFC\u7269\u8ECA") {
+            try {
+              await replyCarouselFromSheet(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN
+              );
+            } catch (err) {
+              await replySimple(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                "\u8F2A\u64AD\u932F\u8AA4\uFF1A" + err.message
+              );
+            }
+            continue;
+          }
+          if (text === "\u5F71\u7247") {
+            await replyVideoButtons(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN
+            );
+            continue;
+          }
+          if (text.startsWith("\u770B\u5F71\u7247 ")) {
+            try {
+              const keyword = text.replace("\u770B\u5F71\u7247 ", "").trim();
+              const videoData = await findVideoSafe(keyword);
+              if (videoData) {
+                await replyVideoInfo(
+                  event.replyToken,
+                  CHANNEL_ACCESS_TOKEN,
+                  videoData
+                );
+              } else {
+                await replySimple(
+                  event.replyToken,
+                  CHANNEL_ACCESS_TOKEN,
+                  "\u627E\u4E0D\u5230\u6B64\u5F71\u7247\uFF1A" + keyword
+                );
+              }
+            } catch (err) {
+              await replySimple(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                "\u770B\u5F71\u7247\u932F\u8AA4\uFF1A" + err.message
+              );
+            }
+            continue;
+          }
+          try {
+            let sheetProduct = await findProductFromSheet(text, SHEET_ID2, SHEET_NAME);
+            if (!sheetProduct) {
+              await new Promise((resolve) => setTimeout(resolve, 500));
+              sheetProduct = await findProductFromSheet(text, SHEET_ID2, SHEET_NAME);
+            }
+            if (sheetProduct) {
+              await replySheetProduct(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                sheetProduct
+              );
+              continue;
+            }
+          } catch (err) {
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              "\u5546\u54C1\u641C\u5C0B\u932F\u8AA4\uFF1A" + err.message
+            );
+            continue;
+          }
+          if (text === "\u5C0F\u5E6B\u624B\u6307\u4EE4") {
+            await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
+            continue;
+          }
+          if (text === "\u641C\u5C0B") {
+            await replySimple(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              `\u{1F50D} \u5546\u54C1\u641C\u5C0B\u529F\u80FD
 
-const categoryMatch = text.match(/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/);
-
-if (categoryMatch) {
-  const category = categoryMatch[1];
-  const page = Number(categoryMatch[2] || 1);
-
-  await replyProductCategoryList(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-   SHEET_ID,
-    SHEET_NAME,
-    category,
-    page
-  );
-  continue;
-}
-if (text === "收單" || text === "結單" || text === "即將結單") {
-  await replyClosingFlexList(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN
-  );
-  continue;
-}
-if (text === "購物車") {
-  try {
-    await replyCarouselFromSheet(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "輪播錯誤：" + err.message
-    );
-  }
-  continue;
-}
-
-  if (text === "影片") {
-    await replyVideoButtons(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN
-    );
-    continue;
-  }
-
-  
-if (text.startsWith("看影片 ")) {
-  try {
-    const keyword = text.replace("看影片 ", "").trim();
-    const videoData = await findVideoSafe(keyword);
-
-    if (videoData) {
-      await replyVideoInfo(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN,
-        videoData
-      );
-    } else {
-      await replySimple(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN,
-        "找不到此影片：" + keyword
-      );
+\u76F4\u63A5\u8F38\u5165\u5546\u54C1\u540D\u7A31\u5373\u53EF\u67E5\u8A62`
+            );
+            continue;
+          }
+          if (text === "\u9810\u544A" || text === "\u6D3B\u52D5") {
+            const data2 = await findNoticeFromSheet(text);
+            if (data2) {
+              await replyImageText(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                data2.imageUrl,
+                data2.message
+              );
+              continue;
+            }
+          }
+          if (text.startsWith("\u770B\u5F71\u7247")) {
+            try {
+              const keyword = text.replace("\u770B\u5F71\u7247", "").trim();
+              const videoData = await findVideoSafe(keyword);
+              if (videoData) {
+                await replyVideoInfo(
+                  event.replyToken,
+                  CHANNEL_ACCESS_TOKEN,
+                  videoData
+                );
+              } else {
+                await replySimple(
+                  event.replyToken,
+                  CHANNEL_ACCESS_TOKEN,
+                  "\u627E\u4E0D\u5230\u6B64\u5F71\u7247\uFF1A" + keyword
+                );
+              }
+            } catch (err) {
+              await replySimple(
+                event.replyToken,
+                CHANNEL_ACCESS_TOKEN,
+                "\u770B\u5F71\u7247\u932F\u8AA4\uFF1A" + err.message
+              );
+            }
+          }
+          if (text === "\u6297\u98A8\u6674\u96E8\u5098" || text === "\u96E8\u5098") {
+            await replyMultiProduct(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              [
+                "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
+                "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
+              ],
+              "\u2602\uFE0F \u8D85\u5927\u5098\u9762\u6674\u96E8\u5169\u7528\n\u26A1\u9ED1\u81A0\u9632\u66EC \u8CB7\u4E00\u9001\u4E00 $850"
+            );
+          }
+          if (text === "\u6D17\u8863\u7403" || text === "\u6D17\u8863") {
+            await replyMultiProduct(
+              event.replyToken,
+              CHANNEL_ACCESS_TOKEN,
+              [
+                "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
+                "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
+              ],
+              "\u{1F9FA} \u4E09\u6548\u5408\u4E00\u6D17\u8863\u81A0\u7403\n\u{1F340} \u8CB7\u4E00\u9001\u4E00 $777"
+            );
+          }
+        }
+      }
+      return new Response("OK");
+    } catch (error) {
+      console.error(error);
+      return new Response("ERROR", { status: 500 });
     }
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "看影片錯誤：" + err.message
-    );
   }
-
-  continue;
-}
-try {
-  let sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
-
-  // 第一次沒抓到時，自動再查一次，避免第一次輸入沒反應
-  if (!sheetProduct) {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    sheetProduct = await findProductFromSheet(text, SHEET_ID, SHEET_NAME);
-  }
-
-  if (sheetProduct) {
-    await replySheetProduct(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      sheetProduct
-    );
-    continue;
-  }
-} catch (err) {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    "商品搜尋錯誤：" + err.message
-  );
-  continue;
-}
-
-if (text === "小幫手指令") {
-  await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
-  continue;
-}
-
-
-if (text === "搜尋") {
-  await replySimple(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    `🔍 商品搜尋功能
-
-直接輸入商品名稱即可查詢`
-  );
-  continue;
-}
-// Google Sheet 商品搜尋
-
-// 預告、活動：試算表讀圖片＋文字
-if (text === "預告" || text === "活動") {
-  const data = await findNoticeFromSheet(text);
-
-  if (data) {
-    await replyImageText(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      data.imageUrl,
-      data.message
-    );
-    continue;
-  }
-}
-
-// 影片清單
-// 影片清單
-
-
-
-
-
- 
-
-if (text.startsWith("看影片")) {
-  try {
-    const keyword = text.replace("看影片", "").trim();
-
-    const videoData = await findVideoSafe(keyword);
-
-    if (videoData) {
-      await replyVideoInfo(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN,
-        videoData
-      );
-    } else {
-      await replySimple(
-        event.replyToken,
-        CHANNEL_ACCESS_TOKEN,
-        "找不到此影片：" + keyword
-      );
-    }
-  } catch (err) {
-    await replySimple(
-      event.replyToken,
-      CHANNEL_ACCESS_TOKEN,
-      "看影片錯誤：" + err.message
-    );
-  }
-
- 
-}
-if (text === "抗風晴雨傘" || text === "雨傘") {
- await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    [
-    "https://github.com/queena588588-create/line-carousel-bot/blob/main/image.png?raw=true",
-  "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E9%9B%A8%E5%82%98.jpg"
-       ],
-     "☂️ 超大傘面\晴雨兩用\n⚡黑膠防曬 買一送一 $850"
-  );
-}
-if (text === "洗衣球" || text === "洗衣") {
-   await replyMultiProduct(
-    event.replyToken,
-    CHANNEL_ACCESS_TOKEN,
-    [
-    "https://github.com/queena588588-create/line-carousel-bot/blob/main/%E6%B4%97%E8%A1%A3%E7%90%83.png?raw=true",
-      "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/%E6%B4%97%E8%A1%A3%E7%90%83%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.jpg"
-       ],
-"🧺 三效合一洗衣膠球\n🍀 買一送一 $777"
-  );
-} 
-
-
-
-  } // 關閉文字訊息區塊
-} // 關閉 for (const event of data.events)
-return new Response("OK");
-} catch (error) {
-  console.error(error);
-  return new Response("ERROR", { status: 500 });
-}
-
-}
 };
 async function replySimple(replyToken, token, text) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-   "Authorization": "Bearer " + token
+      "Authorization": "Bearer " + token
     },
     body: JSON.stringify({
       replyToken,
       messages: [{
         type: "text",
-        text: text
+        text
       }]
     })
   });
 }
-
-
-async function replyMultiProduct(
-  replyToken,
-  token,
-  imageUrls,
-  text
-) {
+__name(replySimple, "replySimple");
+async function replyMultiProduct(replyToken, token, imageUrls, text) {
   const imageMessages = imageUrls.map((imageUrl) => ({
     type: "image",
     originalContentUrl: imageUrl,
     previewImageUrl: imageUrl
   }));
-
   const messages = [
     ...imageMessages,
     {
       type: "text",
-      text: text
+      text
     }
   ];
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -559,31 +492,11 @@ async function replyMultiProduct(
     })
   });
 }
-
-
-
-async function replyInflationZone(replyToken, token) {
-  const message = {
-    type: "text",
-text: "聰明挖寶趣\n\n☂️ 抗風晴雨傘\n🧺 三效合一洗衣膠球\n\n輸入商品名稱即可查看詳細資訊"
-
-};
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-     "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [message]
-    })
-  });
-}
+__name(replyMultiProduct, "replyMultiProduct");
 async function replyPrivateButton(replyToken, token) {
   const message = {
     type: "flex",
-    altText: "私訊 Queena",
+    altText: "\u79C1\u8A0A Queena",
     contents: {
       type: "bubble",
       body: {
@@ -592,7 +505,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "⚡︎ 偷偷點一下，沒人會發現😅",
+            text: "\u26A1\uFE0E \u5077\u5077\u9EDE\u4E00\u4E0B\uFF0C\u6C92\u4EBA\u6703\u767C\u73FE\u{1F605}",
             weight: "bold",
             size: "lg"
           }
@@ -607,7 +520,7 @@ async function replyPrivateButton(replyToken, token) {
             style: "primary",
             action: {
               type: "uri",
-              label: "💻 私訊 Queena",
+              label: "\u{1F4BB} \u79C1\u8A0A Queena",
               uri: "https://line.me/ti/p/~0921730505"
             }
           }
@@ -615,7 +528,6 @@ async function replyPrivateButton(replyToken, token) {
       }
     }
   };
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -628,241 +540,106 @@ async function replyPrivateButton(replyToken, token) {
     })
   });
 }
-
-
-
-
-async function replyCarousel(replyToken, token) {
-  const message = {
-    type: "flex",
-    altText: "Queena 的避坑指南⚡",
-    contents: {
-      type: "carousel",
-      contents: [
-        productCard(
-      "▸ 𝘘𝘶𝘦𝘦𝘯𝘢’𝘴 𝘚𝘌𝘓𝘌𝘊𝘛",
-  "⌛ 日常生活提案 ✖ 限時特搜話題新品速報 🛒",
-  "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY5YWE5NTk4ODE5MWEzNWIxZjhiOWI1MjU5Mzk6ZmlsZV8wMDAwMDAwMDI2ZGM3MjA5OWQ4M2U1NzVjMmIxM2FjMCIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImNkYjJiZjc4ZTYyMmI2ZTJiOTdkYzM5NGE4NzQzYjViMDI3YjU1ZGRkMzgzOGE1MDYyMWI4NDQ4MWU5N2IyNDUiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-  "https://www.instagram.com/queena.520/",
-  "𝘕𝘌𝘞 𝘐𝘕 🔓 ─── [ 𝘓𝘖𝘈𝘋𝘐𝘕𝘎... ]"
-),
-        productCard(
-          "仙女霜",
-          "日常保養推薦 All in one",
-          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVBrKuvlr-PQtwilr8ARq2sdSIx_JVNmPeTSsk4tnpFyNxvh-YKoMIvqJxxDxxhUJ6__N4dSddx_TS4uvUzaL2QlqIyIQMgltUv9lr5MaJVTpAvWeodGJvCPK68WGkdYs9YWzPHD5UibRiXdUAwmM7JYYwbne-SefIcWO9GZ33ZLuTirs91Zd--qP3JMyDtjVbmGWGCsFY8EKnsgv_M_=w241?key=MPUY86i8CDh0wU0JOyGFfA",
-          "https://forms.gle/qQpqMWLf9YAfNCW37"
-        ),
-        productCard(
-          "青春極致防曬乳",
-          "SPF50+ 保濕防曬不黏膩",
-          "https://lh7-rt.googleusercontent.com/formsz/AN7BsVDfZOKlefTWzPb_KlcTJ901nrbLBnfinIk1KV4_ztHjFd4g5quwzTYv_EdUsCD_VQkTscBpGUWjgfPjJHmitqFnLk_9pEspGdqyoqI6zYiF4dMxf20NMi9YwYLfHuRpDdPrhnxNia8p6Z6HHvqNuiwgVju8-SNmVMvUzmwNrys1kAitMLYLnMsq8DTLvOk7Jhn4LbHwUhzv1ZCRXw_U=w214?key=f2LYPwSrb6A4LdgRRxN6Tw",
-          "https://forms.gle/tob2zb6KYonW5ph98"
-        ),
-        productCard(
-          "冰冰衣",
-          "降溫＋防曬＋對抗光老化",
-          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWYzNmNkOWEwODE5MWJjYTdmN2UwMTJiYTM1OGI6ZmlsZV8wMDAwMDAwMGU4ZTg3MjA5YTRhOWRiMjBmNmVjNjE4NSIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjI4NzZkOGIzMWY5YTMzMmYxYTEwNjEwY2JhZWZkZWM1MWNiNTA4ZjEyM2ZkMDc0Yzk2N2NkYTAxMWEzMzljOWEiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-          "https://forms.gle/FGgQcesTW8YHfdZN9"
-        ),
-        productCard(
-          "雞排",
-          "方便料理，加熱即可享用",
-          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1MjExMzY0ODE5MWIzNzY3M2MzZDJiZjQ0OTQ6ZmlsZV8wMDAwMDAwMGUwZjQ3MjA5OWEzMDc5NmYxMDNiYTYyNyIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjExNzNjNTdkMWFmM2E5MGYwN2Y2MTM5ZWRmOTAyZTYxNmVjZmE0YTM2N2RkZDk2YTkxOTJkYzJhZDdhNzYzZjYiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-          "https://forms.gle/sE16zUJx3Tb359qq7"
-        ),
-        productCard(
-          "櫻桃",
-          "夏季限定 香甜多汁",
-          "https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNmEyYWY1YzdhY2Q0ODE5MThkMGViZDNmZjljYjQzZDI6ZmlsZV8wMDAwMDAwMDc4ZjA3MjA5YTc2OTE3MTViOWZmM2ZlZiIsInRzIjoiMjA2MTUiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6IjY0OGI0MDViY2ZmYzQ2ZjE2YzIzMTMwZDcwY2YxNzQ0OTg4NjM5NjQzZTY2YTg2YzYxM2M0NDJlMzNkOGI0ODIiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcyI6bnVsbCwiY2RuIjpudWxsLCJmbiI6bnVsbCwiY2QiOm51bGwsImNwIjpudWxsLCJtYSI6bnVsbH0=",
-          "https://forms.gle/9no8dTweGKEZzJwG6"
-        )
-
-]
-}
-};
-await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [message]
-    })
-  });
-}
-
-function productCard(title, desc, imageUrl, linkUrl, buttonText = "近期賣出,去逛逛!") {
-  return {
-    type: "bubble",
-    hero: {
-      type: "image",
-      url: imageUrl,
-size: "full",
-      aspectRatio: "20:11",
-aspectMode: "cover"
-    },
-  body: {
-type: "box",
-layout: "vertical",
-spacing: "sm",
-paddingAll: "6px",
-contents: [
-{
-type: "text",
-text: title,
-weight: "bold",
-size: "lg",
-wrap: true
-},
-{
-type: "text",
-text: desc,
-size: "xs",
-color: "#888888",
-wrap: true
-}
-]
-},
-
-    footer: {
-      type: "box",
-      layout: "vertical",
-      contents: [
-        {
-         type: "button",
-height: "sm",
-style: "primary",
-          action: {
-            type: "uri",
-           label: buttonText,
-            uri: linkUrl
-          }
-        }
-      ]
-    }
-  };
-}
+__name(replyPrivateButton, "replyPrivateButton");
 async function replyCarouselFromSheet(replyToken, token) {
- 
- const url =
-  "https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" +
-  encodeURIComponent("輪播專區");
-
-const res = await fetch(url);
-
- 
+  const url = "https://docs.google.com/spreadsheets/d/1c_WxcSIf0z6YuouQRdBtLjGP7Nd_wBu51DSPU1KQiTE/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u8F2A\u64AD\u5C08\u5340");
+  const res = await fetch(url);
   const raw = await res.text();
   const data = JSON.parse(raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
-
-  const bubbles = (data.table.rows || [])
-    .map(row => ({
-      category: String(row.c?.[0]?.v || "").trim(),
-      sort: Number(row.c?.[1]?.v || 999),
-      image: String(row.c?.[2]?.v || "").trim(),
-      title: String(row.c?.[3]?.v || "").trim(),
-      desc: String(row.c?.[4]?.v || "").trim(),
-      keyword: String(row.c?.[5]?.v || "").trim(),
-      video: String(row.c?.[6]?.v || "").trim(),
-      show: String(row.c?.[7]?.v || "").trim()
-    }))
-    .filter(item => item.category === "購物車" && item.show === "是")
-    .sort((a, b) => a.sort - b.sort)
-    .slice(0, 10)
-    .map(item => {
-      const buttons = [];
-
-     
-if (item.keyword) {
-  const mainKeyword = item.keyword.split(",")[0].trim();
-
-  if (mainKeyword === "IG" && item.video.startsWith("http")) {
-    buttons.push({
-      type: "button",
-      style: "primary",
-      height: "sm",
-      action: {
-        type: "uri",
-        label: "前往 IG",
-        uri: item.video
+  const bubbles = (data.table.rows || []).map((row) => ({
+    category: String(row.c?.[0]?.v || "").trim(),
+    sort: Number(row.c?.[1]?.v || 999),
+    image: String(row.c?.[2]?.v || "").trim(),
+    title: String(row.c?.[3]?.v || "").trim(),
+    desc: String(row.c?.[4]?.v || "").trim(),
+    keyword: String(row.c?.[5]?.v || "").trim(),
+    video: String(row.c?.[6]?.v || "").trim(),
+    show: String(row.c?.[7]?.v || "").trim()
+  })).filter((item) => item.category === "\u8CFC\u7269\u8ECA" && item.show === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 10).map((item) => {
+    const buttons = [];
+    if (item.keyword) {
+      const mainKeyword = item.keyword.split(",")[0].trim();
+      if (mainKeyword === "IG" && item.video.startsWith("http")) {
+        buttons.push({
+          type: "button",
+          style: "primary",
+          height: "sm",
+          action: {
+            type: "uri",
+            label: "\u524D\u5F80 IG",
+            uri: item.video
+          }
+        });
+      } else {
+        buttons.push({
+          type: "button",
+          style: "primary",
+          height: "sm",
+          action: {
+            type: "message",
+            label: "\u5546\u54C1\u4ECB\u7D39",
+            text: mainKeyword
+          }
+        });
       }
-    });
-  } else {
-    buttons.push({
-      type: "button",
-      style: "primary",
-      height: "sm",
-      action: {
-        type: "message",
-        label: "商品介紹",
-        text: mainKeyword
-      }
-    });
-  }
-}
-
-
-     if (item.video.startsWith("http") && String(item.keyword || "").split(",")[0].trim() !== "IG") {
-  buttons.push({
-    type: "button",
-    style: "secondary",
-    height: "sm",
-    action: {
-      type: "uri",
-      label: "觀看影片",
-      uri: item.video
     }
-  });
-}
-
-      return {
-       type: "bubble",
-size: "kilo",
-hero: {
-          type: "image",
-          url: item.image,
-          size: "full",
-          aspectRatio: "20:10",
-          aspectMode: "cover"
-        },
-        body: {
-          type: "box",
-          layout: "vertical",
-          spacing: "sm",
-          flex: 1,
-          contents: [
-            {
-              type: "text",
-              text: item.title || "未命名商品",
-              weight: "bold",
-              size: "lg",
-              wrap: true
-            },
-            {
-              type: "text",
-              text: item.desc || " ",
-              size: "sm",
-              color: "#666666",
-              wrap: true
-            }
-          ]
-        },
-        footer: {
-          type: "box",
-          layout: "vertical",
-          spacing: "sm",
-          contents: buttons
+    if (item.video.startsWith("http") && String(item.keyword || "").split(",")[0].trim() !== "IG") {
+      buttons.push({
+        type: "button",
+        style: "secondary",
+        height: "sm",
+        action: {
+          type: "uri",
+          label: "\u89C0\u770B\u5F71\u7247",
+          uri: item.video
         }
-      };
-    });
-
+      });
+    }
+    return {
+      type: "bubble",
+      size: "kilo",
+      hero: {
+        type: "image",
+        url: item.image,
+        size: "full",
+        aspectRatio: "20:10",
+        aspectMode: "cover"
+      },
+      body: {
+        type: "box",
+        layout: "vertical",
+        spacing: "sm",
+        flex: 1,
+        contents: [
+          {
+            type: "text",
+            text: item.title || "\u672A\u547D\u540D\u5546\u54C1",
+            weight: "bold",
+            size: "lg",
+            wrap: true
+          },
+          {
+            type: "text",
+            text: item.desc || " ",
+            size: "sm",
+            color: "#666666",
+            wrap: true
+          }
+        ]
+      },
+      footer: {
+        type: "box",
+        layout: "vertical",
+        spacing: "sm",
+        contents: buttons
+      }
+    };
+  });
   if (bubbles.length === 0) {
-    await replySimple(replyToken, token, "目前輪播專區沒有資料");
+    await replySimple(replyToken, token, "\u76EE\u524D\u8F2A\u64AD\u5C08\u5340\u6C92\u6709\u8CC7\u6599");
     return;
   }
-
- const lineRes = await fetch("https://api.line.me/v2/bot/message/reply", {
+  const lineRes = await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -872,7 +649,7 @@ hero: {
       replyToken,
       messages: [{
         type: "flex",
-        altText: "購物車輪播",
+        altText: "\u8CFC\u7269\u8ECA\u8F2A\u64AD",
         contents: {
           type: "carousel",
           contents: bubbles
@@ -881,123 +658,11 @@ hero: {
     })
   });
   if (!lineRes.ok) {
-  const errorText = await lineRes.text();
-  throw new Error("LINE拒絕輪播：" + lineRes.status + " " + errorText);
+    const errorText = await lineRes.text();
+    throw new Error("LINE\u62D2\u7D55\u8F2A\u64AD\uFF1A" + lineRes.status + " " + errorText);
+  }
 }
-}
-async function replyText(replyToken, token, text) {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [
-        {
-          type: "text",
-          text: text
-        }
-      ]
-    })
-  });
-}
-async function replyProduct(replyToken, token, imageUrl, text) {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [
-        {
-          type: "image",
-          originalContentUrl: imageUrl,
-          previewImageUrl: imageUrl
-        },
-        {
-          type: "text",
-          text: text
-        }
-      ]
-    })
-  });
-}
-
-async function replyFolderButton(replyToken, token) {
-  const message = {
-    type: "flex",
-altText: "分類逛逛",
-    contents: {
-      type: "bubble",
-      body: {
-        type: "box",
-        layout: "vertical",
-        paddingAll: "16px",
-        contents: [
-          {
-            type: "text",
-            text: " ",
-            weight: "bold",
-            size: "lg",
-            color: "#333333",
-            wrap: true
-          },
-          {
-            type: "text",
-text: "📂 分類逛逛",
-            weight: "bold",
-            size: "xl",
-            margin: "lg",
-            wrap: true
-          },
-          {
-            type: "text",
-          text: "☂️ 抗風晴雨傘｜買一送一 $850\n🧺 三效合一洗衣球｜買一送一 $777",
-            size: "sm",
-            color: "#555555",
-            margin: "md",
-            wrap: true
-          },
-          {
-            type: "button",
-            style: "primary",
-            color: "#06C755",
-            height: "sm",
-            margin: "xl",
-            action: {
-              type: "uri",
-              label: "📂 查看照片與影片",
-              uri: "https://drive.google.com/drive/folders/1n0dPszGQg5HEGqj2lxelfgsY7xX5g8M0?usp=sharing"
-            }
-          }
-        ]
-      }
-    }
-  };
-
-  async function replyHelperButtons(replyToken, token) {
-  await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
-    },
-    body: JSON.stringify({
-      replyToken: replyToken,
-      messages: [
-        {
-          type: "text",
- text: "Queena 好物小幫手\n\n請直接點選：\n\n🛒 購物車\n📂 分類逛逛\n🚚 私訊"
-        }
-      ]
-    })
-  });
-}
-}
+__name(replyCarouselFromSheet, "replyCarouselFromSheet");
 async function replyHelperButtons(replyToken, token) {
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -1009,103 +674,74 @@ async function replyHelperButtons(replyToken, token) {
       replyToken,
       messages: [{
         type: "template",
-        altText: "小幫手",
+        altText: "\u5C0F\u5E6B\u624B",
         template: {
           type: "buttons",
-          title: "小幫手",
-          text: "請選擇功能",
+          title: "\u5C0F\u5E6B\u624B",
+          text: "\u8ACB\u9078\u64C7\u529F\u80FD",
           actions: [
-{
-  type: "message",
-  label: "🛒 購物車",
-  text: "購物車"
-},
-{
-  type: "message",
-  label: "📂 分類逛逛",
-  text: "分類"
-},
-
-{
-  type: "postback",
-  label: "🚚 私訊",
-  data: "私訊"
-}
-           ]
-
+            {
+              type: "message",
+              label: "\u{1F6D2} \u8CFC\u7269\u8ECA",
+              text: "\u8CFC\u7269\u8ECA"
+            },
+            {
+              type: "message",
+              label: "\u{1F4C2} \u5206\u985E\u901B\u901B",
+              text: "\u5206\u985E"
+            },
+            {
+              type: "postback",
+              label: "\u{1F69A} \u79C1\u8A0A",
+              data: "\u79C1\u8A0A"
+            }
+          ]
         }
       }]
     })
   });
 }
-
-async function findProductFromSheet(keyword, SHEET_ID, SHEET_NAME) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-
+__name(replyHelperButtons, "replyHelperButtons");
+async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID2}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
   const res = await fetch(url);
   const csv = await res.text();
-
- const rows = csv
-  .split("\n")
-  .map(row =>
-    row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-      ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || []
+  const rows = csv.split("\n").map(
+    (row) => row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map((cell) => cell.replace(/^"|"$/g, "").trim()) || []
   );
-
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
-
     const sheetKeyword = row[0] || "";
     const photo = row[1] || "";
     const productName = row[2] || "";
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
-
-
-
-if (
-  sheetKeyword
-    .split(",")
-    .map(k => k.trim())
-    .includes(keyword)
-) {
-  return {
-    keyword: sheetKeyword,
-    photo,
-    productName,
-    intro,
-    buyMethod
-  };
-}
-      
+    if (sheetKeyword.split(",").map((k) => k.trim()).includes(keyword)) {
+      return {
+        keyword: sheetKeyword,
+        photo,
+        productName,
+        intro,
+        buyMethod
+      };
+    }
   }
-
   return null;
 }
+__name(findProductFromSheet, "findProductFromSheet");
 async function getCountdownText(productKeyword) {
-  const url =
-  "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" +
-    encodeURIComponent("結單倒數");
-
+  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u7D50\u55AE\u5012\u6578");
   const res = await fetch(url);
-
   if (!res.ok) {
     return "";
   }
-
   const raw = await res.text();
   const jsonText = raw.substring(
     raw.indexOf("{"),
     raw.lastIndexOf("}") + 1
   );
-
   const data = JSON.parse(jsonText);
-
-  const productKeys = String(productKeyword || "")
-    .split(",")
-    .map(k => k.trim())
-    .filter(Boolean);
-
+  const productKeys = String(productKeyword || "").split(",").map((k) => k.trim()).filter(Boolean);
   for (const row of data.table.rows || []) {
     const countdownKeyword = String(row.c?.[0]?.v || "").trim();
     const displayName = String(row.c?.[1]?.v || countdownKeyword).trim();
@@ -1114,101 +750,74 @@ async function getCountdownText(productKeyword) {
     ).trim();
     const closingText = String(row.c?.[3]?.v || "").trim();
     const show = String(row.c?.[4]?.v || "").trim();
-
-    if (show !== "是" || !countdownKeyword || !deadlineText) {
+    if (show !== "\u662F" || !countdownKeyword || !deadlineText) {
       continue;
     }
-
-    const matched =
-      productKeys.includes(countdownKeyword) ||
-      productKeys.some(k =>
-        k.includes(countdownKeyword) ||
-        countdownKeyword.includes(k)
-      );
-
+    const matched = productKeys.includes(countdownKeyword) || productKeys.some(
+      (k) => k.includes(countdownKeyword) || countdownKeyword.includes(k)
+    );
     if (!matched) {
       continue;
     }
-
     const match = deadlineText.match(
       /(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})\s+(\d{1,2}):(\d{2})/
     );
-
     if (!match) {
       return "";
     }
-
     const [, year, month, day, hour, minute] = match;
-
-    const deadline = new Date(
+    const deadline = /* @__PURE__ */ new Date(
       `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
     );
-
     const remainingMs = deadline.getTime() - Date.now();
-
     if (remainingMs <= 0) {
-      return `⏰ ${displayName}已結單${
-        closingText ? "\n\n" + closingText : ""
-      }`;
+      return `\u23F0 ${displayName}\u5DF2\u7D50\u55AE${closingText ? "\n\n" + closingText : ""}`;
     }
-
-    const totalMinutes = Math.floor(remainingMs / 60000);
+    const totalMinutes = Math.floor(remainingMs / 6e4);
     const days = Math.floor(totalMinutes / 1440);
-    const hours = Math.floor((totalMinutes % 1440) / 60);
+    const hours = Math.floor(totalMinutes % 1440 / 60);
     const minutes = totalMinutes % 60;
-
     const parts = [];
+    if (days > 0) parts.push(`${days}\u5929`);
+    if (hours > 0) parts.push(`${hours}\u5C0F\u6642`);
+    parts.push(`${minutes}\u5206\u9418`);
+    return `\u{1F4E2} ${displayName}\u6536\u55AE\u5012\u6578\u203C\uFE0F\u203C\uFE0F
 
-    if (days > 0) parts.push(`${days}天`);
-    if (hours > 0) parts.push(`${hours}小時`);
-    parts.push(`${minutes}分鐘`);
-
-   return `📢 ${displayName}收單倒數‼️‼️
-
-只剩🚨 ${parts.join("")}，🆘系統即將關單，逾期不候‼️${
-  closingText ? "\n\n" + closingText : ""
-}`;
+\u53EA\u5269\u{1F6A8} ${parts.join("")}\uFF0C\u{1F198}\u7CFB\u7D71\u5373\u5C07\u95DC\u55AE\uFF0C\u903E\u671F\u4E0D\u5019\u203C\uFE0F${closingText ? "\n\n" + closingText : ""}`;
   }
-
   return "";
 }
+__name(getCountdownText, "getCountdownText");
 async function replySheetProduct(replyToken, token, product) {
-  const text = `🛒 ${product.productName}
+  const text = `\u{1F6D2} ${product.productName}
 
 ${product.intro}
 
-${product.buyMethod || "🛒購買請留言+1或✔️私訊Queena"}`;
-
+${product.buyMethod || "\u{1F6D2}\u8CFC\u8CB7\u8ACB\u7559\u8A00+1\u6216\u2714\uFE0F\u79C1\u8A0AQueena"}`;
   const messages = [];
   const countdownText = await getCountdownText(
-  product.keyword || product.productName
-);
-
- if (product.photo) {
-  const photos = product.photo
-    .split(",")
-    .map(url => url.trim())
-    .filter(url => url.startsWith("http"));
-
- for (const photoUrl of photos.slice(0, 3)) {
-    messages.push({
-      type: "image",
-      originalContentUrl: photoUrl,
-      previewImageUrl: photoUrl
-    });
+    product.keyword || product.productName
+  );
+  if (product.photo) {
+    const photos = product.photo.split(",").map((url) => url.trim()).filter((url) => url.startsWith("http"));
+    for (const photoUrl of photos.slice(0, 3)) {
+      messages.push({
+        type: "image",
+        originalContentUrl: photoUrl,
+        previewImageUrl: photoUrl
+      });
+    }
   }
-}
-
   messages.push({
     type: "text",
     text
   });
-if (countdownText) {
-  messages.push({
-    type: "text",
-    text: countdownText
-  });
-}
+  if (countdownText) {
+    messages.push({
+      type: "text",
+      text: countdownText
+    });
+  }
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1221,74 +830,32 @@ if (countdownText) {
     })
   });
 }
+__name(replySheetProduct, "replySheetProduct");
 async function readSheetCsv(sheetName) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
   const res = await fetch(url);
   const csv = await res.text();
-
-  return csv
-    .split("\n")
-    .map(row =>
-      row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-        ?.map(cell => cell.replace(/^"|"$/g, "").trim()) || []
-    );
+  return csv.split("\n").map(
+    (row) => row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map((cell) => cell.replace(/^"|"$/g, "").trim()) || []
+  );
 }
-
+__name(readSheetCsv, "readSheetCsv");
 async function findNoticeFromSheet(command) {
-  const rows = await readSheetCsv("預告");
-
+  const rows = await readSheetCsv("\u9810\u544A");
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
-
     const cmd = row[0] || "";
     const imageUrl = row[1] || "";
     const message = row[2] || "";
-
     if (cmd === command) {
       return { imageUrl, message };
     }
   }
-
   return null;
 }
-
-async function getVideoListFromSheet() {
-  const rows = await readSheetCsv("影片");
-  let list = "📹 商品影片專區\n\n請輸入想看的商品：\n\n";
-
-  for (let i = 1; i < rows.length; i++) {
-    const keyword = rows[i][0] || "";
-    if (keyword) {
-      list += `🔸 ${keyword}\n`;
-    }
-  }
-
-  return list;
-}
-
-async function findVideoFromSheet(keyword) {
-  const rows = await readSheetCsv("影片");
-
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-
-    const key = row[0] || "";
-    const imageUrl = row[1] || "";
-    const title = row[2] || "";
-    const intro = row[3] || "";
-    const videoUrl = row[4] || "";
-
-    if (key === keyword) {
-      return { imageUrl, title, intro, videoUrl };
-    }
-  }
-
-  return null;
-}
-
+__name(findNoticeFromSheet, "findNoticeFromSheet");
 async function replyImageText(replyToken, token, imageUrl, message) {
   const messages = [];
-
   if (imageUrl) {
     messages.push({
       type: "image",
@@ -1296,14 +863,12 @@ async function replyImageText(replyToken, token, imageUrl, message) {
       previewImageUrl: imageUrl
     });
   }
-
   if (message) {
     messages.push({
       type: "text",
       text: message
     });
   }
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1316,30 +881,21 @@ async function replyImageText(replyToken, token, imageUrl, message) {
     })
   });
 }
-
+__name(replyImageText, "replyImageText");
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
-
-  
-
   if (videoData.imageUrl) {
+    messages.push({
+      type: "image",
+      originalContentUrl: videoData.imageUrl,
+      previewImageUrl: videoData.imageUrl
+    });
+  }
+  const videoText = videoData.videoUrl ? "\n\n\u89C0\u770B\u5F71\u7247\uFF1A\n" + videoData.videoUrl : "";
   messages.push({
-    type: "image",
-    originalContentUrl: videoData.imageUrl,
-    previewImageUrl: videoData.imageUrl
+    type: "text",
+    text: "\u{1F3AC} " + videoData.title + "\n\n" + (videoData.videoIntro || "\u9EDE\u6211\u770B\u4F7F\u7528\u5206\u4EAB") + videoText
   });
-}
-
-const videoText = videoData.videoUrl
-  ? "\n\n觀看影片：\n" + videoData.videoUrl
-  : "";
-
-messages.push({
-  type: "text",
-  text: "🎬 " + videoData.title +
-    "\n\n" + (videoData.videoIntro || "點我看使用分享") +
-    videoText
-});
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1352,100 +908,73 @@ messages.push({
     })
   });
 }
-
+__name(replyVideoInfo, "replyVideoInfo");
 async function findVideoSafe(keyword) {
-  const url =
-    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
-    encodeURIComponent("商品資料庫");
-
+  const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u5546\u54C1\u8CC7\u6599\u5EAB");
   const res = await fetch(url);
-
   if (!res.ok) {
-    throw new Error("商品資料庫讀取失敗：" + res.status);
+    throw new Error("\u5546\u54C1\u8CC7\u6599\u5EAB\u8B80\u53D6\u5931\u6557\uFF1A" + res.status);
   }
-
   const raw = await res.text();
   const jsonText = raw.substring(
     raw.indexOf("{"),
     raw.lastIndexOf("}") + 1
   );
   const data = JSON.parse(jsonText);
-
   const target = String(keyword || "").trim();
-
   for (const row of data.table.rows || []) {
     const sheetKeyword = String(row.c?.[0]?.v || "").trim();
     const imageUrl = String(row.c?.[1]?.v || "").trim();
     const title = String(row.c?.[2]?.v || "").trim();
     const intro = String(row.c?.[3]?.v || "").trim();
     const videoUrl = String(row.c?.[5]?.v || "").trim();
-const videoIntro = String(row.c?.[7]?.v || "").trim();
-    const keys = sheetKeyword
-      .split(",")
-      .map(k => k.trim())
-      .filter(Boolean);
-
-    const matched =
-      keys.includes(target) ||
-      keys.some(k => target.includes(k) || k.includes(target)) ||
-      title === target;
-
+    const videoIntro = String(row.c?.[7]?.v || "").trim();
+    const keys = sheetKeyword.split(",").map((k) => k.trim()).filter(Boolean);
+    const matched = keys.includes(target) || keys.some((k) => target.includes(k) || k.includes(target)) || title === target;
     if (matched) {
-     
       return {
-  imageUrl,
-  title,
-  intro,
-  videoUrl,
-  videoIntro
-};
+        imageUrl,
+        title,
+        intro,
+        videoUrl,
+        videoIntro
+      };
     }
   }
-
   return null;
 }
+__name(findVideoSafe, "findVideoSafe");
 async function replyVideoButtons(replyToken, token) {
-  const url =
-    "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" +
-    encodeURIComponent("商品資料庫");
-
+  const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u5546\u54C1\u8CC7\u6599\u5EAB");
   const res = await fetch(url);
-
   if (!res.ok) {
-    throw new Error("試算表讀取失敗：" + res.status);
+    throw new Error("\u8A66\u7B97\u8868\u8B80\u53D6\u5931\u6557\uFF1A" + res.status);
   }
-
   const raw = await res.text();
   const start = raw.indexOf("{");
   const end = raw.lastIndexOf("}");
   const data = JSON.parse(raw.slice(start, end + 1));
-
-  const items = (data.table.rows || [])
-    .map(row => {
-      const keyword = String(row.c?.[0]?.v || "").trim();
-      const imageUrl = String(row.c?.[1]?.v || "").split(",")[0].trim();
-      const title = String(row.c?.[2]?.v || keyword).trim();
-      const videoUrl = String(row.c?.[5]?.v || "").trim();
-      const videoIntro = String(row.c?.[7]?.v || "").trim();
-const videoShow = String(row.c?.[8]?.v || "").trim();
-      return {
-  keyword,
-  imageUrl,
-  title,
-  videoUrl,
-  videoIntro,
-  videoShow
-};
-    })
-   .filter(item => item.keyword && item.videoUrl.startsWith("http") && item.videoShow === "是")
-    .slice(0, 12);
-
+  const items = (data.table.rows || []).map((row) => {
+    const keyword = String(row.c?.[0]?.v || "").trim();
+    const imageUrl = String(row.c?.[1]?.v || "").split(",")[0].trim();
+    const title = String(row.c?.[2]?.v || keyword).trim();
+    const videoUrl = String(row.c?.[5]?.v || "").trim();
+    const videoIntro = String(row.c?.[7]?.v || "").trim();
+    const videoShow = String(row.c?.[8]?.v || "").trim();
+    return {
+      keyword,
+      imageUrl,
+      title,
+      videoUrl,
+      videoIntro,
+      videoShow
+    };
+  }).filter((item) => item.keyword && item.videoUrl.startsWith("http") && item.videoShow === "\u662F").slice(0, 12);
   if (items.length === 0) {
-    await replySimple(replyToken, token, "目前沒有設定商品影片");
+    await replySimple(replyToken, token, "\u76EE\u524D\u6C92\u6709\u8A2D\u5B9A\u5546\u54C1\u5F71\u7247");
     return;
   }
-
-  const itemRows = items.map(item => ({
+  const itemRows = items.map((item) => ({
     type: "box",
     layout: "horizontal",
     spacing: "sm",
@@ -1453,9 +982,7 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
     action: {
       type: "message",
       label: item.title.slice(0, 20),
-      text: "看影片 " + String(item.keyword || "")
-        .split(",")[0]
-        .trim()
+      text: "\u770B\u5F71\u7247 " + String(item.keyword || "").split(",")[0].trim()
     },
     contents: [
       {
@@ -1482,7 +1009,7 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
           },
           {
             type: "text",
-            text: "🎬 點我看影片",
+            text: "\u{1F3AC} \u9EDE\u6211\u770B\u5F71\u7247",
             size: "xs",
             color: "#7B1FA2",
             weight: "bold",
@@ -1490,7 +1017,7 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
           },
           {
             type: "text",
-            text: item.videoIntro || "使用分享｜商品介紹｜實拍影片",
+            text: item.videoIntro || "\u4F7F\u7528\u5206\u4EAB\uFF5C\u5546\u54C1\u4ECB\u7D39\uFF5C\u5BE6\u62CD\u5F71\u7247",
             size: "xs",
             color: "#666666",
             wrap: true,
@@ -1501,7 +1028,6 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
       }
     ]
   }));
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1512,7 +1038,7 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
       replyToken,
       messages: [{
         type: "flex",
-        altText: "商品影片專區",
+        altText: "\u5546\u54C1\u5F71\u7247\u5C08\u5340",
         contents: {
           type: "bubble",
           body: {
@@ -1522,14 +1048,14 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
             contents: [
               {
                 type: "text",
-                text: "🎬 商品影片專區",
+                text: "\u{1F3AC} \u5546\u54C1\u5F71\u7247\u5C08\u5340",
                 weight: "bold",
                 size: "lg",
                 color: "#333333"
               },
               {
                 type: "text",
-                text: "點選想看的影片",
+                text: "\u9EDE\u9078\u60F3\u770B\u7684\u5F71\u7247",
                 size: "xs",
                 color: "#666666",
                 margin: "xs"
@@ -1545,39 +1071,32 @@ const videoShow = String(row.c?.[8]?.v || "").trim();
       }]
     })
   });
-} 
+}
+__name(replyVideoButtons, "replyVideoButtons");
 async function replySmartFlex(replyToken, token) {
-  const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("商品資料庫");
-
+  const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u5546\u54C1\u8CC7\u6599\u5EAB");
   const res = await fetch(url);
   const raw = await res.text();
   const jsonText = raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
   const data = JSON.parse(jsonText);
-
-  const items = (data.table.rows || [])
-    .map(row => ({
-      label: String(row.c?.[0]?.v || "").trim(),
-      keyword: String(row.c?.[0]?.v || "").trim(),
-      show: String(row.c?.[6]?.v || "").trim()
-    }))
-    .filter(item => item.label && item.show === "是")
-    .slice(0, 8);
-
+  const items = (data.table.rows || []).map((row) => ({
+    label: String(row.c?.[0]?.v || "").trim(),
+    keyword: String(row.c?.[0]?.v || "").trim(),
+    show: String(row.c?.[6]?.v || "").trim()
+  })).filter((item) => item.label && item.show === "\u662F").slice(0, 8);
   const allItems = [
-  ...items,
-{ label: "🔍 搜尋商品", keyword: "搜尋" }
-];
-
+    ...items,
+    { label: "\u{1F50D} \u641C\u5C0B\u5546\u54C1", keyword: "\u641C\u5C0B" }
+  ];
   const rows = [];
   for (let i = 0; i < allItems.length; i += 1) {
     const rowItems = allItems.slice(i, i + 1);
-
     rows.push({
       type: "box",
       layout: "horizontal",
       spacing: "xs",
       margin: "xs",
-      contents: rowItems.map(item => ({
+      contents: rowItems.map((item) => ({
         type: "box",
         layout: "vertical",
         flex: 1,
@@ -1586,20 +1105,13 @@ async function replySmartFlex(replyToken, token) {
         paddingAll: "sm",
         action: {
           type: "message",
-          label: String(item.label || "")
-            .split(",")[0]
-            .trim()
-            .slice(0, 20),
-          text: String(item.keyword || "")
-            .split(",")[0]
-            .trim()
+          label: String(item.label || "").split(",")[0].trim().slice(0, 20),
+          text: String(item.keyword || "").split(",")[0].trim()
         },
         contents: [
           {
             type: "text",
-            text: String(item.label || "")
-              .split(",")[0]
-              .trim(),
+            text: String(item.label || "").split(",")[0].trim(),
             align: "center",
             size: "sm",
             weight: "bold",
@@ -1610,7 +1122,6 @@ async function replySmartFlex(replyToken, token) {
       }))
     });
   }
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1621,7 +1132,7 @@ async function replySmartFlex(replyToken, token) {
       replyToken,
       messages: [{
         type: "flex",
-        altText: "商品選單",
+        altText: "\u5546\u54C1\u9078\u55AE",
         contents: {
           type: "bubble",
           size: "mega",
@@ -1632,13 +1143,13 @@ async function replySmartFlex(replyToken, token) {
             contents: [
               {
                 type: "text",
-                text: "🛒 聰明挖寶趣",
+                text: "\u{1F6D2} \u8070\u660E\u6316\u5BF6\u8DA3",
                 weight: "bold",
                 size: "lg"
               },
               {
                 type: "text",
-    text: "點選分類 查看商品",
+                text: "\u9EDE\u9078\u5206\u985E \u67E5\u770B\u5546\u54C1",
                 size: "sm",
                 color: "#666666",
                 margin: "xs"
@@ -1651,77 +1162,60 @@ async function replySmartFlex(replyToken, token) {
     })
   });
 }
+__name(replySmartFlex, "replySmartFlex");
 async function replyClosingFlexList(replyToken, token) {
-  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("結單倒數");
-
+  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u7D50\u55AE\u5012\u6578");
   const res = await fetch(url);
   const raw = await res.text();
   const jsonText = raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
   const data = JSON.parse(jsonText);
-
   const now = Date.now();
-
-  const items = (data.table.rows || [])
-    .map(row => {
-      const keyword = String(row.c?.[0]?.v || "").trim();
-      const displayName = String(row.c?.[1]?.v || keyword).trim();
-      const deadlineText = String(row.c?.[2]?.f || row.c?.[2]?.v || "").trim();
-      const closingText = String(row.c?.[3]?.v || "").trim();
-      const show = String(row.c?.[4]?.v || "").trim();
-      const imageUrl = String(row.c?.[5]?.v || "").trim();
-
-      if (show !== "是") return null;
-
-      const match = deadlineText.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2}).*?(\d{1,2}):(\d{2})/);
-      if (!match) return null;
-
-      const [, year, month, day, hour, minute] = match;
-
-      const deadline = new Date(
-        `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
-      );
-
-      const remainingMs = deadline.getTime() - now;
-
-      const totalMinutes = Math.floor(remainingMs / 60000);
-      const days = Math.floor(totalMinutes / 1440);
-      const hours = Math.floor((totalMinutes % 1440) / 60);
-      const minutes = totalMinutes % 60;
-
-      let timeText = "";
-
-      if (remainingMs <= 0) {
-        timeText = "已結單";
-      } else {
-        const parts = [];
-        if (days > 0) parts.push(`${days}天`);
-        if (hours > 0) parts.push(`${hours}小時`);
-        parts.push(`${minutes}分鐘`);
-        timeText = `剩 ${parts.join("")}`;
-      }
-
-      return {
-        displayName,
-        closingText,
-        imageUrl,
-        deadline,
-        timeText,
-        keyword
-      };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.deadline - b.deadline)
-    .slice(0, 6);
-
- if (false && items.length === 0) {
-    await replySimple(replyToken, token, "目前沒有設定即將結單商品");
+  const items = (data.table.rows || []).map((row) => {
+    const keyword = String(row.c?.[0]?.v || "").trim();
+    const displayName = String(row.c?.[1]?.v || keyword).trim();
+    const deadlineText = String(row.c?.[2]?.f || row.c?.[2]?.v || "").trim();
+    const closingText = String(row.c?.[3]?.v || "").trim();
+    const show = String(row.c?.[4]?.v || "").trim();
+    const imageUrl = String(row.c?.[5]?.v || "").trim();
+    if (show !== "\u662F") return null;
+    const match = deadlineText.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2}).*?(\d{1,2}):(\d{2})/);
+    if (!match) return null;
+    const [, year, month, day, hour, minute] = match;
+    const deadline = /* @__PURE__ */ new Date(
+      `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
+    );
+    const remainingMs = deadline.getTime() - now;
+    const totalMinutes = Math.floor(remainingMs / 6e4);
+    const days = Math.floor(totalMinutes / 1440);
+    const hours = Math.floor(totalMinutes % 1440 / 60);
+    const minutes = totalMinutes % 60;
+    let timeText = "";
+    if (remainingMs <= 0) {
+      timeText = "\u5DF2\u7D50\u55AE";
+    } else {
+      const parts = [];
+      if (days > 0) parts.push(`${days}\u5929`);
+      if (hours > 0) parts.push(`${hours}\u5C0F\u6642`);
+      parts.push(`${minutes}\u5206\u9418`);
+      timeText = `\u5269 ${parts.join("")}`;
+    }
+    return {
+      displayName,
+      closingText,
+      imageUrl,
+      deadline,
+      timeText,
+      keyword
+    };
+  }).filter(Boolean).sort((a, b) => a.deadline - b.deadline).slice(0, 6);
+  if (false) {
+    await replySimple(replyToken, token, "\u76EE\u524D\u6C92\u6709\u8A2D\u5B9A\u5373\u5C07\u7D50\u55AE\u5546\u54C1");
     return;
   }
-
   const itemRows = [
-  ...items,
-  { displayName: "🔍 搜尋商品", keyword: "搜尋" }
-].map(item => ({
+    ...items,
+    { displayName: "\u{1F50D} \u641C\u5C0B\u5546\u54C1", keyword: "\u641C\u5C0B" }
+  ].map((item) => ({
     type: "box",
     layout: "horizontal",
     spacing: "sm",
@@ -1756,7 +1250,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-            text: "⏰ " + item.timeText,
+            text: "\u23F0 " + item.timeText,
             size: "xs",
             color: "#D32F2F",
             weight: "bold",
@@ -1764,7 +1258,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-            text: item.closingText || "想要的快留言＋1",
+            text: item.closingText || "\u60F3\u8981\u7684\u5FEB\u7559\u8A00\uFF0B1",
             size: "xs",
             color: "#666666",
             wrap: true,
@@ -1775,7 +1269,6 @@ async function replyClosingFlexList(replyToken, token) {
       }
     ]
   }));
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1786,7 +1279,7 @@ async function replyClosingFlexList(replyToken, token) {
       replyToken,
       messages: [{
         type: "flex",
-        altText: "最近結單清單",
+        altText: "\u6700\u8FD1\u7D50\u55AE\u6E05\u55AE",
         contents: {
           type: "bubble",
           body: {
@@ -1796,14 +1289,14 @@ async function replyClosingFlexList(replyToken, token) {
             contents: [
               {
                 type: "text",
-                text: "⏰ 最近結單清單",
+                text: "\u23F0 \u6700\u8FD1\u7D50\u55AE\u6E05\u55AE",
                 weight: "bold",
                 size: "lg",
                 color: "#333333"
               },
               {
                 type: "text",
-                text: "👑 Queena 私心推薦 💥逾期不候",
+                text: "\u{1F451} Queena \u79C1\u5FC3\u63A8\u85A6 \u{1F4A5}\u903E\u671F\u4E0D\u5019",
                 size: "xs",
                 color: "#666666",
                 margin: "xs"
@@ -1820,62 +1313,40 @@ async function replyClosingFlexList(replyToken, token) {
     })
   });
 }
+__name(replyClosingFlexList, "replyClosingFlexList");
 async function getProductCategoryItems(sheetId, sheetName) {
-  const url =
-    "https://docs.google.com/spreadsheets/d/" +
-    sheetId +
-    "/gviz/tq?tqx=out:json&sheet=" +
-    encodeURIComponent(sheetName);
-
+  const url = "https://docs.google.com/spreadsheets/d/" + sheetId + "/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent(sheetName);
   const res = await fetch(url);
   const text = await res.text();
-
   const jsonText = text.substring(
     text.indexOf("{"),
     text.lastIndexOf("}") + 1
   );
-
   const data = JSON.parse(jsonText);
   const rows = data.table?.rows || [];
-
-  return rows
-    .map(row => {
-      const c = row.c || [];
-
-      const keyword = String(c[0]?.v || "").trim();
-      const productName = String(c[2]?.v || "").trim();
-
-      // J 欄：商品分類
-      const category = String(c[9]?.v || "").trim();
-
-      // K 欄：是否主打
-      const isMain = String(c[10]?.v || "").trim();
-
-      // L 欄：排序
-      const sort = Number(c[11]?.v || 999);
-
-      const firstKeyword = keyword
-        .split(",")[0]
-        .split("，")[0]
-        .trim();
-
-      return {
-        keyword,
-        firstKeyword: firstKeyword || productName,
-        productName,
-        category,
-        isMain,
-        sort
-      };
-    })
-    .filter(item => item.keyword && item.productName);
+  return rows.map((row) => {
+    const c = row.c || [];
+    const keyword = String(c[0]?.v || "").trim();
+    const productName = String(c[2]?.v || "").trim();
+    const category = String(c[9]?.v || "").trim();
+    const isMain = String(c[10]?.v || "").trim();
+    const sort = Number(c[11]?.v || 999);
+    const firstKeyword = keyword.split(",")[0].split("\uFF0C")[0].trim();
+    return {
+      keyword,
+      firstKeyword: firstKeyword || productName,
+      productName,
+      category,
+      isMain,
+      sort
+    };
+  }).filter((item) => item.keyword && item.productName);
 }
-
+__name(getProductCategoryItems, "getProductCategoryItems");
 async function replyQuickButtons(replyToken, token, text, buttons) {
   const rows = [];
-
   for (let i = 0; i < buttons.length; i += 2) {
-    const rowButtons = buttons.slice(i, i + 2).map(btn => ({
+    const rowButtons = buttons.slice(i, i + 2).map((btn) => ({
       type: "button",
       style: "primary",
       height: "sm",
@@ -1885,7 +1356,6 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
         text: String(btn.text)
       }
     }));
-
     rows.push({
       type: "box",
       layout: "horizontal",
@@ -1893,7 +1363,6 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
       contents: rowButtons
     });
   }
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1905,7 +1374,7 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
       messages: [
         {
           type: "flex",
-          altText: "商品分類",
+          altText: "\u5546\u54C1\u5206\u985E",
           contents: {
             type: "bubble",
             size: "mega",
@@ -1916,7 +1385,7 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
               contents: [
                 {
                   type: "text",
-                  text: text,
+                  text,
                   weight: "bold",
                   size: "md",
                   wrap: true
@@ -1934,105 +1403,134 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
     })
   });
 }
-
+__name(replyQuickButtons, "replyQuickButtons");
 async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
   const products = await getProductCategoryItems(sheetId, sheetName);
-
   const categories = [
-  { label: "💄 保養美妝", text: "保養美妝" },
-  { label: "💪 營養保健", text: "營養保健" },
-  { label: "🏠 居家生活", text: "居家生活" },
-  { label: "🍗 生鮮美食", text: "生鮮美食" },
-  { label: "📱 3C", text: "3C" },
-  { label: "👕 服飾", text: "服飾" },
-  { label: "🌸 香氛美學", text: "香氛美學" }
-];
-
-  const mainProducts = products
-    .filter(item => item.isMain === "是")
-    .sort((a, b) => a.sort - b.sort)
-    .slice(0, 6);
-
- const buttons = [
-  ...categories,
-  { label: "🎬 影片專區", text: "影片" },
-  { label: "🔍 搜尋商品", text: "搜尋" },
-  ...mainProducts.map(item => ({
-    label: item.productName,
-    text: item.firstKeyword
-  }))
-];
-
-  const mainText = mainProducts.length
-    ? mainProducts.map(item => "・" + item.productName).join("\n")
-    : "目前尚未設定主打商品";
-
-  const msg =
-    "📂 分類逛逛\n" +
-    "點選分類 查看商品👀\n\n" +
-    "🎀 精選\n" +
-    mainText;
-
+    { label: "\u{1F484} \u4FDD\u990A\u7F8E\u599D", text: "\u4FDD\u990A\u7F8E\u599D" },
+    { label: "\u{1F4AA} \u71DF\u990A\u4FDD\u5065", text: "\u71DF\u990A\u4FDD\u5065" },
+    { label: "\u{1F3E0} \u5C45\u5BB6\u751F\u6D3B", text: "\u5C45\u5BB6\u751F\u6D3B" },
+    { label: "\u{1F357} \u751F\u9BAE\u7F8E\u98DF", text: "\u751F\u9BAE\u7F8E\u98DF" },
+    { label: "\u{1F4F1} 3C", text: "3C" },
+    { label: "\u{1F455} \u670D\u98FE", text: "\u670D\u98FE" },
+    { label: "\u{1F338} \u9999\u6C1B\u7F8E\u5B78", text: "\u9999\u6C1B\u7F8E\u5B78" }
+  ];
+  const mainProducts = products.filter((item) => item.isMain === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 6);
+  const buttons = [
+    ...categories,
+    { label: "\u{1F3AC} \u5F71\u7247\u5C08\u5340", text: "\u5F71\u7247" },
+    { label: "\u{1F50D} \u641C\u5C0B\u5546\u54C1", text: "\u641C\u5C0B" },
+    ...mainProducts.map((item) => ({
+      label: item.productName,
+      text: item.firstKeyword
+    }))
+  ];
+  const mainText = mainProducts.length ? mainProducts.map((item) => "\u30FB" + item.productName).join("\n") : "\u76EE\u524D\u5C1A\u672A\u8A2D\u5B9A\u4E3B\u6253\u5546\u54C1";
+  const msg = "\u{1F4C2} \u5206\u985E\u901B\u901B\n\u9EDE\u9078\u5206\u985E \u67E5\u770B\u5546\u54C1\u{1F440}\n\n\u{1F380} \u7CBE\u9078\n" + mainText;
   await replyQuickButtons(replyToken, token, msg, buttons);
 }
-
+__name(replyProductCategoryHome, "replyProductCategoryHome");
 async function replyProductCategoryList(replyToken, token, sheetId, sheetName, category, page = 1) {
   const products = await getProductCategoryItems(sheetId, sheetName);
-
   const pageSize = 8;
-
-  const list = products
-    .filter(item => item.category === category)
-    .sort((a, b) => a.sort - b.sort);
-
+  const list = products.filter((item) => item.category === category).sort((a, b) => a.sort - b.sort);
   if (list.length === 0) {
     await replySimple(
       replyToken,
       token,
-      "目前「" + category + "」分類還沒有商品。"
+      "\u76EE\u524D\u300C" + category + "\u300D\u5206\u985E\u9084\u6C92\u6709\u5546\u54C1\u3002"
     );
     return;
   }
-
   const totalPages = Math.ceil(list.length / pageSize);
   const safePage = Math.min(Math.max(page, 1), totalPages);
   const start = (safePage - 1) * pageSize;
   const pageItems = list.slice(start, start + pageSize);
-
-  const buttons = pageItems.map(item => ({
+  const buttons = pageItems.map((item) => ({
     label: item.productName,
     text: item.firstKeyword
   }));
-
   if (safePage > 1) {
     buttons.push({
-      label: "上一頁",
+      label: "\u4E0A\u4E00\u9801",
       text: category + (safePage - 1)
     });
   }
-
   if (safePage < totalPages) {
     buttons.push({
-      label: "下一頁",
+      label: "\u4E0B\u4E00\u9801",
       text: category + (safePage + 1)
     });
   }
-
-  const productText = pageItems
-    .map((item, index) => start + index + 1 + ". " + item.productName)
-    .join("\n");
-
-  const msg =
-    "📂 " + category + "分類" +
-    (totalPages > 1 ? " 第 " + safePage + "/" + totalPages + " 頁" : "") +
-    "\n\n請點下方商品查看介紹：\n\n" +
-    productText;
-
+  const productText = pageItems.map((item, index) => start + index + 1 + ". " + item.productName).join("\n");
+  const msg = "\u{1F4C2} " + category + "\u5206\u985E" + (totalPages > 1 ? " \u7B2C " + safePage + "/" + totalPages + " \u9801" : "") + "\n\n\u8ACB\u9EDE\u4E0B\u65B9\u5546\u54C1\u67E5\u770B\u4ECB\u7D39\uFF1A\n\n" + productText;
   await replyQuickButtons(replyToken, token, msg, buttons);
 }
+__name(replyProductCategoryList, "replyProductCategoryList");
 async function replyUvOnly(replyToken, token, env) {
   if (!env || !env.CWA_API_KEY) {
-    await replySimple(replyToken, token, "紫外線查詢失敗：CWA_API_KEY 尚未設定");
+    await replySimple(replyToken, token, "\u7D2B\u5916\u7DDA\u67E5\u8A62\u5931\u6557\uFF1ACWA_API_KEY \u5C1A\u672A\u8A2D\u5B9A");
+    return;
+  }
+  const url = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=" + encodeURIComponent(env.CWA_API_KEY) + "&format=JSON";
+  const res = await fetch(url);
+  const data = await res.json();
+  const stations = data.records?.Station || [];
+  const areas = [
+    { label: "\u5317\u90E8\uFF5C\u53F0\u5317", id: "466920", names: ["\u81FA\u5317", "\u53F0\u5317"] },
+    { label: "\u4E2D\u90E8\uFF5C\u53F0\u4E2D", id: "467490", names: ["\u81FA\u4E2D", "\u53F0\u4E2D", "\u81FA\u4E2D\u5E02", "\u53F0\u4E2D\u5E02", "\u68A7\u68F2"] },
+    { label: "\u5357\u90E8\uFF5C\u9AD8\u96C4", id: "467440", names: ["\u9AD8\u96C4"] }
+  ];
+  function uvLevel(n) {
+    n = Number(n);
+    if (isNaN(n)) return "\u5C1A\u672A\u6293\u5230\u8CC7\u6599";
+    if (n <= 2) return "\u4F4E\u91CF\u7D1A \u2600\u7D2B\u5916\u7DDA\u8F03\u4F4E";
+    if (n <= 5) return "\u4E2D\u91CF\u7D1A \u{1F4A7}\u66EC\u9ED1";
+    if (n <= 7) return "\u9AD8\u91CF\u7D1A \u{1F321}\uFE0F\u66EC\u50B7";
+    if (n <= 10) return "\u904E\u91CF\u7D1A \u26A0\uFE0F\u66EC\u50B7 \u8001\u5316";
+    return "\u5371\u96AA\u7D1A \u{1F6A8}\u975E\u5E38\u6BD2";
+  }
+  __name(uvLevel, "uvLevel");
+  function uvAdvice(n) {
+    n = Number(n);
+    if (isNaN(n)) return "";
+    if (n <= 2) return "\u{1F495}\uFF1A\u{1F324}\uFE0F \u7D2B\u5916\u7DDA\u8F03\u4F4E\uFF0C\u9752\u6625\u9632\u66EC\u8A18\u5F97\u64E6";
+    if (n <= 5) return "\u{1F495}\uFF1A\u{1F9F4} \u9752\u6625\u9632\u66EC\u8A18\u5F97\u64E6\uFF0C\u9069\u6642\u88DC\u6C34\u6216\u8292\u679C\u8336";
+    return "";
+  }
+  __name(uvAdvice, "uvAdvice");
+  function getUv(area) {
+    const station = stations.find((s) => {
+      const stationId = String(s.StationId || s.stationId || s.StationID || "");
+      const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
+      const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.countyName || "");
+      return stationId === area.id || area.names.some(
+        (name) => stationName.includes(name) || countyName.includes(name)
+      );
+    });
+    if (!station) return null;
+    const w = station.WeatherElement || {};
+    const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
+    const n = Number(uv);
+    if (isNaN(n) || n < 0) return null;
+    return n;
+  }
+  __name(getUv, "getUv");
+  const uvValues = [];
+  const blocks = areas.map((area) => {
+    const uv = getUv(area);
+    const advice = uvAdvice(uv);
+    if (uv !== null) uvValues.push(uv);
+    return area.label + "\n\u76EE\u524D\uFF1A" + (uv === null ? "-" : uv) + " " + uvLevel(uv) + (advice ? "\n" + advice : "");
+  });
+  const maxUv = uvValues.length ? Math.max(...uvValues) : 0;
+  const msg = "\u26F1\uFE0F \u76EE\u524D\u7D2B\u5916\u7DDA\u6307\u6578\n\n" + blocks.join("\n\n") + (maxUv >= 6 ? "\n\n\u2500\u2500 \u{1F495} \u8CBC\u5FC3\u63D0\u9192 \u2500\u2500\n\u{1F9F4} \u64E6\u9752\u6625\u9632\u66EC\uFF0B\u88DC\u6C34\u6216\u8292\u679C\u8336\n\u{1F452} \u5E3D\u5B50\uFF0F\u967D\u5098\uFF0F\u51B0\u51B0\u8863\n\u{1F319} \u665A\u4E0A\u8A18\u5F97\u539A\u6577\u5E73\u6CF0\u79C0" : "");
+  await replySimple(replyToken, token, msg);
+}
+__name(replyUvOnly, "replyUvOnly");
+async function replyMorningWeather(replyToken, token, env) {
+  if (!env || !env.CWA_API_KEY) {
+    await replySimple(replyToken, token, "即時天氣查詢失敗：CWA_API_KEY 尚未設定");
     return;
   }
 
@@ -2046,155 +1544,105 @@ async function replyUvOnly(replyToken, token, env) {
   const stations = data.records?.Station || [];
 
   const areas = [
-    { label: "北部｜台北", id: "466920", names: ["臺北", "台北"] },
-{ label: "中部｜台中", id: "467490", names: ["臺中", "台中", "臺中市", "台中市", "梧棲"] },
+{ label: "北部｜台北", id: "466930", names: ["板橋", "新北", "臺北", "台北"] },
+    { label: "中部｜台中", id: "467490", names: ["臺中", "台中", "梧棲"] },
     { label: "南部｜高雄", id: "467440", names: ["高雄"] }
   ];
 
   function uvLevel(n) {
     n = Number(n);
- if (isNaN(n)) return "尚未抓到資料";
-    if (n <= 2) return "低量級 ☀紫外線較低";
+    if (isNaN(n)) return "尚未抓到資料";
+    if (n <= 2) return "低量級 ☀️紫外線較低";
     if (n <= 5) return "中量級 💧曬黑";
     if (n <= 7) return "高量級 🌡️曬傷";
     if (n <= 10) return "過量級 ⚠️曬傷 老化";
     return "危險級 🚨非常毒";
   }
 
- function uvAdvice(n) {
-  n = Number(n);
-  if (isNaN(n)) return "";
-
-  if (n <= 2) return "💕：🌤️ 紫外線較低，青春防曬記得擦";
-  if (n <= 5) return "💕：🧴 青春防曬記得擦，適時補水或芒果茶";
-
-  return "";
-}
-  function getUv(area) {
-    const station = stations.find(s => {
+  function findStation(area) {
+    return stations.find(s => {
       const stationId = String(s.StationId || s.stationId || s.StationID || "");
-const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
-const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.countyName || "");
-
-return (
-  stationId === area.id ||
-  area.names.some(name =>
-    stationName.includes(name) || countyName.includes(name)
-  )
-);
+      const stationName = String(s.StationName || s.stationName || s.StationNameZh || "");
+      const countyName = String(s.GeoInfo?.CountyName || s.geoInfo?.CountyName || "");
+      return stationId === area.id || area.names.some(name => stationName.includes(name) || countyName.includes(name));
     });
-
-    if (!station) return null;
-
-    const w = station.WeatherElement || {};
-    const uv = w.UVIndex ?? w.UVI ?? station.UVIndex ?? station.UVI;
-    const n = Number(uv);
-
-    if (isNaN(n) || n < 0) return null;
-    return n;
   }
 
- const uvValues = [];
+  const blocks = areas.map(area => {
+    const s = findStation(area);
+    if (!s) {
+      return area.label + "\n目前溫度：尚未抓到資料\n目前雨量：尚未抓到資料\n目前紫外線：尚未抓到資料";
+    }
 
-const blocks = areas.map(area => {
-  const uv = getUv(area);
-  const advice = uvAdvice(uv);
+    const w = s.WeatherElement || {};
+    const temp = w.AirTemperature ?? w.airTemperature ?? "-";
+    const uv = w.UVIndex ?? w.UVI ?? s.UVIndex ?? s.UVI ?? "-";
+    const showTemp = Number(temp) <= -90 ? "暫無資料" : temp + "°C";
+const showUv = Number(uv) <= -90 ? "暫無資料" : uv + " " + uvLevel(uv);
 
-  if (uv !== null) uvValues.push(uv);
+    return area.label + "\n" +
+      "目前溫度：" + showTemp + "\n" +
+"紫外線：" + showUv;
+  });
 
-  return area.label + "\n" +
-    "目前：" + (uv === null ? "-" : uv) + " " + uvLevel(uv) +
-    (advice ? "\n" + advice : "");
-});
-
-const maxUv = uvValues.length ? Math.max(...uvValues) : 0;
-
-const msg =
-  "⛱️ 目前紫外線指數\n\n" +
-  blocks.join("\n\n") +
-  (
-    maxUv >= 6
-      ? "\n\n── 💕 貼心提醒 ──\n" +
-        "🧴 擦青春防曬＋補水或芒果茶\n" +
-        "👒 帽子／陽傘／冰冰衣\n" +
-        "🌙 晚上記得厚敷平泰秀"
-      : ""
-  );
-
-await replySimple(replyToken, token, msg);
-
-}
-
-async function replyMorningWeather(replyToken, token) {
   const msg =
-    "👑 Queena 天氣報報\n\n" +
-    "北部｜台北\n" +
-    "天氣：24～31°C\n" +
-    "降雨💧：30%\n" +
-    "最高紫外線：7 高量級 🌡️曬傷\n\n" +
-    "中部｜台中\n" +
-    "天氣：25～32°C\n" +
-    "降雨☔：30%\n" +
-    "最高紫外線：7 高量級 🌡️曬傷\n\n" +
-    "南部｜高雄\n" +
-    "天氣：26～33°C\n" +
-    "降雨🌧️：30%\n" +
-    "最高紫外線：7 高量級 🌡️曬傷\n\n" +
-    "── 💕 貼心提醒 ──\n" +
-    "☂️ 降雨機率高記得帶傘\n" +
-    "🧴 擦 青春防曬＋補水或芒果茶\n" +
+    "👑 Queena 即時天氣\n\n" +
+    blocks.join("\n\n") +
+    "\n\n. . .💕 貼心提醒 . . .\n" +
+    "🧴 青春防曬＋補水或芒果茶\n" +
     "👒 帽子／陽傘／冰冰衣";
 
   await replySimple(replyToken, token, msg);
 }
+__name(replyMorningWeather, "replyMorningWeather");
+
 async function replyCuteHome(replyToken, token) {
   const message = {
-    type: "imagemap",
-    baseUrl: "baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu",",
-    altText: "Queena 不踩雷指南",
-    baseSize: {
-      width: 1040,
-      height: 1471
-    },
-    actions: [
+  type: "imagemap",
+  baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu-v3",
+  altText: "👑Queena 不踩雷指南",
+  baseSize: {
+  width: 1040,
+  height: 1200
+},
+  actions: [
       {
         type: "message",
-        text: "購物車",
-        area: { x: 0, y: 560, width: 520, height: 230 }
+        text: "\u8CFC\u7269\u8ECA",
+       area: { x: 0, y: 430, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "分類",
-        area: { x: 520, y: 560, width: 520, height: 230 }
+        text: "\u5206\u985E",
+       area: { x: 520, y: 430, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "影片",
-        area: { x: 0, y: 790, width: 520, height: 230 }
+        text: "\u5F71\u7247",
+        area: { x: 0, y: 630, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "搜尋",
-        area: { x: 520, y: 790, width: 520, height: 230 }
+        text: "\u641C\u5C0B",
+        area: { x: 520, y: 630, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "天氣",
-        area: { x: 0, y: 1020, width: 520, height: 230 }
+    text: "即時天氣",
+        area: { x: 0, y: 830, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "紫外線",
-        area: { x: 520, y: 1020, width: 520, height: 230 }
+        text: "\u7D2B\u5916\u7DDA",
+        area: { x: 520, y: 830, width: 520, height: 180 }
       },
       {
         type: "message",
-        text: "私訊",
-        area: { x: 0, y: 1250, width: 1040, height: 220 }
+        text: "\u79C1\u8A0A",
+        area: { x: 0, y: 1020, width: 1040, height: 160 }
       }
     ]
   };
-
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -2207,3 +1655,10 @@ async function replyCuteHome(replyToken, token) {
     })
   });
 }
+
+__name(replyCuteHome, "replyCuteHome");
+export {
+  index_default as default
+};
+
+//# sourceMappingURL=index.js.map
