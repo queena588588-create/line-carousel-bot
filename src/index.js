@@ -1571,7 +1571,7 @@ async function replyMorningWeather(replyToken, token, env) {
   const blocks = areas.map(area => {
     const s = findStation(area);
     if (!s) {
-      return area.label + "\n目前溫度：尚未抓到資料\n目前雨量：尚未抓到資料\n目前紫外線：尚未抓到資料";
+      return area.label + "\n目前溫度：尚未抓到資料";
     }
 
     const w = s.WeatherElement || {};
@@ -1580,9 +1580,8 @@ async function replyMorningWeather(replyToken, token, env) {
     const showTemp = Number(temp) <= -90 ? "暫無資料" : temp + "°C";
 const showUv = Number(uv) <= -90 ? "暫無資料" : uv + " " + uvLevel(uv);
 
-    return area.label + "\n" +
-      "目前溫度：" + showTemp + "\n" +
-"紫外線：" + showUv;
+   return area.label + "\n" +
+  "目前溫度：" + showTemp;
   });
 
   const msg =
