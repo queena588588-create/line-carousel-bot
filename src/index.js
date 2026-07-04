@@ -1621,7 +1621,7 @@ async function replyWeatherSummary(replyToken, token, env) {
   const areas = [
     { label: "北部｜台北", id: "466930" },
     { label: "中部｜台中", id: "467490" },
-    { label: "南部｜高雄", id: "467440" }
+   { label: "南部｜高雄", id: "467440" }
   ];
 
   const blocks = areas.map(area => {
