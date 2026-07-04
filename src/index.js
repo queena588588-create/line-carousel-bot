@@ -234,7 +234,7 @@ return new Response("OK");
         if (event.type === "message" && event.message.type === "text") {
           const text = event.message.text.trim();
          
-        if (text === "即時天氣") {
+       if (text === "即時天氣" || text === "天氣" || text === "今日天氣") {
   await replyMorningWeather(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
