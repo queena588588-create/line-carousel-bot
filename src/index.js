@@ -234,11 +234,11 @@ return new Response("OK");
         if (event.type === "message" && event.message.type === "text") {
           const text = event.message.text.trim();
          
-      if (text === "天氣速報") {
-  await replyWeatherSummary(
+     if (text === "天氣速報") {
+  await replySimple(
     event.replyToken,
     CHANNEL_ACCESS_TOKEN,
-    env
+    "🌤 天氣速報資料調整中，請先輸入「即時天氣」查看目前氣溫，或輸入「紫外線」查看即時指數。"
   );
   continue;
 }
