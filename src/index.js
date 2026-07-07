@@ -1632,9 +1632,10 @@ async function replyWeatherSummary(replyToken, token, env) {
     if (!s) return `${area.label}｜尚未抓到資料`;
 
     const w = s.WeatherElement || {};
-    const temp = w.AirTemperature ?? w.airTemperature ?? "--";
+    let temp = w.AirTemperature ?? w.airTemperature ?? "--";
+if (Number(temp) <= -90) temp = "暫無資料";
 
-    return `${area.label} ${temp}°C`;
+return `${area.label} ${temp === "暫無資料" ? temp : temp + "°C"}`;
   });
 
   await replySimple(
