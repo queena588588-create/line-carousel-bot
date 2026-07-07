@@ -1528,7 +1528,7 @@ async function replyUvOnly(replyToken, token, env) {
   const uvValues = [];
   const blocks = areas.map((area) => {
     const uv = getUv(area);
-    const advice = uvAdvice(uv);
+   const advice = uv === null ? "" : uvAdvice(uv);
     if (uv !== null) uvValues.push(uv);
     return area.label + "\n\u76EE\u524D\uFF1A" + (uv === null ? "-" : uv) + " " + uvLevel(uv) + (advice ? "\n" + advice : "");
   });
