@@ -1530,7 +1530,7 @@ async function replyUvOnly(replyToken, token, env) {
     const uv = getUv(area);
    const advice = uv === null ? "" : uvAdvice(uv);
     if (uv !== null) uvValues.push(uv);
-    return area.label + "\n\u76EE\u524D\uFF1A" + (uv === null ? "-" : uv) + " " + uvLevel(uv) + (advice ? "\n" + advice : "");
+   return area.label + "\n目前：" + (uv === null ? "尚未抓到資料" : uv + " " + uvLevel(uv)) + (advice ? "\n" + advice : "");
   });
   const maxUv = uvValues.length ? Math.max(...uvValues) : 0;
   const msg = "\u26F1\uFE0F \u76EE\u524D\u7D2B\u5916\u7DDA\u6307\u6578\n\n" + blocks.join("\n\n") + (maxUv >= 6 ? "\n\n\u2500\u2500 \u{1F495} \u8CBC\u5FC3\u63D0\u9192 \u2500\u2500\n\u{1F9F4} \u64E6\u9752\u6625\u9632\u66EC\uFF0B\u88DC\u6C34\u6216\u8292\u679C\u8336\n\u{1F452} \u5E3D\u5B50\uFF0F\u967D\u5098\uFF0F\u51B0\u51B0\u8863\n\u{1F319} \u665A\u4E0A\u8A18\u5F97\u539A\u6577\u5E73\u6CF0\u79C0" : "");
