@@ -1486,10 +1486,10 @@ async function replyUvOnly(replyToken, token, env) {
   const data = await res.json();
   const stations = data.records?.Station || [];
   const areas = [
-    { label: "\u5317\u90E8\uFF5C\u53F0\u5317", id: "466920", names: ["\u81FA\u5317", "\u53F0\u5317"] },
-    { label: "\u4E2D\u90E8\uFF5C\u53F0\u4E2D", id: "467490", names: ["\u81FA\u4E2D", "\u53F0\u4E2D", "\u81FA\u4E2D\u5E02", "\u53F0\u4E2D\u5E02", "\u68A7\u68F2"] },
-    { label: "\u5357\u90E8\uFF5C\u9AD8\u96C4", id: "467440", names: ["\u9AD8\u96C4"] }
-  ];
+  { label: "北部｜台北", id: "466920", names: ["臺北", "台北", "板橋", "新北"] },
+  { label: "中部｜台中", id: "467490", names: ["臺中", "台中", "梧棲"] },
+  { label: "南部｜高雄", id: "467440", names: ["高雄", "小港", "左營", "岡山"] }
+];
   function uvLevel(n) {
     n = Number(n);
     if (isNaN(n)) return "\u5C1A\u672A\u6293\u5230\u8CC7\u6599";
@@ -1552,11 +1552,11 @@ async function replyMorningWeather(replyToken, token, env) {
   const data = await res.json();
   const stations = data.records?.Station || [];
 
-  const areas = [
-{ label: "北部｜台北", id: "466930", names: ["板橋", "新北", "臺北", "台北"] },
-    { label: "中部｜台中", id: "467490", names: ["臺中", "台中", "梧棲"] },
-{ label: "南部｜高雄", id: "高雄" }
-  ];
+const areas = [
+  { label: "北部｜台北", id: "466930", names: ["臺北", "台北", "板橋", "新北"] },
+  { label: "中部｜台中", id: "467490", names: ["臺中", "台中", "梧棲"] },
+  { label: "南部｜高雄", id: "467440", names: ["高雄", "小港", "左營", "岡山"] }
+];
 
   function uvLevel(n) {
     n = Number(n);
