@@ -141,6 +141,10 @@ return new Response("OK");
             continue;
           }
           try {
+            if (text === "\u5C0F\u5E6B\u624B\u6307\u4EE4") {
+  await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
+  continue;
+}
             const sheetProduct = await findProductFromSheet(text, SHEET_ID2, SHEET_NAME);
             if (sheetProduct) {
               await replySheetProduct(
@@ -377,10 +381,7 @@ if (text === "天氣速報" || text === "天氣" || text === "今日天氣") {
             );
             continue;
           }
-          if (text === "\u5C0F\u5E6B\u624B\u6307\u4EE4") {
-            await replyHelperButtons(event.replyToken, CHANNEL_ACCESS_TOKEN);
-            continue;
-          }
+         
           if (text === "\u641C\u5C0B") {
             await replySimple(
               event.replyToken,
