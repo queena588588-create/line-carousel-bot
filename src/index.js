@@ -803,7 +803,7 @@ async function replySheetProduct(replyToken, token, product) {
 
 ${product.intro}
 
-${product.buyMethod || "\u{1F6D2}\u8CFC\u8CB7\u8ACB\u7559\u8A00+1\u6216\u2714\uFE0F\u79C1\u8A0AQueena"}`;
+${product.buyMethod || ""}`;
   const messages = [];
   const countdownText = await getCountdownText(
     product.keyword || product.productName
