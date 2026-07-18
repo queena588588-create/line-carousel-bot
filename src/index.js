@@ -900,7 +900,7 @@ const flexContents = [];
 if (videoData.imageUrl) {
   flexContents.push({
     type: "image",
-    url: videoData.imageUrl,
+   url: videoThumb,
     size: "sm",
     aspectRatio: "16:9",
     aspectMode: "cover",
