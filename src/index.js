@@ -896,48 +896,18 @@ async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
 const flexContents = [];
 
-// 小縮圖＋影片介紹放同一排
+// 小張影片縮圖
 if (videoData.imageUrl) {
   flexContents.push({
-    type: "box",
-    layout: "horizontal",
-    spacing: "md",
-    contents: [
-      {
-        type: "image",
-        url: videoData.imageUrl,
-        size: "sm",
-        aspectRatio: "1:1",
-        aspectMode: "cover",
-        flex: 2,
-        action: videoData.videoUrl ? {
-          type: "uri",
-          uri: videoData.videoUrl
-        } : undefined
-      },
-      {
-        type: "box",
-        layout: "vertical",
-        flex: 4,
-        contents: [
-          {
-            type: "text",
-            text: "🎬 " + videoData.title,
-            weight: "bold",
-            size: "lg",
-            wrap: true
-          },
-          {
-            type: "text",
-            text: videoData.videoIntro || "",
-            size: "md",
-            color: "#555555",
-            wrap: true,
-            margin: "md"
-          }
-        ]
-      }
-    ]
+    type: "image",
+    url: videoData.imageUrl,
+    size: "sm",
+    aspectRatio: "16:9",
+    aspectMode: "cover",
+    action: videoData.videoUrl ? {
+      type: "uri",
+      uri: videoData.videoUrl
+    } : undefined
   });
 }
 
@@ -945,14 +915,34 @@ if (videoData.imageUrl) {
 if (videoData.videoUrl) {
   flexContents.push({
     type: "button",
-    margin: "lg",
+    margin: "md",
     height: "sm",
-    style: "primary",
     action: {
       type: "uri",
       label: "▶ 觀看影片",
       uri: videoData.videoUrl
     }
+  });
+}
+
+// 標題
+flexContents.push({
+  type: "text",
+  text: "🎬 " + videoData.title,
+  weight: "bold",
+  size: "lg",
+  wrap: true,
+  margin: "lg"
+});
+
+// 影片文案
+if (videoData.videoIntro) {
+  flexContents.push({
+    type: "text",
+    text: videoData.videoIntro,
+    size: "md",
+    wrap: true,
+    margin: "md"
   });
 }
 
@@ -965,14 +955,11 @@ messages.push({
     body: {
       type: "box",
       layout: "vertical",
-      spacing: "md",
+      spacing: "sm",
       contents: flexContents
     }
   }
 });
-  messages.push({
-    type: "text",
-    text: "\u{1F3AC} " + videoData.title + "\n\n" + (videoData.videoIntro || "\u9EDE\u6211\u770B\u4F7F\u7528\u5206\u4EAB") + videoText
   });
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
