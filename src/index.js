@@ -894,45 +894,82 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 __name(replyImageText, "replyImageText");
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
-  if (videoData.imageUrl && videoData.videoUrl) {
-  messages.push({
-    type: "flex",
-    altText: "🎬 " + videoData.title,
-    contents: {
-      type: "bubble",
-      size: "micro",
-      hero: {
+const flexContents = [];
+
+// 小縮圖＋影片介紹放同一排
+if (videoData.imageUrl) {
+  flexContents.push({
+    type: "box",
+    layout: "horizontal",
+    spacing: "md",
+    contents: [
+      {
         type: "image",
         url: videoData.imageUrl,
-        size: "full",
-        aspectRatio: "16:9",
+        size: "sm",
+        aspectRatio: "1:1",
         aspectMode: "cover",
-        action: {
+        flex: 2,
+        action: videoData.videoUrl ? {
           type: "uri",
-          label: "觀看影片",
           uri: videoData.videoUrl
-        }
+        } : undefined
       },
-      footer: {
+      {
         type: "box",
         layout: "vertical",
+        flex: 4,
         contents: [
           {
-            type: "button",
-            height: "sm",
-            action: {
-              type: "uri",
-              label: "▶ 觀看影片",
-              uri: videoData.videoUrl
-            }
+            type: "text",
+            text: "🎬 " + videoData.title,
+            weight: "bold",
+            size: "lg",
+            wrap: true
+          },
+          {
+            type: "text",
+            text: videoData.videoIntro || "",
+            size: "md",
+            color: "#555555",
+            wrap: true,
+            margin: "md"
           }
         ]
       }
+    ]
+  });
+}
+
+// 觀看影片按鈕
+if (videoData.videoUrl) {
+  flexContents.push({
+    type: "button",
+    margin: "lg",
+    height: "sm",
+    style: "primary",
+    action: {
+      type: "uri",
+      label: "▶ 觀看影片",
+      uri: videoData.videoUrl
     }
   });
 }
 
-const videoText = "";
+messages.push({
+  type: "flex",
+  altText: "🎬 " + videoData.title,
+  contents: {
+    type: "bubble",
+    size: "kilo",
+    body: {
+      type: "box",
+      layout: "vertical",
+      spacing: "md",
+      contents: flexContents
+    }
+  }
+});
   messages.push({
     type: "text",
     text: "\u{1F3AC} " + videoData.title + "\n\n" + (videoData.videoIntro || "\u9EDE\u6211\u770B\u4F7F\u7528\u5206\u4EAB") + videoText
