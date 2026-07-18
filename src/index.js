@@ -894,77 +894,76 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 __name(replyImageText, "replyImageText");
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
-  async function replyVideoInfo(replyToken, token, videoData) {
+async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
-
- 
-
   const flexContents = [];
 
-// 小張影片縮圖
-if (videoData.imageUrl) {
-  flexContents.push({
-    type: "image",
-   url: videoData.imageUrl,
-    size: "sm",
-    aspectRatio: "16:9",
-    aspectMode: "cover",
-    action: videoData.videoUrl ? {
-      type: "uri",
-      uri: videoData.videoUrl
-    } : undefined
-  });
-}
+  // 小張縮圖
+  if (videoData.imageUrl) {
+    flexContents.push({
+      type: "image",
+      url: videoData.imageUrl,
+      size: "sm",
+      aspectRatio: "16:9",
+      aspectMode: "cover",
+      action: videoData.videoUrl
+        ? {
+            type: "uri",
+            uri: videoData.videoUrl
+          }
+        : undefined
+    });
+  }
 
-// 觀看影片按鈕
-if (videoData.videoUrl) {
-  flexContents.push({
-    type: "button",
-    margin: "md",
-    height: "sm",
-    action: {
-      type: "uri",
-      label: "▶ 觀看影片",
-      uri: videoData.videoUrl
-    }
-  });
-}
+  // 觀看影片按鈕
+  if (videoData.videoUrl) {
+    flexContents.push({
+      type: "button",
+      margin: "md",
+      height: "sm",
+      action: {
+        type: "uri",
+        label: "▶ 觀看影片",
+        uri: videoData.videoUrl
+      }
+    });
+  }
 
-// 標題
-flexContents.push({
-  type: "text",
-  text: "🎬 " + videoData.title,
-  weight: "bold",
-  size: "lg",
-  wrap: true,
-  margin: "lg"
-});
-
-// 影片文案
-if (videoData.videoIntro) {
+  // 標題
   flexContents.push({
     type: "text",
-    text: videoData.videoIntro,
-    size: "md",
+    text: "🎬 " + videoData.title,
+    weight: "bold",
+    size: "lg",
     wrap: true,
-    margin: "md"
+    margin: "lg"
   });
-}
 
-messages.push({
-  type: "flex",
-  altText: "🎬 " + videoData.title,
-  contents: {
-    type: "bubble",
-    size: "kilo",
-    body: {
-      type: "box",
-      layout: "vertical",
-      spacing: "sm",
-      contents: flexContents
-    }
+  // 影片文案
+  if (videoData.videoIntro) {
+    flexContents.push({
+      type: "text",
+      text: videoData.videoIntro,
+      size: "md",
+      wrap: true,
+      margin: "md"
+    });
   }
-});
+
+  messages.push({
+    type: "flex",
+    altText: "🎬 " + videoData.title,
+    contents: {
+      type: "bubble",
+      size: "kilo",
+      body: {
+        type: "box",
+        layout: "vertical",
+        spacing: "sm",
+        contents: flexContents
+      }
+    }
+  });
 
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -979,11 +978,6 @@ messages.push({
   });
 }
 __name(replyVideoInfo, "replyVideoInfo");
-async function findVideoSafe(keyword) {
-  const url = "https://docs.google.com/spreadsheets/d/1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u5546\u54C1\u8CC7\u6599\u5EAB");
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("\u5546\u54C1\u8CC7\u6599\u5EAB\u8B80\u53D6\u5931\u6557\uFF1A" + res.status);
   }
   const raw = await res.text();
   const jsonText = raw.substring(
