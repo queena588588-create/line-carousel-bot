@@ -897,22 +897,15 @@ async function replyVideoInfo(replyToken, token, videoData) {
   async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
 
-  const youtubeId = videoData.videoUrl?.match(
-    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^?&/]+)/
-  )?.[1];
-
-  const videoThumb = youtubeId
-    ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`
-    : videoData.imageUrl;
+ 
 
   const flexContents = [];
-const flexContents = [];
 
 // 小張影片縮圖
 if (videoData.imageUrl) {
   flexContents.push({
     type: "image",
-   url: videoThumb,
+   url: videoData.imageUrl,
     size: "sm",
     aspectRatio: "16:9",
     aspectMode: "cover",
