@@ -894,6 +894,18 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 __name(replyImageText, "replyImageText");
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
+  async function replyVideoInfo(replyToken, token, videoData) {
+  const messages = [];
+
+  const youtubeId = videoData.videoUrl?.match(
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^?&/]+)/
+  )?.[1];
+
+  const videoThumb = youtubeId
+    ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`
+    : videoData.imageUrl;
+
+  const flexContents = [];
 const flexContents = [];
 
 // 小張影片縮圖
