@@ -900,7 +900,14 @@ const flexContents = [];
 if (videoData.imageUrl) {
   flexContents.push({
     type: "image",
-    url: videoData.imageUrl,
+  url: (() => {
+  const m = String(videoData.videoUrl || "").match(
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^?&/]+)/
+  );
+  return m
+    ? `https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg`
+    : videoData.imageUrl;
+})(),
     size: "sm",
     aspectRatio: "16:9",
     aspectMode: "cover",
