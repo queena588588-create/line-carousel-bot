@@ -960,7 +960,7 @@ messages.push({
     }
   }
 });
-  });
+
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
