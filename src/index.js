@@ -612,7 +612,7 @@ async function replyCarouselFromSheet(replyToken, token) {
         type: "image",
         url: item.image,
         size: "full",
-        aspectRatio: "20:6",
+        aspectRatio: "20:5",
         aspectMode: "cover"
       },
       body: {
@@ -894,14 +894,45 @@ async function replyImageText(replyToken, token, imageUrl, message) {
 __name(replyImageText, "replyImageText");
 async function replyVideoInfo(replyToken, token, videoData) {
   const messages = [];
-  if (videoData.imageUrl) {
-    messages.push({
-      type: "image",
-      originalContentUrl: videoData.imageUrl,
-      previewImageUrl: videoData.imageUrl
-    });
-  }
-  const videoText = videoData.videoUrl ? "\n\n\u89C0\u770B\u5F71\u7247\uFF1A\n" + videoData.videoUrl : "";
+  if (videoData.imageUrl && videoData.videoUrl) {
+  messages.push({
+    type: "flex",
+    altText: "🎬 " + videoData.title,
+    contents: {
+      type: "bubble",
+      size: "micro",
+      hero: {
+        type: "image",
+        url: videoData.imageUrl,
+        size: "full",
+        aspectRatio: "16:9",
+        aspectMode: "cover",
+        action: {
+          type: "uri",
+          label: "觀看影片",
+          uri: videoData.videoUrl
+        }
+      },
+      footer: {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "button",
+            height: "sm",
+            action: {
+              type: "uri",
+              label: "▶ 觀看影片",
+              uri: videoData.videoUrl
+            }
+          }
+        ]
+      }
+    }
+  });
+}
+
+const videoText = "";
   messages.push({
     type: "text",
     text: "\u{1F3AC} " + videoData.title + "\n\n" + (videoData.videoIntro || "\u9EDE\u6211\u770B\u4F7F\u7528\u5206\u4EAB") + videoText
