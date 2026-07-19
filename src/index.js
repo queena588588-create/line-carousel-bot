@@ -607,7 +607,7 @@ async function replyCarouselFromSheet(replyToken, token) {
     }
     return {
       type: "bubble",
-      size: "kilo",
+size: "mega",
       hero: {
         type: "image",
         url: item.image,
