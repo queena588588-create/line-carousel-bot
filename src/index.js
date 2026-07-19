@@ -908,7 +908,7 @@ if (videoData.imageUrl) {
     ? `https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg`
     : videoData.imageUrl;
 })(),
-    size: "sm",
+size: "md",
     aspectRatio: "16:9",
     aspectMode: "cover",
     action: videoData.videoUrl ? {
