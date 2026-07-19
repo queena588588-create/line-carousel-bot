@@ -612,7 +612,7 @@ async function replyCarouselFromSheet(replyToken, token) {
         type: "image",
         url: item.image,
         size: "full",
-        aspectRatio: "20:5",
+        aspectRatio: "20:10",
         aspectMode: "cover"
       },
       body: {
