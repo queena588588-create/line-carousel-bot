@@ -607,12 +607,12 @@ async function replyCarouselFromSheet(replyToken, token) {
     }
     return {
       type: "bubble",
-size: "mega",
+size: "kilo",
       hero: {
         type: "image",
         url: item.image,
         size: "full",
-        aspectRatio: "20:10",
+     aspectRatio: "1:1",
         aspectMode: "cover"
       },
       body: {
