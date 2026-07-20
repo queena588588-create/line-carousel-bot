@@ -612,7 +612,7 @@ size: "kilo",
         type: "image",
         url: item.image,
         size: "full",
-     aspectRatio: "1:1",
+    aspectRatio: "20:13",
         aspectMode: "cover"
       },
       body: {
