@@ -1279,7 +1279,7 @@ async function replyClosingFlexList(replyToken, token) {
       timeText,
       keyword
     };
-  }).filter(Boolean).sort((a, b) => a.deadline - b.deadline).slice(0, 6);
+  }).filter(Boolean).sort((a, b) => a.deadline - b.deadline).slice(0, 10);
   if (false) {
     await replySimple(replyToken, token, "\u76EE\u524D\u6C92\u6709\u8A2D\u5B9A\u5373\u5C07\u7D50\u55AE\u5546\u54C1");
     return;
