@@ -1322,7 +1322,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-         text: "⏰ " + (item.timeText || "即將結單"),
+        text: item.timeText ? "⏰ " + item.timeText : "⏰ 即將結單",
             size: "xs",
             color: "#D32F2F",
             weight: "bold",
