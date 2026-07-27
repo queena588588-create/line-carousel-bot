@@ -1322,7 +1322,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-        text: item.timeText ? "⏰ " + item.timeText : "⏰ 即將結單",
+        text: item.displayName === "🔍 搜尋商品" ? " " : "⏰ " + item.timeText,
             size: "xs",
             color: "#D32F2F",
             weight: "bold",
@@ -1330,7 +1330,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-           text: item.closingText || "喜歡快＋1",
+          text: item.displayName === "🔍 搜尋商品" ? " " : (item.closingText || ""),
             size: "xs",
             color: "#666666",
             wrap: true,
