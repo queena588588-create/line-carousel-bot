@@ -793,7 +793,7 @@ async function getCountdownText(productKeyword) {
     parts.push(`${minutes}\u5206\u9418`);
     return `\u{1F4E2} ${displayName}\u6536\u55AE\u5012\u6578\u203C\uFE0F\u203C\uFE0F
 
-\u{1F198}\u53EA\u5269 ${parts.join("")}\uFF0C\u{1F6A8}\u6700\u5F8C\u5012\u6578\uFF0C\u7D50\u55AE\u5F8C\u7121\u6CD5\u52A0\u55AE\u203C\uFE0F${closingText ? "\n\n" + closingText : ""}`;
+\u53EA\u5269\u{1F6A8} ${parts.join("")}\uFF0C\u{1F6A8}\u5373\u5C07\u7D50\u55AE\uFF0C\u903E\u671F\u4E0D\u5019\u203C\uFE0F${closingText ? "\n\n" + closingText : ""}`;
   }
   return "";
 }
