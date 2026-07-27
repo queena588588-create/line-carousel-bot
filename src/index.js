@@ -1322,7 +1322,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-            text: "\u23F0 " + item.timeText,
+            text: item.timeText ? "⏰ " + item.timeText : "",
             size: "xs",
             color: "#D32F2F",
             weight: "bold",
@@ -1330,7 +1330,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-            text: item.closingText || "\u60F3\u8981\u7684\u5FEB\u7559\u8A00\uFF0B1",
+           text: item.closingText || "喜歡快＋1",
             size: "xs",
             color: "#666666",
             wrap: true,
