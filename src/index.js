@@ -1100,49 +1100,62 @@ async function replyVideoButtons(replyToken, token) {
       }
     ]
   }));
-  const videoPages = [];
+ const videoPages = [];
 
 for (let i = 0; i < itemRows.length; i += 6) {
   videoPages.push(itemRows.slice(i, i + 6));
 }
   await fetch("https://api.line.me/v2/bot/message/reply", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token
-    },
-    body: JSON.stringify({
-      replyToken,
-      messages: [{
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + token
+  },
+  body: JSON.stringify({
+    replyToken,
+    messages: [
+      {
         type: "flex",
-        altText: "\u5546\u54C1\u5F71\u7247\u5C08\u5340",
-      contents: {
-  type: "carousel",
-  contents: videoPages.map((pageRows, pageIndex) => ({
-    type: "bubble",
-    body: {
-      type: "box",
-      layout: "vertical",
-      spacing: "xs",
-      contents: [
-        {
-          type: "text",
-          text: "🎬 商品影片專區",
-          weight: "bold",
-          size: "lg",
-          color: "#333333"
-        },
-        {
-          type: "text",
-          text: pageIndex === 0
-            ? "點選想看的影片｜向左滑看更多"
-            : "更多主推影片",
-          size: "xs",
-          color: "#666666",
-          margin: "xs"
-        },
-        {
-          type: "separator",
+        altText: "商品影片專區",
+        contents: {
+          type: "carousel",
+          contents: videoPages.map((pageRows, pageIndex) => ({
+            type: "bubble",
+            body: {
+              type: "box",
+              layout: "vertical",
+              spacing: "xs",
+              contents: [
+                {
+                  type: "text",
+                  text: "🎬 商品影片專區",
+                  weight: "bold",
+                  size: "lg",
+                  color: "#333333"
+                },
+                {
+                  type: "text",
+                  text:
+                    pageIndex === 0
+                      ? "點選想看的影片｜向左滑看更多"
+                      : "更多主推影片",
+                  size: "xs",
+                  color: "#666666",
+                  margin: "xs"
+                },
+                {
+                  type: "separator",
+                  margin: "md"
+                },
+                ...pageRows
+              ]
+            }
+          }))
+        }
+      }
+    ]
+  })
+});
           margin: "md"
         },
         ...pageRows
