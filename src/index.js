@@ -1157,7 +1157,7 @@ for (let i = 0; i < itemRows.length; i += 6) {
   })
 });
           margin: "md"
-        },
+        }
         ...pageRows
       ]
     }
