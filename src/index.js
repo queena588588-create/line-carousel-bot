@@ -564,7 +564,8 @@ async function replyCarouselFromSheet(replyToken, token) {
     desc: String(row.c?.[4]?.v || "").trim(),
     keyword: String(row.c?.[5]?.v || "").trim(),
     video: String(row.c?.[6]?.v || "").trim(),
-    show: String(row.c?.[7]?.v || "").trim()
+   show: String(row.c?.[7]?.v || "").trim(),
+buttonText: String(row.c?.[8]?.v || "").trim()
   })).filter((item) => item.category === "\u8CFC\u7269\u8ECA" && item.show === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 10).map((item) => {
     const buttons = [];
     if (item.keyword) {
@@ -587,7 +588,7 @@ async function replyCarouselFromSheet(replyToken, token) {
           height: "sm",
           action: {
             type: "message",
-            label: "\u5546\u54C1\u4ECB\u7D39",
+label: (item.buttonText || "商品介紹").slice(0, 20),
             text: mainKeyword
           }
         });
