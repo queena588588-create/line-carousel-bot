@@ -1100,6 +1100,11 @@ async function replyVideoButtons(replyToken, token) {
       }
     ]
   }));
+  const videoPages = [];
+
+for (let i = 0; i < itemRows.length; i += 6) {
+  videoPages.push(itemRows.slice(i, i + 6));
+}
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
     headers: {
@@ -1111,36 +1116,40 @@ async function replyVideoButtons(replyToken, token) {
       messages: [{
         type: "flex",
         altText: "\u5546\u54C1\u5F71\u7247\u5C08\u5340",
-        contents: {
-          type: "bubble",
-          body: {
-            type: "box",
-            layout: "vertical",
-            spacing: "xs",
-            contents: [
-              {
-                type: "text",
-                text: "\u{1F3AC} \u5546\u54C1\u5F71\u7247\u5C08\u5340",
-                weight: "bold",
-                size: "lg",
-                color: "#333333"
-              },
-              {
-                type: "text",
-                text: "\u9EDE\u9078\u60F3\u770B\u7684\u5F71\u7247",
-                size: "xs",
-                color: "#666666",
-                margin: "xs"
-              },
-              {
-                type: "separator",
-                margin: "md"
-              },
-              ...itemRows
-            ]
-          }
-        }
-      }]
+      contents: {
+  type: "carousel",
+  contents: videoPages.map((pageRows, pageIndex) => ({
+    type: "bubble",
+    body: {
+      type: "box",
+      layout: "vertical",
+      spacing: "xs",
+      contents: [
+        {
+          type: "text",
+          text: "🎬 商品影片專區",
+          weight: "bold",
+          size: "lg",
+          color: "#333333"
+        },
+        {
+          type: "text",
+          text: pageIndex === 0
+            ? "點選想看的影片｜向左滑看更多"
+            : "更多主推影片",
+          size: "xs",
+          color: "#666666",
+          margin: "xs"
+        },
+        {
+          type: "separator",
+          margin: "md"
+        },
+        ...pageRows
+      ]
+    }
+  }))
+}
     })
   });
 }
