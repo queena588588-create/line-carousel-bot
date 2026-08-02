@@ -1033,15 +1033,13 @@ async function replyVideoButtons(replyToken, token) {
     const videoUrl = String(row.c?.[5]?.v || "").trim();
     const videoIntro = String(row.c?.[7]?.v || "").trim();
     const videoShow = String(row.c?.[8]?.v || "").trim();
-    const buttonText = String(row.c?.[12]?.v || "").trim();
     return {
-    keyword,
-imageUrl,
-title,
-videoUrl,
-videoIntro,
-videoShow,
-buttonText
+      keyword,
+      imageUrl,
+      title,
+      videoUrl,
+      videoIntro,
+      videoShow
     };
   }).filter((item) => item.keyword && item.videoUrl.startsWith("http") && item.videoShow === "\u662F").slice(0, 12);
   if (items.length === 0) {
