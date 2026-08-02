@@ -1156,15 +1156,7 @@ for (let i = 0; i < itemRows.length; i += 6) {
     ]
   })
 });
-          margin: "md"
-        }
-        ...pageRows
-      ]
-    }
-  }))
-}
-    })
-  });
+
 }
 __name(replyVideoButtons, "replyVideoButtons");
 async function replySmartFlex(replyToken, token) {
