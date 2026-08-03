@@ -515,7 +515,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-      text: "🛍️ 商品、訂單\n🎁 最新優惠\n🤝 合作諮詢\n💬 👇",
+            text: "\u26A1\uFE0E \u5077\u5077\u9EDE\u4E00\u4E0B\uFF0C\u6C92\u4EBA\u6703\u767C\u73FE\u{1F605}",
             weight: "bold",
             size: "sm"
           }
@@ -531,7 +531,7 @@ async function replyPrivateButton(replyToken, token) {
             action: {
               type: "uri",
               label: "\u{1F4BB} \u79C1\u8A0A Queena",
-              label: "💌 私訊 Queena",
+              uri: "https://line.me/ti/p/~0921730505"
             }
           }
         ]
