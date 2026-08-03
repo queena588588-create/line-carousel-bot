@@ -515,7 +515,7 @@ async function replyPrivateButton(replyToken, token) {
         contents: [
           {
             type: "text",
-            text: "\u26A1\uFE0E \u5077\u5077\u9EDE\u4E00\u4E0B\uFF0C\u6C92\u4EBA\u6703\u767C\u73FE\u{1F605}",
+            text: "我是小幫手，25 小時在線！\n🛍️ 商品、訂單相關\n🎁 最新優惠\n🤝 合作諮詢，歡迎私訊",
             weight: "bold",
             size: "lg"
           }
