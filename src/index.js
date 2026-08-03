@@ -531,7 +531,7 @@ async function replyPrivateButton(replyToken, token) {
             action: {
               type: "uri",
               label: "\u{1F4BB} \u79C1\u8A0A Queena",
-              uri: "https://line.me/ti/p/~0921730505"
+              label: "💌 私訊 Queena",
             }
           }
         ]
