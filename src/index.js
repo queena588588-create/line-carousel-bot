@@ -517,7 +517,7 @@ async function replyPrivateButton(replyToken, token) {
             type: "text",
             text: "我是小幫手，25 小時在線！\n🛍️ 商品、訂單相關\n🎁 最新優惠\n🤝 合作諮詢，歡迎私訊",
             weight: "bold",
-            size: "lg"
+            size: "sm"
           }
         ]
       },
