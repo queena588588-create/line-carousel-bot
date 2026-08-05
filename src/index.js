@@ -565,7 +565,8 @@ async function replyCarouselFromSheet(replyToken, token) {
     keyword: String(row.c?.[5]?.v || "").trim(),
     video: String(row.c?.[6]?.v || "").trim(),
    show: String(row.c?.[7]?.v || "").trim(),
-buttonText: String(row.c?.[8]?.v || "").trim()
+buttonText: String(row.c?.[8]?.v || "").trim(),
+buttonJump: String(row.c?.[9]?.v || "").trim()
   })).filter((item) => item.category === "\u8CFC\u7269\u8ECA" && item.show === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 10).map((item) => {
     const buttons = [];
     if (item.keyword) {
@@ -589,7 +590,7 @@ buttonText: String(row.c?.[8]?.v || "").trim()
           action: {
             type: "message",
 label: (item.buttonText || "商品介紹").slice(0, 20),
-            text: mainKeyword
+          text: item.buttonJump || mainKeyword
           }
         });
       }
