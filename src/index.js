@@ -569,8 +569,10 @@ buttonText: String(row.c?.[8]?.v || "").trim(),
 buttonJump: String(row.c?.[9]?.v || "").trim()
   })).filter((item) => item.category === "\u8CFC\u7269\u8ECA" && item.show === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 10).map((item) => {
     const buttons = [];
-    if (item.keyword) {
-      const mainKeyword = item.keyword.split(",")[0].trim();
+   if (item.keyword || item.buttonJump) {
+  const mainKeyword = item.keyword
+    ? item.keyword.split(",")[0].trim()
+    : "";
       if (mainKeyword === "IG" && item.video.startsWith("http")) {
         buttons.push({
           type: "button",
