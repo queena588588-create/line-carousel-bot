@@ -7,28 +7,28 @@ var index_default = {
   async fetch(request, env) {
    if (request.method === "GET") {
   const url = new URL(request.url);
-if (url.pathname === "/menu-v2/1040" || url.pathname === "/menu-v3/1040") {
+if (url.pathname === "/menu-v2/1040" || url.pathname === "/menu-v3/1040" || url.pathname === "/menu-v6/1040") {
   const img = await fetch(
-    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/1040.png"
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/1040.png?v=20260911-2"
   );
 
   return new Response(img.body, {
     headers: {
       "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=3600"
+      "Cache-Control": "no-store"
     }
   });
 }
 
-if (url.pathname === "/menu-v2/700" || url.pathname === "/menu-v3/700") {
+if (url.pathname === "/menu-v2/700" || url.pathname === "/menu-v3/700" || url.pathname === "/menu-v6/700") {
   const img = await fetch(
-    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/700.png.png"
+    "https://raw.githubusercontent.com/queena588588-create/line-carousel-bot/refs/heads/main/700.png?v=20260911-2"
   );
 
   return new Response(img.body, {
     headers: {
       "Content-Type": "image/png",
-      "Cache-Control": "public, max-age=3600"
+      "Cache-Control": "no-store"
     }
   });
 }
@@ -1727,48 +1727,48 @@ return `${area.label} ${temp === "暫無資料" ? temp : temp + "°C"}`;
 }
 async function replyCuteHome(replyToken, token) {
   const message = {
-  type: "imagemap",
-  baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu-v3",
-  altText: "👑Queena 不踩雷指南",
-  baseSize: {
-  width: 1040,
-  height: 1200
-},
-  actions: [
+    type: "imagemap",
+    baseUrl: "https://line-carousel-bot.queena-588-588.workers.dev/menu-v6",
+    altText: "👑 Queena 功能選單",
+    baseSize: {
+      width: 1040,
+      height: 1135
+    },
+    actions: [
       {
         type: "message",
-        text: "\u8CFC\u7269\u8ECA",
-       area: { x: 0, y: 430, width: 520, height: 180 }
+        text: "購物車",
+        area: { x: 78, y: 459, width: 433, height: 148 }
+      },
+      {
+        type: "uri",
+        linkUri: "https://queena-cart.pages.dev/",
+        area: { x: 517, y: 459, width: 431, height: 148 }
       },
       {
         type: "message",
-        text: "\u5206\u985E",
-       area: { x: 520, y: 430, width: 520, height: 180 }
+        text: "分類",
+        area: { x: 78, y: 616, width: 433, height: 148 }
       },
       {
         type: "message",
-        text: "\u5F71\u7247",
-        area: { x: 0, y: 630, width: 520, height: 180 }
+        text: "影片",
+        area: { x: 517, y: 616, width: 431, height: 148 }
+      },
+      {
+        type: "uri",
+        linkUri: "https://www.instagram.com/queena.520/",
+        area: { x: 78, y: 773, width: 433, height: 149 }
       },
       {
         type: "message",
-        text: "\u641C\u5C0B",
-        area: { x: 520, y: 630, width: 520, height: 180 }
+        text: "天氣速報",
+        area: { x: 517, y: 773, width: 431, height: 149 }
       },
       {
         type: "message",
-text: "天氣速報",
-        area: { x: 0, y: 830, width: 520, height: 180 }
-      },
-      {
-        type: "message",
-        text: "\u7D2B\u5916\u7DDA",
-        area: { x: 520, y: 830, width: 520, height: 180 }
-      },
-      {
-        type: "message",
-        text: "\u79C1\u8A0A",
-        area: { x: 0, y: 1020, width: 1040, height: 160 }
+        text: "私訊",
+        area: { x: 113, y: 931, width: 806, height: 91 }
       }
     ]
   };
