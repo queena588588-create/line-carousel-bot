@@ -35,7 +35,7 @@ if (url.pathname === "/menu-v2/700" || url.pathname === "/menu-v3/700" || url.pa
 
 return new Response("OK");
 }
-    const CHANNEL_ACCESS_TOKEN = "MIc6EDlPz7mwmX9mFvAxcNuR9XKxAD0il+mvfW/Ci+j7mFg4nVoFAaARCjaFv6ztVUTromiUDFUTChaU0qKZNsS88B7ZOj1XpN+CCaFHoD41ah0hJyXNyZfq8fqoq1gt+KHhqZFOjLY4jW00KPrKGAdB04t89/1O/w1cDnyilFU=";
+    const CHANNEL_ACCESS_TOKEN = env.LINE_CHANNEL_ACCESS_TOKEN;
     const SHEET_ID2 = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
     const SHEET_NAME = "\u5546\u54C1\u8CC7\u6599\u5EAB";
     const VIDEO_SHEET_ID = "1Invheigi_6zJCZTeITb5KaiezsUSPdcuEMsTogQ4Ijs";
