@@ -290,7 +290,7 @@ if (text === "天氣速報" || text === "天氣" || text === "今日天氣") {
             );
             continue;
           }
-          const categoryMatch = text.match(/^(保養美妝|營養保健|居家生活|生鮮美食|3C|服飾|香氛美學)(\d+)?$/);
+          const categoryMatch = text.match(/^(保養美妝|營養保健|生鮮美食|廚房用品|香氛美學|居家生活|3C|服飾|全球代購|輕珠寶飾品|兒童用品|票券)(\d+)?$/);
           if (categoryMatch) {
             const category = categoryMatch[1];
             const page = Number(categoryMatch[2] || 1);
@@ -1435,8 +1435,9 @@ async function getProductCategoryItems(sheetId, sheetName) {
 __name(getProductCategoryItems, "getProductCategoryItems");
 async function replyQuickButtons(replyToken, token, text, buttons) {
   const rows = [];
-  for (let i = 0; i < buttons.length; i += 2) {
-    const rowButtons = buttons.slice(i, i + 2).map((btn) => ({
+  for (let i = 0; i < buttons.length;) {
+    const rowSize = buttons[i].fullWidth || buttons[i + 1]?.fullWidth ? 1 : 2;
+    const rowButtons = buttons.slice(i, i + rowSize).map((btn) => ({
       type: "button",
       style: "primary",
       height: "sm",
@@ -1452,6 +1453,7 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
       spacing: "sm",
       contents: rowButtons
     });
+    i += rowSize;
   }
   await fetch("https://api.line.me/v2/bot/message/reply", {
     method: "POST",
@@ -1497,18 +1499,23 @@ __name(replyQuickButtons, "replyQuickButtons");
 async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
   const products = await getProductCategoryItems(sheetId, sheetName);
   const categories = [
-    { label: "\u{1F484} \u4FDD\u990A\u7F8E\u599D", text: "\u4FDD\u990A\u7F8E\u599D" },
-    { label: "\u{1F4AA} \u71DF\u990A\u4FDD\u5065", text: "\u71DF\u990A\u4FDD\u5065" },
-    { label: "\u{1F3E0} \u5C45\u5BB6\u751F\u6D3B", text: "\u5C45\u5BB6\u751F\u6D3B" },
-    { label: "\u{1F357} \u751F\u9BAE\u7F8E\u98DF", text: "\u751F\u9BAE\u7F8E\u98DF" },
-    { label: "\u{1F4F1} 3C", text: "3C" },
-    { label: "\u{1F455} \u670D\u98FE", text: "\u670D\u98FE" },
-    { label: "\u{1F338} \u9999\u6C1B\u7F8E\u5B78", text: "\u9999\u6C1B\u7F8E\u5B78" }
+    { label: "💄 保養美妝", text: "保養美妝" },
+    { label: "💪 營養保健", text: "營養保健" },
+    { label: "🍗 生鮮美食", text: "生鮮美食" },
+    { label: "🍳 廚房用品", text: "廚房用品" },
+    { label: "🌸 香氛美學", text: "香氛美學" },
+    { label: "🏠 居家生活", text: "居家生活" },
+    { label: "📱 3C", text: "3C" },
+    { label: "👕 服飾", text: "服飾" },
+    { label: "🌍 全球代購", text: "全球代購" },
+    { label: "💎 輕珠寶飾品", text: "輕珠寶飾品" },
+    { label: "🧸 兒童用品", text: "兒童用品" },
+    { label: "🎟️ 票券", text: "票券" }
   ];
   const mainProducts = products.filter((item) => item.isMain === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 6);
   const buttons = [
     ...categories,
-    { label: "\u{1F3AC} \u5F71\u7247\u5C08\u5340", text: "\u5F71\u7247" },
+    { label: "🎬 影片專區", text: "影片", fullWidth: true },
     { label: "\u{1F50D} \u641C\u5C0B\u5546\u54C1", text: "\u641C\u5C0B" },
     ...mainProducts.map((item) => ({
       label: item.productName,
