@@ -1441,7 +1441,11 @@ async function replyQuickButtons(replyToken, token, text, buttons) {
       type: "button",
       style: "primary",
       height: "sm",
-      action: {
+      action: btn.uri ? {
+        type: "uri",
+        label: String(btn.label).slice(0, 20),
+        uri: btn.uri
+      } : {
         type: "message",
         label: String(btn.label).slice(0, 20),
         text: String(btn.text)
@@ -1522,7 +1526,7 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
   const buttons = [
     ...categories,
     { label: "🎬 影片專區", text: "影片", fullWidth: true },
-    { label: "\u{1F50D} \u641C\u5C0B\u5546\u54C1", text: "\u641C\u5C0B" },
+    { label: "💬 私訊 Queena", uri: "https://line.me/ti/p/~0921730505", fullWidth: true },
     ...mainProducts.map((item) => ({
       label: item.productName,
       text: item.firstKeyword
