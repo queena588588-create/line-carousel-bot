@@ -1512,7 +1512,13 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
     { label: "🧸 兒童用品", text: "兒童用品" },
     { label: "🎟️ 票券", text: "票券" }
   ];
-  const mainProducts = products.filter((item) => item.isMain === "\u662F").sort((a, b) => a.sort - b.sort).slice(0, 6);
+  const categoryEntries = new Set(categories.flatMap((item) => [item.text, item.text + "專區"]));
+  categoryEntries.add("影片");
+  categoryEntries.add("影片專區");
+  const mainProducts = products.filter((item) => item.isMain === "\u662F" &&
+    !categoryEntries.has(item.productName.trim()) &&
+    !categoryEntries.has(item.firstKeyword.trim())
+  ).sort((a, b) => a.sort - b.sort).slice(0, 6);
   const buttons = [
     ...categories,
     { label: "🎬 影片專區", text: "影片", fullWidth: true },
