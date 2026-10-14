@@ -732,7 +732,7 @@ async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
   const photoCol = col(['照片', '圖片', '商品圖片', '圖片網址'], 1);
   const nameCol = col(['商品名稱', '名稱'], 2);
   const introCol = col(['商品介紹', '短介紹', '介紹'], 3);
-  const buyCol = col(['購買方式', '購買連結', '連結'], 4);
+  const shareCol = col(['分享短網址', '商城分享短址', '分享網址'], -1);
   const value = (row, index) => index < 0 ? '' : String(row.c?.[index]?.v ?? '').trim();
   for (const row of data.table.rows || []) {
     const sheetKeyword = [value(row, keysCol), value(row, moreKeysCol)].filter(Boolean).join(',');
@@ -742,7 +742,7 @@ async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
         photo: value(row, photoCol),
         productName: value(row, nameCol),
         intro: value(row, introCol),
-        buyMethod: value(row, buyCol)
+        shareUrl: value(row, shareCol)
       };
     }
   }
@@ -809,11 +809,15 @@ async function getCountdownText(productKeyword) {
 }
 __name(getCountdownText, "getCountdownText");
 async function replySheetProduct(replyToken, token, product) {
+  const websiteUrl = /^https:\/\//i.test(String(product.shareUrl || '').trim())
+    ? String(product.shareUrl).trim()
+    : 'https://queena-cart.pages.dev/?product=' + encodeURIComponent(product.productName);
+
   const text = `\u{1F6D2} ${product.productName}
 
 ${product.intro}
 
-${product.buyMethod || ""}`;
+${websiteUrl}`;
   const messages = [];
   const countdownText = await getCountdownText(
     product.keyword || product.productName
@@ -842,12 +846,12 @@ ${product.buyMethod || ""}`;
         },
         body: {type: 'box', layout: 'vertical', spacing: 'md', contents},
         ...(() => {
-          const links = String(product.buyMethod || '').match(/https:\/\/[^\s<>"']+/g) || [];
+          const links = [websiteUrl];
           return links.length ? {footer: {
             type: 'box', layout: 'vertical', spacing: 'sm',
             contents: [...new Set(links)].slice(0, 3).map((uri, index) => ({
               type: 'button', style: 'link', height: 'sm',
-              action: {type: 'uri', label: links.length === 1 ? '開啟購買連結' : '開啟連結 ' + (index + 1), uri}
+              action: {type: 'uri', label: '查看商品／購買', uri}
             }))
           }} : {};
         })()
