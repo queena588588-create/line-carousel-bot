@@ -717,26 +717,32 @@ async function replyHelperButtons(replyToken, token) {
 }
 __name(replyHelperButtons, "replyHelperButtons");
 async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID2}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID2}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
   const res = await fetch(url);
-  const csv = await res.text();
-  const rows = csv.split("\n").map(
-    (row) => row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map((cell) => cell.replace(/^"|"$/g, "").trim()) || []
-  );
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    const sheetKeyword = row[0] || "";
-    const photo = row[1] || "";
-    const productName = row[2] || "";
-    const intro = row[3] || "";
-    const buyMethod = row[4] || "";
-    if (sheetKeyword.split(",").map((k) => k.trim()).includes(keyword)) {
+  if (!res.ok) throw new Error('商品資料讀取失敗');
+  const raw = await res.text();
+  const data = JSON.parse(raw.substring(raw.indexOf('{'), raw.lastIndexOf('}') + 1));
+  const columns = data.table.cols || [];
+  const col = (names, fallback) => {
+    const index = columns.findIndex(item => names.includes(String(item.label || '').trim()));
+    return index >= 0 ? index : fallback;
+  };
+  const keysCol = col(['關鍵字'], 0);
+  const moreKeysCol = col(['多關鍵字'], -1);
+  const photoCol = col(['照片', '圖片', '商品圖片', '圖片網址'], 1);
+  const nameCol = col(['商品名稱', '名稱'], 2);
+  const introCol = col(['商品介紹', '短介紹', '介紹'], 3);
+  const buyCol = col(['購買方式', '購買連結', '連結'], 4);
+  const value = (row, index) => index < 0 ? '' : String(row.c?.[index]?.v ?? '').trim();
+  for (const row of data.table.rows || []) {
+    const sheetKeyword = [value(row, keysCol), value(row, moreKeysCol)].filter(Boolean).join(',');
+    if (sheetKeyword.split(/[,，]/).map(k => k.trim()).includes(keyword)) {
       return {
         keyword: sheetKeyword,
-        photo,
-        productName,
-        intro,
-        buyMethod
+        photo: value(row, photoCol),
+        productName: value(row, nameCol),
+        intro: value(row, introCol),
+        buyMethod: value(row, buyCol)
       };
     }
   }
@@ -812,20 +818,48 @@ ${product.buyMethod || ""}`;
   const countdownText = await getCountdownText(
     product.keyword || product.productName
   );
-  if (product.photo) {
-    const photos = product.photo.split(",").map((url) => url.trim()).filter((url) => url.startsWith("http"));
-    for (const photoUrl of photos.slice(0, 3)) {
-      messages.push({
-        type: "image",
-        originalContentUrl: photoUrl,
-        previewImageUrl: photoUrl
-      });
+  const photos = String(product.photo || '').split(/[,，\r\n]+/)
+    .map(url => url.trim()).filter(url => /^https:\/\//i.test(url)).slice(0, 3);
+  if (photos.length >= 2) {
+    const contents = [];
+    // 分段保留原文字，不使用 AI 改寫或截掉介紹。
+    for (let offset = 0; offset < text.length; offset += 1800) {
+      contents.push({type: 'text', text: text.slice(offset, offset + 1800), wrap: true, size: 'sm'});
+    }
+    messages.push({
+      type: 'flex',
+      altText: ('🛒 ' + product.productName).slice(0, 400),
+      contents: {
+        type: 'bubble',
+        size: 'mega',
+        hero: {
+          type: 'box', layout: 'horizontal', spacing: 'xs',
+          contents: photos.map(url => ({
+            type: 'image', url, size: 'full', flex: 1,
+            aspectRatio: '1:1', aspectMode: 'fit',
+            action: {type: 'uri', uri: url}
+          }))
+        },
+        body: {type: 'box', layout: 'vertical', spacing: 'md', contents},
+        ...(() => {
+          const links = String(product.buyMethod || '').match(/https:\/\/[^\s<>"']+/g) || [];
+          return links.length ? {footer: {
+            type: 'box', layout: 'vertical', spacing: 'sm',
+            contents: [...new Set(links)].slice(0, 3).map((uri, index) => ({
+              type: 'button', style: 'link', height: 'sm',
+              action: {type: 'uri', label: links.length === 1 ? '開啟購買連結' : '開啟連結 ' + (index + 1), uri}
+            }))
+          }} : {};
+        })()
+      }
+    });
+  } else {
+    // 只有一張時保留原本圖片＋文字的回覆方式。
+    if (photos[0]) messages.push({type: 'image', originalContentUrl: photos[0], previewImageUrl: photos[0]});
+    for (let offset = 0; offset < text.length; offset += 5000) {
+      messages.push({type: 'text', text: text.slice(offset, offset + 5000)});
     }
   }
-  messages.push({
-    type: "text",
-    text
-  });
   if (countdownText) {
     messages.push({
       type: "text",
