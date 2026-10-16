@@ -1254,7 +1254,7 @@ async function replySmartFlex(replyToken, token) {
 }
 __name(replySmartFlex, "replySmartFlex");
 async function replyClosingFlexList(replyToken, token) {
-  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent("\u7D50\u55AE\u5012\u6578");
+  const url = "https://docs.google.com/spreadsheets/d/1OtOYLa1ZwYape5BAeC2y1knja2bG3qKJPRqOxNqJVrg/gviz/tq?tqx=out:json&headers=1&sheet=" + encodeURIComponent("\u7D50\u55AE\u5012\u6578");
   const res = await fetch(url);
   const raw = await res.text();
   const jsonText = raw.substring(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
@@ -1267,13 +1267,17 @@ async function replyClosingFlexList(replyToken, token) {
     const closingText = String(row.c?.[3]?.v || "").trim();
     const show = String(row.c?.[4]?.v || "").trim();
     const imageUrl = String(row.c?.[5]?.v || "").trim();
-    if (show !== "\u662F") return null;
+    if (show !== "\u662F" || !keyword) return null;
     const match = deadlineText.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2}).*?(\d{1,2}):(\d{2})/);
     if (!match) return null;
-    const [, year, month, day, hour, minute] = match;
+    const [, year, month, day, rawHour, minute] = match;
+    let hour = Number(rawHour);
+    if (/下午|PM/i.test(deadlineText) && hour < 12) hour += 12;
+    if (/上午|AM/i.test(deadlineText) && hour === 12) hour = 0;
     const deadline = /* @__PURE__ */ new Date(
       `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00+08:00`
     );
+    if (!Number.isFinite(deadline.getTime())) return null;
     const remainingMs = deadline.getTime() - now;
     const totalMinutes = Math.floor(remainingMs / 6e4);
     const days = Math.floor(totalMinutes / 1440);
@@ -1297,8 +1301,8 @@ async function replyClosingFlexList(replyToken, token) {
       timeText,
       keyword
     };
-  }).filter(Boolean).sort((a, b) => a.deadline - b.deadline).slice(0, 10);
-  if (false) {
+  }).filter(Boolean).sort((a, b) => a.deadline - b.deadline).slice(0, 15);
+  if (items.length === 0) {
     await replySimple(replyToken, token, "\u76EE\u524D\u6C92\u6709\u8A2D\u5B9A\u5373\u5C07\u7D50\u55AE\u5546\u54C1");
     return;
   }
@@ -1348,7 +1352,7 @@ async function replyClosingFlexList(replyToken, token) {
           },
           {
             type: "text",
-          text: item.displayName === "🔍 搜尋商品" ? " " : (item.closingText || ""),
+          text: item.displayName === "🔍 搜尋商品" ? " " : (item.closingText || " "),
             size: "xs",
             color: "#666666",
             wrap: true,
