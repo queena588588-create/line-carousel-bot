@@ -720,9 +720,31 @@ async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID2}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
   const res = await fetch(url);
   const csv = await res.text();
-  const rows = csv.split("\n").map(
-    (row) => row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map((cell) => cell.replace(/^"|"$/g, "").trim()) || []
-  );
+  // Preserve empty columns, quoted commas and multiline descriptions.
+  const rows = [];
+  let row = [], cell = "", quoted = false;
+  for (let i = 0; i < csv.length; i++) {
+    const ch = csv[i];
+    if (ch === '"') {
+      if (quoted && csv[i + 1] === '"') { cell += '"'; i++; }
+      else quoted = !quoted;
+    } else if (ch === ',' && !quoted) {
+      row.push(cell.trim()); cell = "";
+    } else if ((ch === '\n' || ch === '\r') && !quoted) {
+      if (ch === '\r' && csv[i + 1] === '\n') i++;
+      row.push(cell.trim()); rows.push(row); row = []; cell = "";
+    } else cell += ch;
+  }
+  if (cell.length || row.length) { row.push(cell.trim()); rows.push(row); }
+  const headers = (rows[0] || []).map(value => value.replace(/^\uFEFF/, "").trim());
+  const shareIndex = headers.indexOf("分享短網址");
+  const albumIndex = headers.indexOf("相簿網址");
+  const validLink = value => {
+    try {
+      const url = new URL(String(value || "").trim());
+      return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+    } catch { return ""; }
+  };
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
     const sheetKeyword = row[0] || "";
@@ -730,13 +752,18 @@ async function findProductFromSheet(keyword, SHEET_ID2, SHEET_NAME) {
     const productName = row[2] || "";
     const intro = row[3] || "";
     const buyMethod = row[4] || "";
+    const websiteUrl = validLink(row[shareIndex >= 0 ? shareIndex : 22]) ||
+      (productName ? "https://queena-cart.pages.dev/?product=" + encodeURIComponent(productName) : "");
+    const albumUrl = validLink(row[albumIndex >= 0 ? albumIndex : 23]);
     if (sheetKeyword.split(",").map((k) => k.trim()).includes(keyword)) {
       return {
         keyword: sheetKeyword,
         photo,
         productName,
         intro,
-        buyMethod
+        buyMethod,
+        websiteUrl,
+        albumUrl
       };
     }
   }
@@ -803,11 +830,19 @@ async function getCountdownText(productKeyword) {
 }
 __name(getCountdownText, "getCountdownText");
 async function replySheetProduct(replyToken, token, product) {
-  const text = `\u{1F6D2} ${product.productName}
+  let text = `\u{1F6D2} ${product.productName}
 
 ${product.intro}
 
 ${product.buyMethod || ""}`;
+  const links = [];
+  if (product.websiteUrl && !text.includes(product.websiteUrl)) {
+    links.push("🛒 商品網址\n" + product.websiteUrl);
+  }
+  if (product.albumUrl && !text.includes(product.albumUrl)) {
+    links.push("📷 商品相簿\n" + product.albumUrl);
+  }
+  if (links.length) text += "\n\n" + links.join("\n\n");
   const messages = [];
   const countdownText = await getCountdownText(
     product.keyword || product.productName
