@@ -837,10 +837,10 @@ ${product.intro}
 ${product.buyMethod || ""}`;
   const links = [];
   if (product.websiteUrl && !text.includes(product.websiteUrl)) {
-    links.push("🛒 折扣下單\n" + product.websiteUrl);
+    links.push("🛒 全站逛逛\n" + product.websiteUrl);
   }
   if (product.albumUrl && !text.includes(product.albumUrl)) {
-    links.push("📷 商品相簿\n" + product.albumUrl);
+    links.push("📷 更多款式\n" + product.albumUrl);
   }
   if (links.length) text += "\n\n" + links.join("\n\n");
   const messages = [];
