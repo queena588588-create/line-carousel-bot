@@ -186,47 +186,28 @@ return new Response("OK");
                 },
                 {
                   type: "text",
-                  text: `\u{1F6D2} \u6B61\u8FCE\u52A0\u5165\u585E\u7206\u8CFC\u7269\u8ECA \u{1F6D2}
+                                 text: `歡迎加入
+🛒 塞爆你專屬購物車 🛒
 
-        \u{1F380} About me \u{1FA70}
-  \u{1F460} \u96D9\u5BF6\u5ABD\u4E5F\u80FD\u8F15\u9B06\u659C\u69D3
-  \u2728 \u96FB\u5546\u5408\u4F5C\uFF5C\u7D93\u71DF\u958B\u653E\u4E2D
+我是 👑 Queena 無厘頭雙寶媽
+忙小孩，也忙補貨 🛒
+我愛用 大家會買 回購高 全在這！
 
-  \u{1F4B0} \u751F\u6D3B\u6D88\u8CBB\u8CFA\u56DE\u994B
-  \u{1F4F1} \u5C0D\u7DB2\u8DEF\u884C\u92B7\u6709\u8208\u8DA3
-  \u{1F4DA} \u60F3\u57F9\u990A\u7B2C\u4E8C\u5C08\u9577
-  \u2708\uFE0F \u51FA\u570B\u908A\u73A9\u908A\u8CFA\u9322
-  \u{1F64B}\u200D\u2640\uFE0F\u4EFB\u4E00\u6709\u8208\u8DA3\u8005\u6B61\u8FCE\u79C1\u8A0A
-  \u{1F4AC} \u5B98\u65B9Line\uFF1A@108yssta
+🤖 小幫手 25H 在線
+它翻商品，我負責搶優惠🫰
+全站逛逛
+https://queena-cart.pages.dev/
 
-\u{1F515} \u8A0A\u606F\u6709\u9EDE\u591A\u53EF\u95DC\u9589\u63D0\u9192
+🛒 近期推薦 → 輸入「購物車」
+📂 商品分類 → 輸入「分類」
+🔎 找商品 → 輸入商品關鍵字
+💬 優惠／訂單 → 輸入「私訊」
 
-\u2708\uFE0F\u3010Queena \u8CFC\u7269\u907F\u96F7\u6307\u5357\u3011
-
-\u8FD1\u671F\u63A8\u85A6\u55AE\u54C1\u2764\uFE0F
-\u{1F6D2} \u8F38\u5165\u300C\u8CFC\u7269\u8ECA\u300D
-
-\u{1F4C2} \u5546\u54C1\u5206\u985E
-\u8F38\u5165\u300C\u5206\u985E\u300D
-      
-\u{1F69A} \u5546\u54C1\u554F\u984C\uFF5C\u8A02\u55AE\u554F\u984C
-\u8F38\u5165\u300C\u79C1\u8A0A\u300D\u4E00\u5C0D\u4E00\u79C1\u8A0A\u804A\u804A`
-                },
-                {
-                  type: "template",
-                  altText: "\u5C0F\u5E6B\u624B\u6307\u4EE4",
-                  template: {
-                    type: "buttons",
-                    title: "\u{1F916} \u8CFC\u7269\u8ECA\u5C0F\u5E6B\u624B",
-                    text: "\u9EDE\u64CA\u958B\u555F\u529F\u80FD\u9078\u55AE",
-                    actions: [
-                      {
-                        type: "postback",
-                        label: "\u{1F916} \u5C0F\u5E6B\u624B\u6307\u4EE4",
-                        data: "\u5C0F\u5E6B\u624B\u6307\u4EE4"
-                      }
-                    ]
-                  }
+🔕 訊息多可關閉提醒
+➖➖➖➖➖➖➖➖
+消費回饋、電商合作、網路行銷
+有興趣 可私訊👑 Queena
+官方 LINE：@753hvrac`
                 }
               ]
             })
