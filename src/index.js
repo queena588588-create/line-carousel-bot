@@ -837,7 +837,7 @@ ${product.intro}
 ${product.buyMethod || ""}`;
   const links = [];
   if (product.websiteUrl && !text.includes(product.websiteUrl)) {
-    links.push("🛒 商品網址\n" + product.websiteUrl);
+    links.push("🛒 折扣下單\n" + product.websiteUrl);
   }
   if (product.albumUrl && !text.includes(product.albumUrl)) {
     links.push("📷 商品相簿\n" + product.albumUrl);
