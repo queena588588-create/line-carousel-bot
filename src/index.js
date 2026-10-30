@@ -272,7 +272,7 @@ if (text === "天氣速報" || text === "天氣" || text === "今日天氣") {
             );
             continue;
           }
-          const categoryMatch = text.match(/^(保養美妝|營養保健|生鮮美食|廚房用品|香氛美學|居家生活|3C|服飾|全球代購|輕珠寶飾品|兒童用品|票券)(\d+)?$/);
+          const categoryMatch = text.match(/^(保養美妝|營養保健|生鮮美食|廚房用品|香氛美學|居家生活|3C|服飾配件|全球代購|輕珠寶飾品|兒童用品|票券)(\d+)?$/);
           if (categoryMatch) {
             const category = categoryMatch[1];
             const page = Number(categoryMatch[2] || 1);
@@ -1531,7 +1531,7 @@ async function replyProductCategoryHome(replyToken, token, sheetId, sheetName) {
     { label: "🌸 香氛美學", text: "香氛美學" },
     { label: "🏠 居家生活", text: "居家生活" },
     { label: "📱 3C", text: "3C" },
-    { label: "👕 服飾", text: "服飾" },
+   { label: "👕 服飾配件", text: "服飾配件" },
     { label: "🌍 全球代購", text: "全球代購" },
     { label: "💎 輕珠寶飾品", text: "輕珠寶飾品" },
     { label: "🧸 兒童用品", text: "兒童用品" },
