@@ -196,8 +196,8 @@ return new Response("OK");
 
 🤖 小幫手 25H 在線
 它翻商品，我負責搶優惠🫰
-全站逛逛
-https://queena-cart.pages.dev/
+全站逛逛(群組 官網同步)
+https://queena.tw/
 
 🛒 近期推薦 → 輸入「購物車」
 📂 商品分類 → 輸入「分類」
