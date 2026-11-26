@@ -807,9 +807,9 @@ async function getCountdownText(productKeyword) {
     if (days > 0) parts.push(`${days}\u5929`);
     if (hours > 0) parts.push(`${hours}\u5C0F\u6642`);
     parts.push(`${minutes}\u5206\u9418`);
-    return `\u{1F4E2} ${displayName}\u6536\u55AE\u5012\u6578\u203C\uFE0F\u203C\uFE0F
+   return `\u{1F4E2} ${displayName}  \u6536\u55AE\u5012\u6578\u203C\uFE0F\u203C\uFE0F
 
-\u53EA\u5269\u{1F6A8} ${parts.join("")}\uFF0C\u{1F6A8}\u5373\u5C07\u7D50\u55AE\uFF0C\u903E\u671F\u4E0D\u5019\u203C\uFE0F${closingText ? "\n\n" + closingText : ""}`;
+\u5269\u{1F6A8} ${parts.join("")}\uFF0C\u{1F6A8}\u903E\u671F\u4E0D\u5019\u203C\uFE0F${closingText ? "\n\n" + closingText : ""}`;
   }
   return "";
 }
@@ -1403,7 +1403,7 @@ async function replyClosingFlexList(replyToken, token) {
             contents: [
               {
                 type: "text",
-                text: "\u23F0 \u6700\u8FD1\u7D50\u55AE\u6E05\u55AE",
+               text: "⏰ 優惠倒數中‼️",
                 weight: "bold",
                 size: "lg",
                 color: "#333333"
